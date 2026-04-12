@@ -1,0 +1,64 @@
+// NetFrame — Color Tokens
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Defines the default cyberpunk palette as a Sass map, then forwards
+// every entry as a CSS custom property on :root.
+//
+// To override the theme, redefine any --nf-color-* variable on :root
+// (or any ancestor selector) in your own CSS — no rebuild required.
+
+@use 'sass:map';
+
+// ---------------------------------------------------------------------------
+// Default palette map
+// ---------------------------------------------------------------------------
+
+$nf-colors: (
+  // Backgrounds
+  'bg':           #090d1a,
+  'bg-elevated':  #111827,
+  'bg-overlay':   #1a2235,
+  'bg-inset':     #060810,
+
+  // Borders
+  'border':       #1e2d45,
+  'border-strong': #2a3f60,
+
+  // Brand
+  'primary':      #00f0ff,   // neon cyan
+  'primary-dim':  #0099aa,
+  'accent':       #ff006e,   // hot magenta
+  'accent-dim':   #aa0049,
+
+  // Semantic
+  'success':      #39ff14,   // neon green
+  'success-dim':  #25aa0d,
+  'warning':      #fca311,   // amber
+  'warning-dim':  #b07208,
+  'danger':       #ff2e63,   // crimson
+  'danger-dim':   #b01f45,
+  'info':         #7b61ff,   // purple
+  'info-dim':     #5540cc,
+
+  // Text
+  'text':         #e8f1ff,
+  'text-muted':   #7a8ba6,
+  'text-subtle':  #3d4f6a,
+  'text-inverse': #090d1a,
+
+  // Surface overlays (alpha — used for hover/focus states)
+  'overlay-subtle': rgba(0, 240, 255, 0.04),
+  'overlay-hover':  rgba(0, 240, 255, 0.08),
+  'overlay-active': rgba(0, 240, 255, 0.12),
+) !default;
+
+// ---------------------------------------------------------------------------
+// Emit as CSS custom properties
+// ---------------------------------------------------------------------------
+
+:root {
+  @each $name, $value in $nf-colors {
+    --nf-color-#{$name}: #{$value};
+  }
+}

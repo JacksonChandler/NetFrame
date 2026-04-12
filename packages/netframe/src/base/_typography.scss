@@ -1,0 +1,147 @@
+// NetFrame — Base Typography
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Sets global defaults for all text elements using token vars only.
+// Components override these as needed via their own class styles.
+
+// ---------------------------------------------------------------------------
+// Document defaults
+// ---------------------------------------------------------------------------
+
+body {
+  font-family: var(--nf-font-body);
+  font-size: var(--nf-text-md);       // 14px — dense UI default
+  font-weight: var(--nf-font-weight-regular);
+  color: var(--nf-color-text);
+  background-color: var(--nf-color-bg);
+}
+
+// ---------------------------------------------------------------------------
+// Headings
+// Display font (Space Grotesk Bold) with tracked uppercase feel
+// ---------------------------------------------------------------------------
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--nf-font-display);
+  font-weight: var(--nf-font-weight-bold);
+  line-height: var(--nf-leading-tight);
+  color: var(--nf-color-text);
+}
+
+h1 { font-size: var(--nf-text-4xl); }
+h2 { font-size: var(--nf-text-3xl); }
+h3 { font-size: var(--nf-text-2xl); }
+h4 { font-size: var(--nf-text-xl); }
+h5 { font-size: var(--nf-text-lg); }
+h6 { font-size: var(--nf-text-base); }
+
+// ---------------------------------------------------------------------------
+// Body text
+// ---------------------------------------------------------------------------
+
+p {
+  line-height: var(--nf-leading-relaxed);
+  color: var(--nf-color-text);
+}
+
+// ---------------------------------------------------------------------------
+// Inline elements
+// ---------------------------------------------------------------------------
+
+strong, b {
+  font-weight: var(--nf-font-weight-medium);
+  color: var(--nf-color-text);
+}
+
+em, i {
+  // Italics look off in a monospace font — use color shift instead
+  font-style: normal;
+  color: var(--nf-color-primary);
+}
+
+small {
+  font-size: var(--nf-text-sm);
+  color: var(--nf-color-text-muted);
+}
+
+// ---------------------------------------------------------------------------
+// Code & preformatted text
+// ---------------------------------------------------------------------------
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--nf-font-mono);
+  font-size: var(--nf-text-sm);
+}
+
+code {
+  background-color: var(--nf-color-bg-elevated);
+  color: var(--nf-color-primary);
+  padding: 0.1em 0.35em;
+  border-radius: var(--nf-radius-sm);
+  border: var(--nf-border-thin) solid var(--nf-color-border);
+}
+
+pre {
+  background-color: var(--nf-color-bg-elevated);
+  border: var(--nf-border-thin) solid var(--nf-color-border);
+  border-radius: var(--nf-radius-md);
+  padding: var(--nf-space-4);
+  overflow-x: auto;
+
+  code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+  }
+}
+
+kbd {
+  background-color: var(--nf-color-bg-overlay);
+  border: var(--nf-border-thin) solid var(--nf-color-border-strong);
+  border-radius: var(--nf-radius-sm);
+  padding: 0.1em 0.4em;
+  font-size: var(--nf-text-xs);
+  color: var(--nf-color-text-muted);
+  letter-spacing: var(--nf-tracking-wide);
+}
+
+// ---------------------------------------------------------------------------
+// Links
+// ---------------------------------------------------------------------------
+
+a {
+  color: var(--nf-color-primary);
+  text-decoration: none;
+  transition: color var(--nf-duration-base) var(--nf-ease-default);
+
+  &:hover {
+    color: var(--nf-color-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Blockquote
+// ---------------------------------------------------------------------------
+
+blockquote {
+  border-left: var(--nf-border-thick) solid var(--nf-color-primary);
+  padding-left: var(--nf-space-4);
+  color: var(--nf-color-text-muted);
+  font-style: normal;
+}
+
+// ---------------------------------------------------------------------------
+// Horizontal rule (override reset with themed style)
+// ---------------------------------------------------------------------------
+
+hr {
+  border-top-color: var(--nf-color-border);
+  margin-block: var(--nf-space-6);
+}

@@ -1,0 +1,11 @@
+// NetFrame — Token barrel
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Import order matters: colors first so other tokens can reference
+// color vars. Typography before spacing (no dependency, but logical order).
+
+@forward 'colors';
+@forward 'typography';
+@forward 'spacing';
+@forward 'motion';

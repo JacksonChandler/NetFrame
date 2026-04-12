@@ -1,0 +1,70 @@
+// NetFrame — Scanlines Mixin
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Renders a CRT scanline overlay using a repeating CSS gradient on ::before.
+// The element must have position: relative and overflow: hidden.
+
+// ---------------------------------------------------------------------------
+// @mixin nf-scanlines
+//
+// Parameters:
+//   $opacity  — line opacity (default: 0.04, range: 0.02–0.12)
+//   $size     — distance between lines in px (default: 4px)
+//   $color    — line color (default: black)
+// ---------------------------------------------------------------------------
+
+@mixin nf-scanlines($opacity: 0.04, $size: 4px, $color: #000) {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(#{$size} - 1px),
+      #{$color} calc(#{$size} - 1px),
+      #{$color} #{$size}
+    );
+    opacity: $opacity;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// @mixin nf-scanlines-animated
+//
+// Moving scanlines — a single bright line drifts down the element,
+// evoking a CRT screen refresh.
+// ---------------------------------------------------------------------------
+
+@mixin nf-scanlines-animated($color: var(--nf-color-primary), $duration: 3s) {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      color-mix(in srgb, #{$color} 6%, transparent) 48%,
+      color-mix(in srgb, #{$color} 10%, transparent) 50%,
+      color-mix(in srgb, #{$color} 6%, transparent) 52%,
+      transparent 100%
+    );
+    animation: nf-scanline-sweep #{$duration} linear infinite;
+  }
+}
+
+@keyframes nf-scanline-sweep {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}

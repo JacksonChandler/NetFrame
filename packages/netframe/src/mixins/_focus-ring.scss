@@ -1,0 +1,51 @@
+// NetFrame — Focus Ring Mixin
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Accessible neon focus rings for interactive components.
+// Applied via :focus-visible only (not plain :focus) to avoid
+// showing rings on mouse clicks.
+
+// ---------------------------------------------------------------------------
+// @mixin nf-focus-ring
+//
+// Parameters:
+//   $color   — ring color (default: primary cyan)
+//   $offset  — gap between element edge and ring (default: 2px)
+//   $width   — ring thickness (default: 2px)
+// ---------------------------------------------------------------------------
+
+@mixin nf-focus-ring(
+  $color: var(--nf-color-primary),
+  $offset: 2px,
+  $width: 2px
+) {
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: #{$width} solid #{$color};
+    outline-offset: #{$offset};
+    box-shadow: 0 0 0 4px color-mix(in srgb, #{$color} 20%, transparent);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// @mixin nf-focus-ring-inset
+//
+// For elements where an outset ring overlaps siblings (e.g. table cells,
+// items in a list). Renders the ring as an inset box-shadow instead.
+// ---------------------------------------------------------------------------
+
+@mixin nf-focus-ring-inset($color: var(--nf-color-primary), $width: 2px) {
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 #{$width} #{$color},
+                inset 0 0 0 4px color-mix(in srgb, #{$color} 15%, transparent);
+  }
+}

@@ -1,0 +1,84 @@
+// NetFrame — Spacing Tokens
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// 4px base unit (0.25rem). Steps: 0 1 2 3 4 5 6 8 10 12 16 20 24 32 40 48 64
+
+$nf-spacing: (
+  '0':  0,
+  '1':  0.25rem,    //  4px
+  '2':  0.5rem,     //  8px
+  '3':  0.75rem,    // 12px
+  '4':  1rem,       // 16px
+  '5':  1.25rem,    // 20px
+  '6':  1.5rem,     // 24px
+  '8':  2rem,       // 32px
+  '10': 2.5rem,     // 40px
+  '12': 3rem,       // 48px
+  '16': 4rem,       // 64px
+  '20': 5rem,       // 80px
+  '24': 6rem,       // 96px
+  '32': 8rem,       // 128px
+) !default;
+
+// ---------------------------------------------------------------------------
+// Border radius
+// ---------------------------------------------------------------------------
+
+$nf-radius: (
+  'none': 0,
+  'sm':   0.125rem,   // 2px
+  'md':   0.25rem,    // 4px
+  'lg':   0.5rem,     // 8px
+  'xl':   0.75rem,    // 12px
+  'full': 9999px,
+) !default;
+
+// ---------------------------------------------------------------------------
+// Border widths
+// ---------------------------------------------------------------------------
+
+$nf-border-width: (
+  'thin':   1px,
+  'base':   1px,
+  'medium': 2px,
+  'thick':  4px,
+) !default;
+
+// ---------------------------------------------------------------------------
+// Z-index layers
+// ---------------------------------------------------------------------------
+
+$nf-z: (
+  'below':   -1,
+  'base':     0,
+  'raised':   10,
+  'dropdown': 100,
+  'sticky':   200,
+  'overlay':  300,
+  'modal':    400,
+  'toast':    500,
+  'tooltip':  600,
+) !default;
+
+// ---------------------------------------------------------------------------
+// Emit as CSS custom properties
+// ---------------------------------------------------------------------------
+
+:root {
+  @each $name, $value in $nf-spacing {
+    --nf-space-#{$name}: #{$value};
+  }
+
+  @each $name, $value in $nf-radius {
+    --nf-radius-#{$name}: #{$value};
+  }
+
+  @each $name, $value in $nf-border-width {
+    --nf-border-#{$name}: #{$value};
+  }
+
+  @each $name, $value in $nf-z {
+    --nf-z-#{$name}: #{$value};
+  }
+}

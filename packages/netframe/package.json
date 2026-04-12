@@ -1,0 +1,47 @@
+{
+  "name": "netframe",
+  "version": "0.1.0",
+  "description": "A cyberpunk-themed CSS component library",
+  "type": "module",
+  "license": "GPL-3.0-only",
+  "author": "Cybear Technologies",
+  "keywords": ["css", "cyberpunk", "ui", "design-system", "sass", "scss"],
+  "homepage": "https://github.com/Cybear Technologies/NetFrame#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cybear Technologies/NetFrame.git",
+    "directory": "packages/netframe"
+  },
+  "exports": {
+    ".": {
+      "style": "./dist/netframe.css",
+      "sass": "./dist/scss/netframe.scss"
+    },
+    "./min": {
+      "style": "./dist/netframe.min.css"
+    },
+    "./scss/*": "./dist/scss/*"
+  },
+  "main": "./dist/netframe.css",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
+  "scripts": {
+    "build": "tsx scripts/build.ts",
+    "dev": "tsx scripts/build.ts --watch",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "cssnano": "^7.0.3",
+    "postcss": "^8.4.38",
+    "sass": "^1.77.4",
+    "tsx": "^4.15.7",
+    "typescript": "^5.4.5"
+  }
+}

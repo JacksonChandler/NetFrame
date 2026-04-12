@@ -1,0 +1,10 @@
+// NetFrame — Base barrel
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Order: fonts → reset → typography
+// Fonts must come first so @font-face rules precede any usage.
+
+@forward 'fonts';
+@forward 'reset';
+@forward 'typography';

@@ -1,0 +1,12 @@
+// NetFrame — Mixins barrel
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Mixins produce no CSS output on their own — they are only compiled when
+// @include'd inside a selector. Safe to @use anywhere without side effects.
+
+@forward 'neon-glow';
+@forward 'scanlines';
+@forward 'glitch';
+@forward 'focus-ring';
+@forward 'truncate';

@@ -1,0 +1,120 @@
+// NetFrame — Glitch Effect Mixin
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Generates a glitch animation using pseudo-elements with clip-path offsets
+// and chromatic-aberration-style color shifts.
+//
+// The element needs: position: relative; overflow: hidden;
+// and its text content must be mirrored via data-text="…" attribute
+// (used in pseudo-element content).
+
+// ---------------------------------------------------------------------------
+// @mixin nf-glitch
+//
+// Parameters:
+//   $intensity  — 'subtle' | 'base' | 'strong'
+//   $color-a    — first aberration color (default: cyan primary)
+//   $color-b    — second aberration color (default: magenta accent)
+// ---------------------------------------------------------------------------
+
+@mixin nf-glitch(
+  $intensity: 'base',
+  $color-a: var(--nf-color-primary),
+  $color-b: var(--nf-color-accent)
+) {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  &::before {
+    color: #{$color-a};
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+
+  &::after {
+    color: #{$color-b};
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+
+  @if $intensity == 'subtle' {
+    &::before { animation: nf-glitch-top 4s var(--nf-ease-glitch) infinite; }
+    &::after  { animation: nf-glitch-bot 4s var(--nf-ease-glitch) infinite reverse; }
+  } @else if $intensity == 'base' {
+    &::before { animation: nf-glitch-top 2.5s var(--nf-ease-glitch) infinite; }
+    &::after  { animation: nf-glitch-bot 2.5s var(--nf-ease-glitch) infinite reverse; }
+  } @else if $intensity == 'strong' {
+    &::before { animation: nf-glitch-top 1s var(--nf-ease-glitch) infinite; }
+    &::after  { animation: nf-glitch-bot 1s var(--nf-ease-glitch) infinite reverse; }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// @mixin nf-glitch-hover
+//
+// Same as nf-glitch but only triggers on :hover/:focus-visible.
+// Better for interactive elements where constant glitch would distract.
+// ---------------------------------------------------------------------------
+
+@mixin nf-glitch-hover(
+  $color-a: var(--nf-color-primary),
+  $color-b: var(--nf-color-accent)
+) {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &::before { color: #{$color-a}; clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%); }
+  &::after  { color: #{$color-b}; clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%); }
+
+  &:hover,
+  &:focus-visible {
+    &::before,
+    &::after {
+      opacity: 1;
+    }
+    &::before { animation: nf-glitch-top 1.5s var(--nf-ease-glitch) infinite; }
+    &::after  { animation: nf-glitch-bot 1.5s var(--nf-ease-glitch) infinite reverse; }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Keyframes
+// ---------------------------------------------------------------------------
+
+@keyframes nf-glitch-top {
+  0%   { transform: translate(0); }
+  10%  { transform: translate(-3px, -1px); }
+  20%  { transform: translate(3px,  1px); }
+  30%  { transform: translate(0); }
+  80%  { transform: translate(0); }
+  82%  { transform: translate(-2px, 0); }
+  84%  { transform: translate(2px,  0); }
+  86%  { transform: translate(0); }
+  100% { transform: translate(0); }
+}
+
+@keyframes nf-glitch-bot {
+  0%   { transform: translate(0); }
+  10%  { transform: translate(3px,  1px); }
+  20%  { transform: translate(-3px, -1px); }
+  30%  { transform: translate(0); }
+  80%  { transform: translate(0); }
+  82%  { transform: translate(2px,  0); }
+  84%  { transform: translate(-2px, 0); }
+  86%  { transform: translate(0); }
+  100% { transform: translate(0); }
+}
