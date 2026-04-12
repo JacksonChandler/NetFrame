@@ -1,0 +1,129 @@
+// NetFrame — Toast
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+// ---------------------------------------------------------------------------
+// Container — fixed position, stacks toasts
+// ---------------------------------------------------------------------------
+
+.nf-toast-region {
+  position: fixed;
+  z-index: var(--nf-z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--nf-space-2);
+  pointer-events: none;
+
+  // Position variants
+  &.nf-toast-top-right    { top: var(--nf-space-4); right: var(--nf-space-4); }
+  &.nf-toast-top-left     { top: var(--nf-space-4); left: var(--nf-space-4); }
+  &.nf-toast-bottom-right { bottom: var(--nf-space-4); right: var(--nf-space-4); }
+  &.nf-toast-bottom-left  { bottom: var(--nf-space-4); left: var(--nf-space-4); }
+}
+
+// ---------------------------------------------------------------------------
+// Toast item
+// ---------------------------------------------------------------------------
+
+.nf-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--nf-space-3);
+  pointer-events: auto;
+
+  min-width: 18rem;
+  max-width: 24rem;
+  padding: var(--nf-space-3) var(--nf-space-4);
+
+  background-color: var(--nf-color-surface-high);
+  border: var(--nf-border-medium) solid var(--nf-color-border-strong);
+  border-left-width: 4px;
+
+  font-family: var(--nf-font-body);
+  font-size: var(--nf-text-md);
+  color: var(--nf-color-text);
+
+  animation: nf-toast-in var(--nf-duration-slow) var(--nf-ease-out) both;
+}
+
+.nf-toast-dismissing {
+  animation: nf-toast-out var(--nf-duration-base) var(--nf-ease-in) forwards;
+}
+
+// ---------------------------------------------------------------------------
+// Variants — border-left accent color signals type
+// ---------------------------------------------------------------------------
+
+.nf-toast-success { border-left-color: var(--nf-color-primary); }
+.nf-toast-error   { border-left-color: var(--nf-color-error); }
+.nf-toast-warning { border-left-color: var(--nf-color-secondary); }
+.nf-toast-info    { border-left-color: var(--nf-color-tertiary); }
+
+// ---------------------------------------------------------------------------
+// Inner layout
+// ---------------------------------------------------------------------------
+
+.nf-toast-icon {
+  flex-shrink: 0;
+  font-size: var(--nf-text-lg);
+  line-height: 1.4;
+}
+
+.nf-toast-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.nf-toast-title {
+  font-family: var(--nf-font-label);
+  font-size: var(--nf-text-lg);
+  letter-spacing: var(--nf-tracking-display);
+  text-transform: uppercase;
+  color: var(--nf-color-text);
+  margin-bottom: var(--nf-space-1);
+}
+
+.nf-toast-message {
+  font-size: var(--nf-text-sm);
+  color: var(--nf-color-text-muted);
+  line-height: var(--nf-leading-relaxed);
+}
+
+.nf-toast-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--nf-color-text-muted);
+  cursor: crosshair;
+  font-size: var(--nf-text-lg);
+  line-height: 1;
+  padding: 0;
+
+  &:hover { color: var(--nf-color-text); }
+}
+
+// ---------------------------------------------------------------------------
+// Animations
+// ---------------------------------------------------------------------------
+
+@keyframes nf-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes nf-toast-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+}

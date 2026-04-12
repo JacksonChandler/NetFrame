@@ -1,0 +1,64 @@
+// NetFrame — Divider
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Per design spec: boundaries should use tonal shifts over 1px lines.
+// Use dividers sparingly — only for explicit structural separation.
+// Minimum 2px weight when a visible line is needed.
+
+// ---------------------------------------------------------------------------
+// Horizontal (default hr override)
+// ---------------------------------------------------------------------------
+
+.nf-divider {
+  display: block;
+  width: 100%;
+  border: none;
+  border-top: var(--nf-border-medium) solid var(--nf-color-border);
+  margin: 0;
+}
+
+// Accent color variants
+.nf-divider-primary   { border-top-color: var(--nf-color-primary); }
+.nf-divider-secondary { border-top-color: var(--nf-color-secondary); }
+.nf-divider-tertiary  { border-top-color: var(--nf-color-tertiary); }
+
+// ---------------------------------------------------------------------------
+// Vertical
+// ---------------------------------------------------------------------------
+
+.nf-divider-vertical {
+  display: inline-block;
+  width: 0;
+  height: 1em;
+  border: none;
+  border-left: var(--nf-border-medium) solid var(--nf-color-border);
+  margin: 0;
+  vertical-align: middle;
+}
+
+// ---------------------------------------------------------------------------
+// Divider with label
+// ---------------------------------------------------------------------------
+
+.nf-divider-labeled {
+  display: flex;
+  align-items: center;
+  gap: var(--nf-space-3);
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-top: var(--nf-border-medium) solid var(--nf-color-border);
+  }
+
+  .nf-divider-label {
+    font-family: var(--nf-font-label);
+    font-size: var(--nf-text-base);
+    letter-spacing: var(--nf-tracking-display);
+    text-transform: uppercase;
+    color: var(--nf-color-text-subtle);
+    white-space: nowrap;
+  }
+}

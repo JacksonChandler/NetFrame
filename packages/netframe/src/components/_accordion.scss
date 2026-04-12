@@ -1,0 +1,98 @@
+// NetFrame — Accordion
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+@use '../mixins/focus-ring' as *;
+
+// ---------------------------------------------------------------------------
+// Wrapper
+// ---------------------------------------------------------------------------
+
+.nf-accordion {
+  display: flex;
+  flex-direction: column;
+  border: var(--nf-border-medium) solid var(--nf-color-border);
+}
+
+// ---------------------------------------------------------------------------
+// Item
+// ---------------------------------------------------------------------------
+
+.nf-accordion-item {
+  border-bottom: var(--nf-border-thin) solid var(--nf-color-border);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Trigger (the clickable header)
+// ---------------------------------------------------------------------------
+
+.nf-accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nf-space-4);
+  width: 100%;
+  padding: var(--nf-space-4) var(--nf-space-5);
+
+  font-family: var(--nf-font-body);
+  font-size: var(--nf-text-md);
+  font-weight: var(--nf-font-weight-medium);
+  letter-spacing: var(--nf-tracking-display);
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--nf-color-text);
+
+  background: none;
+  border: none;
+  cursor: crosshair;
+
+  transition: background-color var(--nf-duration-fast) var(--nf-ease-sharp),
+              color             var(--nf-duration-fast) var(--nf-ease-sharp);
+
+  @include nf-focus-ring-inset(var(--nf-color-primary));
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--nf-color-primary) 5%, transparent);
+    color: var(--nf-color-primary);
+  }
+
+  &[aria-expanded='true'] {
+    color: var(--nf-color-primary);
+    border-bottom: var(--nf-border-thin) solid var(--nf-color-border);
+  }
+}
+
+// Caret indicator
+.nf-accordion-icon {
+  flex-shrink: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--nf-duration-base) var(--nf-ease-sharp);
+
+  [aria-expanded='true'] & {
+    transform: rotate(-135deg);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Content panel
+// ---------------------------------------------------------------------------
+
+.nf-accordion-content {
+  overflow: hidden;
+  transition: height var(--nf-duration-slow) var(--nf-ease-default);
+}
+
+.nf-accordion-body {
+  padding: var(--nf-space-5);
+  font-size: var(--nf-text-md);
+  color: var(--nf-color-text-muted);
+  line-height: var(--nf-leading-relaxed);
+}

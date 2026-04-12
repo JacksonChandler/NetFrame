@@ -1,0 +1,77 @@
+---
+// NetFrame — Token reference table
+
+interface Token {
+  name: string;
+  value: string;
+  description?: string;
+}
+
+interface Props {
+  tokens: Token[];
+  showSwatch?: boolean;
+}
+
+const { tokens, showSwatch = false } = Astro.props;
+---
+
+<div class="nf-table-wrap">
+  <table class="nf-table">
+    <thead>
+      <tr>
+        {showSwatch && <th>Swatch</th>}
+        <th>Token</th>
+        <th>Default Value</th>
+        {tokens[0]?.description !== undefined && <th>Usage</th>}
+      </tr>
+    </thead>
+    <tbody>
+      {tokens.map((token) => (
+        <tr>
+          {showSwatch && (
+            <td>
+              <span
+                class="token-swatch"
+                style={`background-color: ${token.value};`}
+              />
+            </td>
+          )}
+          <td>
+            <code class="token-name">{token.name}</code>
+          </td>
+          <td>
+            <code class="token-value">{token.value}</code>
+          </td>
+          {token.description !== undefined && (
+            <td class="token-desc">{token.description}</td>
+          )}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .token-swatch {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 1px solid var(--nf-color-border-strong);
+    vertical-align: middle;
+  }
+
+  .token-name {
+    color: var(--nf-color-tertiary);
+    font-size: var(--nf-text-sm);
+  }
+
+  .token-value {
+    color: var(--nf-color-primary);
+    font-size: var(--nf-text-sm);
+  }
+
+  .token-desc {
+    color: var(--nf-color-text-muted);
+    font-size: var(--nf-text-sm);
+  }
+</style>

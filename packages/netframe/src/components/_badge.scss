@@ -1,0 +1,83 @@
+// NetFrame — Badge
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+// ---------------------------------------------------------------------------
+// Base
+// ---------------------------------------------------------------------------
+
+.nf-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nf-space-1);
+
+  padding: 0.15em var(--nf-space-2);
+  font-family: var(--nf-font-label);
+  font-size: var(--nf-text-base);
+  letter-spacing: var(--nf-tracking-display);
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1.4;
+
+  border: var(--nf-border-thin) solid transparent;
+}
+
+// ---------------------------------------------------------------------------
+// Color variants
+// ---------------------------------------------------------------------------
+
+.nf-badge-primary {
+  background-color: var(--nf-color-primary);
+  color: var(--nf-color-on-primary);
+  border-color: var(--nf-color-primary);
+}
+
+.nf-badge-secondary {
+  background-color: var(--nf-color-secondary);
+  color: var(--nf-color-on-primary);
+  border-color: var(--nf-color-secondary);
+}
+
+.nf-badge-tertiary {
+  background-color: var(--nf-color-tertiary);
+  color: var(--nf-color-on-tertiary);
+  border-color: var(--nf-color-tertiary);
+}
+
+.nf-badge-error {
+  background-color: var(--nf-color-error);
+  color: var(--nf-color-on-primary);
+  border-color: var(--nf-color-error);
+}
+
+.nf-badge-outline {
+  background-color: transparent;
+  color: var(--nf-color-primary);
+  border-color: var(--nf-color-primary);
+}
+
+.nf-badge-ghost {
+  background-color: color-mix(in srgb, var(--nf-color-primary) 10%, transparent);
+  color: var(--nf-color-primary);
+  border-color: transparent;
+}
+
+// ---------------------------------------------------------------------------
+// Dot badge — notification indicator
+// ---------------------------------------------------------------------------
+
+.nf-badge-dot {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(40%, -40%);
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--nf-color-error);
+    border: 2px solid var(--nf-color-bg);
+  }
+}

@@ -1,0 +1,31 @@
+---
+// NetFrame — Base Layout
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'NetFrame — Cyberpunk CSS component library by Cybear Technologies' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title} // NETFRAME</title>
+
+    <!-- Phosphor Icons (thin weight) -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/thin/index.js" type="module"></script>
+
+    <!-- NetFrame CSS -->
+    <link rel="stylesheet" href="/netframe.css" />
+  </head>
+  <body class="nf-crt">
+    <slot />
+  </body>
+</html>

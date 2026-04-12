@@ -1,0 +1,55 @@
+---
+layout: '../../layouts/DocsLayout.astro'
+title: 'Scanlines'
+description: 'CRT scanline overlay and pixel grid texture utilities.'
+---
+
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
+# Scanlines
+
+CRT scanline overlays for authentic hardware-display texture. The `.nf-crt` class applies a full-screen fixed overlay — the "soul" of the design system.
+
+## Full-screen CRT overlay
+
+Apply `.nf-crt` to `<body>` (or any fixed-position container) for a global scanline effect. The docs site uses this by default.
+
+```html
+<body class="nf-crt">
+  <!-- your content -->
+</body>
+```
+
+The overlay uses a fixed `::before` pseudo-element with alternating green/magenta/cyan phosphor channels at 3%, 1%, and 3% opacity — matching the original CRT phosphor emission spectrum.
+
+## Inline scanlines
+
+For applying scanlines to a specific element rather than the full screen:
+
+<ComponentDemo title="Scanlines on element" code={`<div class="nf-card nf-scanlines" style="padding:1.5rem;">
+  SUBSYSTEM ACTIVE
+</div>`}>
+  <div class="nf-card nf-scanlines" style="padding:1.5rem;">
+    SUBSYSTEM ACTIVE
+  </div>
+</ComponentDemo>
+
+## Pixel grid
+
+A dot-matrix grid pattern. Use on surface containers to increase visual density.
+
+<ComponentDemo title="Pixel grid" code={`<div class="nf-card nf-pixel-grid" style="padding:1.5rem;">
+  DATA_GRID_ACTIVE
+</div>`}>
+  <div class="nf-card nf-pixel-grid" style="padding:1.5rem;">
+    DATA_GRID_ACTIVE
+  </div>
+</ComponentDemo>
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-crt` | Full-screen fixed CRT overlay on `::before`. Add to `<body>`. |
+| `nf-scanlines` | Inline scanline overlay scoped to the element. |
+| `nf-pixel-grid` | Dot-matrix pixel grid texture. |

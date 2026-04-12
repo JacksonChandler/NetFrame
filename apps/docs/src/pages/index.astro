@@ -1,0 +1,331 @@
+---
+// NetFrame — Landing page
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Home">
+  <div class="landing">
+
+    <!-- Sidebar brand strip -->
+    <aside class="landing-sidebar">
+      <span class="landing-sidebar-label">NETFRAME_v0.1.0</span>
+    </aside>
+
+    <!-- Hero -->
+    <main class="landing-main nf-pixel-grid">
+
+      <section class="hero">
+        <div class="hero-tag nf-font-label nf-tracking-display">
+          <span class="nf-text-secondary">CYBEAR_TECHNOLOGIES</span>
+          <span class="nf-text-subtle">//</span>
+          <span class="nf-text-muted">CSS_LIB_v0.1.0</span>
+        </div>
+
+        <h1 class="hero-title nf-glitch-hover" data-text="NETFRAME">
+          NET<span class="nf-text-primary">FRAME</span>
+        </h1>
+
+        <p class="hero-sub nf-font-label">
+          A CYBERPUNK CSS COMPONENT LIBRARY.
+        </p>
+
+        <div class="hero-actions">
+          <a href="/getting-started" class="nf-button nf-button-primary nf-button-lg">
+            INITIALIZE
+          </a>
+          <a href="/components/button" class="nf-button nf-button-ghost nf-button-lg">
+            COMPONENTS
+          </a>
+        </div>
+      </section>
+
+      <!-- Color palette showcase -->
+      <section class="palette-section">
+        <p class="section-label nf-font-label nf-tracking-display nf-text-subtle">COLOR_SYSTEM</p>
+        <div class="palette-grid">
+          <div class="swatch swatch-primary">
+            <span class="swatch-hex">#00FF00</span>
+            <span class="swatch-name">PRIMARY_NEON</span>
+          </div>
+          <div class="swatch swatch-secondary">
+            <span class="swatch-hex">#FE00FE</span>
+            <span class="swatch-name">CYBER_MAGENTA</span>
+          </div>
+          <div class="swatch swatch-tertiary">
+            <span class="swatch-hex">#00F4F4</span>
+            <span class="swatch-name">ELECTRIC_CYAN</span>
+          </div>
+          <div class="swatch swatch-bg">
+            <span class="swatch-hex">#000000</span>
+            <span class="swatch-name">VOID_BG</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography showcase -->
+      <section class="type-section">
+        <p class="section-label nf-font-label nf-tracking-display nf-text-subtle">TYPOGRAPHY_SYSTEM</p>
+        <div class="type-grid">
+          <div class="nf-card nf-card-primary">
+            <div class="nf-card-header">
+              <span class="nf-card-subtitle">SPACE_GROTESK_BOLD // DISPLAY</span>
+            </div>
+            <div class="nf-card-body">
+              <h2 style="font-size: var(--nf-text-4xl); margin: 0;">THE VOID EMERGES</h2>
+            </div>
+          </div>
+          <div class="nf-card nf-card-secondary">
+            <div class="nf-card-header">
+              <span class="nf-card-subtitle">JETBRAINS_MONO // BODY</span>
+            </div>
+            <div class="nf-card-body">
+              <p style="margin: 0; font-size: var(--nf-text-base); line-height: var(--nf-leading-relaxed); color: var(--nf-color-text-muted);">
+                All interfaces emerge from this true black absolute void. Technical precision meets brutalist expression.
+              </p>
+            </div>
+          </div>
+          <div class="nf-card" style="border-color: var(--nf-color-tertiary);">
+            <div class="nf-card-header">
+              <span class="nf-card-subtitle">VT323 // LABELS</span>
+            </div>
+            <div class="nf-card-body">
+              <p style="margin: 0; font-family: var(--nf-font-label); font-size: var(--nf-text-3xl); color: var(--nf-color-tertiary); letter-spacing: var(--nf-tracking-display);">
+                INITIALIZING_SYSTEM...
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Component preview -->
+      <section class="component-section">
+        <p class="section-label nf-font-label nf-tracking-display nf-text-subtle">COMPONENT_PREVIEW</p>
+        <div class="component-grid">
+
+          <!-- Buttons -->
+          <div class="nf-card">
+            <div class="nf-card-header"><span class="nf-card-title" style="font-size: var(--nf-text-sm);">BUTTONS</span></div>
+            <div class="nf-card-body" style="display: flex; flex-wrap: wrap; gap: var(--nf-space-3);">
+              <button class="nf-button nf-button-primary">EXECUTE</button>
+              <button class="nf-button nf-button-secondary">DISCARD</button>
+              <button class="nf-button nf-button-ghost">QUERY</button>
+              <button class="nf-button nf-button-danger">ABORT</button>
+            </div>
+          </div>
+
+          <!-- Badges -->
+          <div class="nf-card">
+            <div class="nf-card-header"><span class="nf-card-title" style="font-size: var(--nf-text-sm);">BADGES</span></div>
+            <div class="nf-card-body" style="display: flex; flex-wrap: wrap; gap: var(--nf-space-3); align-items: center;">
+              <span class="nf-badge nf-badge-primary">ONLINE</span>
+              <span class="nf-badge nf-badge-secondary">CRITICAL</span>
+              <span class="nf-badge nf-badge-tertiary">INFO</span>
+              <span class="nf-badge nf-badge-error">ERROR</span>
+              <span class="nf-badge nf-badge-outline">GHOST</span>
+            </div>
+          </div>
+
+          <!-- Progress -->
+          <div class="nf-card">
+            <div class="nf-card-header"><span class="nf-card-title" style="font-size: var(--nf-text-sm);">PROGRESS</span></div>
+            <div class="nf-card-body" style="display: flex; flex-direction: column; gap: var(--nf-space-4);">
+              <div>
+                <span class="nf-font-label nf-text-muted" style="font-size: var(--nf-text-sm); letter-spacing: var(--nf-tracking-display);">UPLINK_SYNC</span>
+                <div class="nf-progress" style="margin-top: var(--nf-space-2);">
+                  <div class="nf-progress-bar" style="width: 75%;"></div>
+                </div>
+              </div>
+              <div>
+                <span class="nf-font-label nf-text-muted" style="font-size: var(--nf-text-sm); letter-spacing: var(--nf-tracking-display);">NODE_SCAN</span>
+                <div class="nf-progress nf-progress-secondary" style="margin-top: var(--nf-space-2);">
+                  <div class="nf-progress-bar" style="width: 42%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input -->
+          <div class="nf-card">
+            <div class="nf-card-header"><span class="nf-card-title" style="font-size: var(--nf-text-sm);">INPUT</span></div>
+            <div class="nf-card-body">
+              <div class="nf-field">
+                <label class="nf-label">User_ID</label>
+                <input class="nf-input" type="text" placeholder="GUEST_####" />
+                <span class="nf-helper">UNIQUE_SYSTEM_ID_REQUIRED</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Install CTA -->
+      <section class="install-section">
+        <div class="nf-card nf-card-elevated" style="max-width: 40rem;">
+          <div class="nf-card-body">
+            <p class="nf-font-label nf-text-muted nf-tracking-display" style="font-size: var(--nf-text-base); margin-bottom: var(--nf-space-3);">
+              INSTALL_DIRECTIVE
+            </p>
+            <pre style="margin: 0;"><code>npm install netframe</code></pre>
+          </div>
+          <div class="nf-card-footer">
+            <a href="/getting-started" class="nf-button nf-button-primary">
+              GETTING STARTED
+            </a>
+            <a href="/components/button" class="nf-button nf-button-outline">
+              VIEW COMPONENTS
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .landing {
+    display: flex;
+    min-height: 100svh;
+  }
+
+  .landing-sidebar {
+    width: 3rem;
+    flex-shrink: 0;
+    background-color: var(--nf-color-bg);
+    border-right: 2px solid var(--nf-color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .landing-sidebar-label {
+    font-family: var(--nf-font-label);
+    font-size: var(--nf-text-xs);
+    letter-spacing: var(--nf-tracking-display);
+    color: var(--nf-color-text-subtle);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
+  .landing-main {
+    flex: 1;
+    padding: var(--nf-space-12) var(--nf-space-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--nf-space-20);
+  }
+
+  .section-label {
+    font-size: var(--nf-text-xs);
+    margin-bottom: var(--nf-space-4);
+  }
+
+  /* Hero */
+  .hero {
+    max-width: 48rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--nf-space-6);
+  }
+
+  .hero-tag {
+    display: flex;
+    align-items: center;
+    gap: var(--nf-space-3);
+    font-size: var(--nf-text-sm);
+    letter-spacing: var(--nf-tracking-display);
+  }
+
+  .hero-title {
+    font-family: var(--nf-font-display);
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: var(--nf-font-weight-bold);
+    letter-spacing: var(--nf-tracking-display);
+    line-height: 1;
+    margin: 0;
+    color: var(--nf-color-text);
+  }
+
+  .hero-sub {
+    font-size: var(--nf-text-lg);
+    letter-spacing: var(--nf-tracking-display);
+    color: var(--nf-color-text-muted);
+    margin: 0;
+    line-height: var(--nf-leading-relaxed);
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--nf-space-4);
+    flex-wrap: wrap;
+  }
+
+  /* Palette */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 2px solid var(--nf-color-border);
+  }
+
+  .swatch {
+    padding: var(--nf-space-6) var(--nf-space-4);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--nf-space-1);
+    min-height: 8rem;
+    border-right: 1px solid rgba(255,255,255,0.05);
+
+    &:last-child { border-right: none; }
+  }
+
+  .swatch-primary   { background-color: #00ff00; }
+  .swatch-secondary { background-color: #fe00fe; }
+  .swatch-tertiary  { background-color: #00f4f4; }
+  .swatch-bg        { background-color: #000; border: 2px solid var(--nf-color-border); }
+
+  .swatch-hex {
+    font-family: var(--nf-font-mono);
+    font-size: var(--nf-text-sm);
+    color: #000;
+    font-weight: bold;
+  }
+
+  .swatch-bg .swatch-hex  { color: var(--nf-color-primary); }
+  .swatch-bg .swatch-name { color: var(--nf-color-text-muted); }
+
+  .swatch-name {
+    font-family: var(--nf-font-label);
+    font-size: var(--nf-text-sm);
+    letter-spacing: var(--nf-tracking-display);
+    color: rgba(0,0,0,0.6);
+  }
+
+  /* Typography grid — always 3 equal columns, collapses to 1 on narrow viewports */
+  .type-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--nf-space-4);
+
+    @media (max-width: 56rem) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Component grid — auto-fill */
+  .component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: var(--nf-space-4);
+  }
+
+  /* Install */
+  .install-section { padding-bottom: var(--nf-space-16); }
+</style>

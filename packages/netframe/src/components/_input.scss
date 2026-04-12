@@ -1,0 +1,169 @@
+// NetFrame — Input
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+@use '../mixins/focus-ring' as *;
+
+// ---------------------------------------------------------------------------
+// Base field wrapper (label + control + helper text)
+// ---------------------------------------------------------------------------
+
+.nf-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nf-space-2);
+}
+
+.nf-label {
+  font-family: var(--nf-font-body);
+  font-size: var(--nf-text-xs);
+  font-weight: var(--nf-font-weight-medium);
+  letter-spacing: var(--nf-tracking-display);
+  text-transform: uppercase;
+  color: var(--nf-color-secondary);
+}
+
+.nf-helper {
+  font-family: var(--nf-font-body);
+  font-size: var(--nf-text-xs);
+  color: var(--nf-color-text-muted);
+  font-style: italic;
+}
+
+.nf-helper-error {
+  color: var(--nf-color-error);
+}
+
+// ---------------------------------------------------------------------------
+// Base input / textarea / select
+// ---------------------------------------------------------------------------
+
+.nf-input,
+.nf-select,
+.nf-textarea {
+  width: 100%;
+  background-color: var(--nf-color-surface-lowest);
+  color: var(--nf-color-primary);
+  border: var(--nf-border-medium) solid var(--nf-color-primary);
+  padding: var(--nf-space-3) var(--nf-space-4);
+
+  font-family: var(--nf-font-body);
+  font-size: var(--nf-text-md);
+
+  transition: border-color var(--nf-duration-base) var(--nf-ease-sharp);
+
+  @include nf-focus-ring(var(--nf-color-tertiary));
+
+  &::placeholder {
+    color: color-mix(in srgb, var(--nf-color-primary) 40%, transparent);
+  }
+
+  &:focus {
+    border-color: var(--nf-color-tertiary);
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+// Select arrow
+.nf-select {
+  appearance: none;
+  cursor: crosshair;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300ff00' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--nf-space-3) center;
+  padding-right: var(--nf-space-10);
+}
+
+.nf-textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+// ---------------------------------------------------------------------------
+// Error state
+// ---------------------------------------------------------------------------
+
+.nf-input-error,
+.nf-select-error,
+.nf-textarea-error {
+  border-color: var(--nf-color-error);
+  color: var(--nf-color-error);
+
+  &::placeholder {
+    color: color-mix(in srgb, var(--nf-color-error) 40%, transparent);
+  }
+
+  &:focus {
+    border-color: var(--nf-color-error);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Checkbox & Radio
+// ---------------------------------------------------------------------------
+
+.nf-checkbox,
+.nf-radio {
+  display: flex;
+  align-items: center;
+  gap: var(--nf-space-3);
+  cursor: crosshair;
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    background-color: var(--nf-color-surface-lowest);
+    border: var(--nf-border-medium) solid var(--nf-color-secondary);
+    cursor: crosshair;
+    transition: background-color var(--nf-duration-fast) var(--nf-ease-sharp);
+
+    &:checked {
+      background-color: var(--nf-color-secondary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--nf-color-tertiary);
+      outline-offset: 2px;
+    }
+  }
+
+  span {
+    font-family: var(--nf-font-body);
+    font-size: var(--nf-text-md);
+    color: var(--nf-color-text);
+  }
+
+  &:hover span {
+    color: var(--nf-color-secondary);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Range slider
+// ---------------------------------------------------------------------------
+
+.nf-range {
+  width: 100%;
+  height: 2px;
+  appearance: none;
+  background-color: var(--nf-color-surface-highest);
+  cursor: crosshair;
+  accent-color: var(--nf-color-secondary);
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--nf-color-secondary);
+    border: none;
+    cursor: crosshair;
+  }
+}

@@ -1,0 +1,52 @@
+// NetFrame — Breadcrumb
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+.nf-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+
+  font-family: var(--nf-font-label);
+  font-size: var(--nf-text-base);
+  letter-spacing: var(--nf-tracking-display);
+  text-transform: uppercase;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nf-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+
+  // Separator between items
+  &:not(:last-child)::after {
+    content: '/';
+    padding: 0 var(--nf-space-2);
+    color: var(--nf-color-text-subtle);
+  }
+}
+
+.nf-breadcrumb-link {
+  color: var(--nf-color-text-muted);
+  text-decoration: none;
+  transition: color var(--nf-duration-fast) var(--nf-ease-sharp);
+
+  &:hover {
+    color: var(--nf-color-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--nf-color-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Current page — no link, highlighted
+.nf-breadcrumb-item[aria-current='page'] .nf-breadcrumb-link,
+.nf-breadcrumb-current {
+  color: var(--nf-color-primary);
+  pointer-events: none;
+}

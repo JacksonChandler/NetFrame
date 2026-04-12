@@ -1,0 +1,120 @@
+// NetFrame — Avatar
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+// ---------------------------------------------------------------------------
+// Base
+// ---------------------------------------------------------------------------
+
+.nf-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 2.5rem;
+  height: 2.5rem;
+  border: var(--nf-border-medium) solid var(--nf-color-primary);
+  background-color: var(--nf-color-surface-low);
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+// Initials fallback
+.nf-avatar-initials {
+  font-family: var(--nf-font-display);
+  font-size: var(--nf-text-sm);
+  font-weight: var(--nf-font-weight-bold);
+  letter-spacing: var(--nf-tracking-display);
+  text-transform: uppercase;
+  color: var(--nf-color-primary);
+  user-select: none;
+}
+
+// ---------------------------------------------------------------------------
+// Sizes
+// ---------------------------------------------------------------------------
+
+.nf-avatar-xs {
+  width: 1.5rem;
+  height: 1.5rem;
+
+  .nf-avatar-initials { font-size: var(--nf-text-xs); }
+}
+
+.nf-avatar-sm {
+  width: 2rem;
+  height: 2rem;
+
+  .nf-avatar-initials { font-size: var(--nf-text-xs); }
+}
+
+.nf-avatar-lg {
+  width: 3.5rem;
+  height: 3.5rem;
+
+  .nf-avatar-initials { font-size: var(--nf-text-lg); }
+}
+
+.nf-avatar-xl {
+  width: 5rem;
+  height: 5rem;
+
+  .nf-avatar-initials { font-size: var(--nf-text-2xl); }
+}
+
+// ---------------------------------------------------------------------------
+// Color variants (border + initials color)
+// ---------------------------------------------------------------------------
+
+.nf-avatar-secondary {
+  border-color: var(--nf-color-secondary);
+  .nf-avatar-initials { color: var(--nf-color-secondary); }
+}
+
+.nf-avatar-tertiary {
+  border-color: var(--nf-color-tertiary);
+  .nf-avatar-initials { color: var(--nf-color-tertiary); }
+}
+
+// ---------------------------------------------------------------------------
+// Status indicator dot
+// ---------------------------------------------------------------------------
+
+.nf-avatar-status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  border: 2px solid var(--nf-color-bg);
+}
+
+.nf-avatar-status-online  { background-color: var(--nf-color-primary); }
+.nf-avatar-status-away    { background-color: var(--nf-color-warning, #fca311); }
+.nf-avatar-status-busy    { background-color: var(--nf-color-error); }
+.nf-avatar-status-offline { background-color: var(--nf-color-text-subtle); }
+
+// ---------------------------------------------------------------------------
+// Avatar group — overlapping stack
+// ---------------------------------------------------------------------------
+
+.nf-avatar-group {
+  display: flex;
+
+  .nf-avatar {
+    margin-left: -0.625rem;
+    border-color: var(--nf-color-bg);
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

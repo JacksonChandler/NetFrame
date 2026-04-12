@@ -1,0 +1,72 @@
+// NetFrame — Tag / Chip
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+// ---------------------------------------------------------------------------
+// Base
+// ---------------------------------------------------------------------------
+
+.nf-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nf-space-2);
+
+  padding: var(--nf-space-1) var(--nf-space-3);
+  font-family: var(--nf-font-body);
+  font-size: var(--nf-text-sm);
+  letter-spacing: var(--nf-tracking-wide);
+  color: var(--nf-color-text);
+  background-color: var(--nf-color-surface-container);
+  border: var(--nf-border-thin) solid var(--nf-color-border-strong);
+  white-space: nowrap;
+}
+
+// ---------------------------------------------------------------------------
+// Color variants
+// ---------------------------------------------------------------------------
+
+.nf-tag-primary {
+  color: var(--nf-color-primary);
+  border-color: var(--nf-color-primary);
+  background-color: color-mix(in srgb, var(--nf-color-primary) 8%, transparent);
+}
+
+.nf-tag-secondary {
+  color: var(--nf-color-secondary);
+  border-color: var(--nf-color-secondary);
+  background-color: color-mix(in srgb, var(--nf-color-secondary) 8%, transparent);
+}
+
+.nf-tag-tertiary {
+  color: var(--nf-color-tertiary);
+  border-color: var(--nf-color-tertiary);
+  background-color: color-mix(in srgb, var(--nf-color-tertiary) 8%, transparent);
+}
+
+// ---------------------------------------------------------------------------
+// Close button inside tag
+// ---------------------------------------------------------------------------
+
+.nf-tag-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  opacity: 0.7;
+  cursor: crosshair;
+  line-height: 1;
+  font-size: var(--nf-text-base);
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &::before {
+    content: '×';
+  }
+}

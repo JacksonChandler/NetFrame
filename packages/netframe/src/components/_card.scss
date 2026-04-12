@@ -1,0 +1,99 @@
+// NetFrame — Card
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+@use '../mixins/neon-glow' as *;
+
+// ---------------------------------------------------------------------------
+// Base card
+// ---------------------------------------------------------------------------
+
+.nf-card {
+  position: relative;
+  background-color: var(--nf-color-surface-low);
+  border: var(--nf-border-medium) solid var(--nf-color-border);
+  overflow: hidden;
+}
+
+.nf-card-header {
+  padding: var(--nf-space-4) var(--nf-space-6);
+  border-bottom: var(--nf-border-medium) solid var(--nf-color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nf-space-4);
+
+  .nf-card-title {
+    font-family: var(--nf-font-display);
+    font-size: var(--nf-text-lg);
+    font-weight: var(--nf-font-weight-bold);
+    letter-spacing: var(--nf-tracking-display);
+    text-transform: uppercase;
+    color: var(--nf-color-text);
+    margin: 0;
+  }
+
+  .nf-card-subtitle {
+    font-family: var(--nf-font-label);
+    font-size: var(--nf-text-base);
+    color: var(--nf-color-text-muted);
+    letter-spacing: var(--nf-tracking-wider);
+    text-transform: uppercase;
+  }
+}
+
+.nf-card-body {
+  padding: var(--nf-space-6);
+}
+
+.nf-card-footer {
+  padding: var(--nf-space-4) var(--nf-space-6);
+  border-top: var(--nf-border-medium) solid var(--nf-color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--nf-space-3);
+}
+
+// ---------------------------------------------------------------------------
+// Variants
+// ---------------------------------------------------------------------------
+
+// Elevated — sits on a brighter surface with offset shadow
+.nf-card-elevated {
+  background-color: var(--nf-color-surface-high);
+  @include nf-offset-shadow(var(--nf-color-primary), 6px, 6px);
+}
+
+// Primary bordered — green accent border
+.nf-card-primary {
+  border-color: var(--nf-color-primary);
+  border-left-width: 4px;
+}
+
+// Secondary bordered — magenta accent
+.nf-card-secondary {
+  border-color: var(--nf-color-secondary);
+  border-top-width: 4px;
+}
+
+// Inset / lowest surface
+.nf-card-inset {
+  background-color: var(--nf-color-surface-lowest);
+  border-color: var(--nf-color-surface-highest);
+}
+
+// Interactive — hoverable card
+.nf-card-interactive {
+  cursor: crosshair;
+  transition: background-color var(--nf-duration-base) var(--nf-ease-sharp),
+              border-color     var(--nf-duration-base) var(--nf-ease-sharp);
+
+  &:hover {
+    background-color: var(--nf-color-surface-container);
+    border-color: var(--nf-color-primary);
+  }
+
+  &:active {
+    background-color: var(--nf-color-surface-high);
+  }
+}

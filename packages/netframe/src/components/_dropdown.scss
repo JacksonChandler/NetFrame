@@ -1,0 +1,147 @@
+// NetFrame — Dropdown
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+@use '../mixins/focus-ring' as *;
+
+// ---------------------------------------------------------------------------
+// Wrapper — position: relative on the trigger container
+// ---------------------------------------------------------------------------
+
+.nf-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+// ---------------------------------------------------------------------------
+// Trigger — uses nf-button styles, add a caret indicator
+// ---------------------------------------------------------------------------
+
+.nf-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nf-space-2);
+  cursor: crosshair;
+
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform var(--nf-duration-fast) var(--nf-ease-sharp);
+  }
+
+  &[aria-expanded='true']::after {
+    transform: rotate(-135deg) translateY(-2px);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Menu panel
+// ---------------------------------------------------------------------------
+
+.nf-dropdown-menu {
+  position: absolute;
+  top: calc(100% + var(--nf-space-1));
+  left: 0;
+  z-index: var(--nf-z-dropdown);
+  min-width: 12rem;
+
+  background-color: var(--nf-color-surface-low);
+  border: var(--nf-border-medium) solid var(--nf-color-primary);
+  box-shadow: 4px 4px 0px 0px var(--nf-color-on-primary);
+
+  list-style: none;
+  margin: 0;
+  padding: var(--nf-space-1) 0;
+
+  // Hidden by default — toggle via JS with aria-hidden or a class
+  &[aria-hidden='true'],
+  &.nf-hidden {
+    display: none;
+  }
+}
+
+// Right-aligned menu
+.nf-dropdown-menu-right {
+  left: auto;
+  right: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Menu items
+// ---------------------------------------------------------------------------
+
+.nf-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--nf-space-3);
+
+  padding: var(--nf-space-3) var(--nf-space-5);
+  font-family: var(--nf-font-body);
+  font-size: var(--nf-text-md);
+  color: var(--nf-color-text);
+  text-decoration: none;
+  cursor: crosshair;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+
+  transition: background-color var(--nf-duration-fast) var(--nf-ease-sharp),
+              color             var(--nf-duration-fast) var(--nf-ease-sharp);
+
+  @include nf-focus-ring-inset(var(--nf-color-tertiary));
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--nf-color-primary) 8%, transparent);
+    color: var(--nf-color-primary);
+  }
+
+  &:active {
+    background-color: color-mix(in srgb, var(--nf-color-primary) 14%, transparent);
+  }
+
+  &[aria-disabled='true'],
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.nf-dropdown-item-danger {
+  color: var(--nf-color-error);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--nf-color-error) 8%, transparent);
+    color: var(--nf-color-error);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Divider between item groups
+// ---------------------------------------------------------------------------
+
+.nf-dropdown-divider {
+  height: 0;
+  margin: var(--nf-space-1) 0;
+  border-top: 1px solid var(--nf-color-border);
+}
+
+// ---------------------------------------------------------------------------
+// Label / group header
+// ---------------------------------------------------------------------------
+
+.nf-dropdown-label {
+  padding: var(--nf-space-2) var(--nf-space-5);
+  font-family: var(--nf-font-label);
+  font-size: var(--nf-text-base);
+  letter-spacing: var(--nf-tracking-display);
+  text-transform: uppercase;
+  color: var(--nf-color-text-subtle);
+  pointer-events: none;
+}

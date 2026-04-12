@@ -1,0 +1,63 @@
+---
+layout: '../../layouts/DocsLayout.astro'
+title: 'Glow'
+description: 'Pixel-offset shadows, ambient glows, and text glow utilities.'
+---
+
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
+# Glow
+
+Hard pixel-offset shadows and ambient glow utilities. NetFrame uses solid-color offset shadows — never soft drop shadows.
+
+## Pixel-offset shadows
+
+<ComponentDemo title="Shadow utilities" code={`<button class="nf-button nf-button-primary nf-shadow-primary">PRIMARY SHADOW</button>
+<button class="nf-button nf-button-secondary nf-shadow-secondary">SECONDARY SHADOW</button>
+<button class="nf-button nf-button-ghost nf-shadow-tertiary">TERTIARY SHADOW</button>`}>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+    <button class="nf-button nf-button-primary nf-shadow-primary">PRIMARY SHADOW</button>
+    <button class="nf-button nf-button-secondary nf-shadow-secondary">SECONDARY SHADOW</button>
+    <button class="nf-button nf-button-ghost nf-shadow-tertiary">TERTIARY SHADOW</button>
+  </div>
+</ComponentDemo>
+
+## Ambient glows
+
+Diffused glow at 20px blur, 10% opacity. Use sparingly for floating elements.
+
+<ComponentDemo title="Ambient glow" code={`<div class="nf-card nf-glow-primary" style="display:inline-block;padding:1rem;">GLOW PRIMARY</div>
+<div class="nf-card nf-glow-secondary" style="display:inline-block;padding:1rem;">GLOW SECONDARY</div>`}>
+  <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+    <div class="nf-card nf-glow-primary" style="display:inline-block;padding:1rem;">GLOW PRIMARY</div>
+    <div class="nf-card nf-glow-secondary" style="display:inline-block;padding:1rem;">GLOW SECONDARY</div>
+  </div>
+</ComponentDemo>
+
+## Text glows
+
+<ComponentDemo title="Text glow" code={`<p class="nf-text-glow-primary">TERMINAL_GREEN</p>
+<p class="nf-text-glow-secondary">CYBER_MAGENTA</p>
+<p class="nf-text-glow-tertiary">ELECTRIC_CYAN</p>`}>
+  <p class="nf-text-glow-primary">TERMINAL_GREEN</p>
+  <p class="nf-text-glow-secondary">CYBER_MAGENTA</p>
+  <p class="nf-text-glow-tertiary">ELECTRIC_CYAN</p>
+</ComponentDemo>
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-shadow-primary` | 4px offset shadow — Terminal Green |
+| `nf-shadow-secondary` | 4px offset shadow — Cyber Magenta |
+| `nf-shadow-tertiary` | 4px offset shadow — Electric Cyan |
+| `nf-shadow-error` | 4px offset shadow — Error color |
+| `nf-glow-primary` | Ambient glow — primary |
+| `nf-glow-secondary` | Ambient glow — secondary |
+| `nf-glow-tertiary` | Ambient glow — tertiary |
+| `nf-text-glow-primary` | Text shadow — primary |
+| `nf-text-glow-secondary` | Text shadow — secondary |
+| `nf-text-glow-tertiary` | Text shadow — tertiary |
+| `nf-border-glow-primary` | Border glow — primary |
+| `nf-border-glow-secondary` | Border glow — secondary |
+| `nf-border-glow-tertiary` | Border glow — tertiary |

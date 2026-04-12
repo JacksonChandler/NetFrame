@@ -1,0 +1,110 @@
+// NetFrame — Drawer
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+// ---------------------------------------------------------------------------
+// Overlay backdrop (shared with modal)
+// ---------------------------------------------------------------------------
+
+.nf-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nf-z-modal);
+  background-color: color-mix(in srgb, var(--nf-color-bg) 70%, transparent);
+
+  &[aria-hidden='true'],
+  &.nf-hidden {
+    display: none;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Drawer panel
+// ---------------------------------------------------------------------------
+
+.nf-drawer {
+  position: fixed;
+  z-index: var(--nf-z-modal);
+  top: 0;
+  bottom: 0;
+  width: 20rem;
+  max-width: 90vw;
+
+  background-color: var(--nf-color-surface-low);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  transition: transform var(--nf-duration-slow) var(--nf-ease-out);
+
+  &[aria-hidden='true'],
+  &.nf-hidden {
+    visibility: hidden;
+  }
+}
+
+// Left drawer (default)
+.nf-drawer-left {
+  left: 0;
+  border-right: var(--nf-border-medium) solid var(--nf-color-primary);
+  box-shadow: 4px 0px 0px 0px var(--nf-color-on-primary);
+  transform: translateX(-100%);
+
+  &.nf-open {
+    transform: translateX(0);
+  }
+}
+
+// Right drawer
+.nf-drawer-right {
+  right: 0;
+  left: auto;
+  border-left: var(--nf-border-medium) solid var(--nf-color-primary);
+  box-shadow: -4px 0px 0px 0px var(--nf-color-on-primary);
+  transform: translateX(100%);
+
+  &.nf-open {
+    transform: translateX(0);
+  }
+}
+
+// Width variants
+.nf-drawer-sm  { width: 14rem; }
+.nf-drawer-lg  { width: 28rem; }
+.nf-drawer-xl  { width: 36rem; }
+
+// ---------------------------------------------------------------------------
+// Sections
+// ---------------------------------------------------------------------------
+
+.nf-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nf-space-4);
+  padding: var(--nf-space-5) var(--nf-space-6);
+  border-bottom: var(--nf-border-medium) solid var(--nf-color-primary);
+  flex-shrink: 0;
+
+  .nf-drawer-title {
+    font-family: var(--nf-font-display);
+    font-size: var(--nf-text-lg);
+    font-weight: var(--nf-font-weight-bold);
+    letter-spacing: var(--nf-tracking-display);
+    text-transform: uppercase;
+    color: var(--nf-color-text);
+    margin: 0;
+  }
+}
+
+.nf-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--nf-space-6);
+}
+
+.nf-drawer-footer {
+  padding: var(--nf-space-4) var(--nf-space-6);
+  border-top: var(--nf-border-medium) solid var(--nf-color-border);
+  flex-shrink: 0;
+}

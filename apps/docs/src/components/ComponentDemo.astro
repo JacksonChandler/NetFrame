@@ -1,0 +1,131 @@
+---
+// NetFrame — Component Demo block
+// Renders a live preview + copy-able code block side by side (or stacked).
+
+interface Props {
+  title?: string;
+  code: string;
+  stacked?: boolean;
+}
+
+const { title, code, stacked = false } = Astro.props;
+const escaped = code.replace(/`/g, '\\`');
+---
+
+<div class="demo-wrap">
+  {title && <p class="demo-label">{title.toUpperCase()}</p>}
+
+  <div class:list={['demo-inner', { 'demo-stacked': stacked }]}>
+    <!-- Live preview -->
+    <div class="demo-preview nf-pixel-grid-subtle">
+      <slot />
+    </div>
+
+    <!-- Code block -->
+    <div class="demo-code-wrap">
+      <button class="demo-copy" data-code={code} aria-label="Copy code">
+        <i class="ph-thin ph-copy"></i>
+        COPY
+      </button>
+      <pre class="demo-code"><code>{code}</code></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.demo-copy').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const code = btn.dataset['code'] ?? '';
+      await navigator.clipboard.writeText(code);
+      btn.textContent = 'COPIED';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="ph-thin ph-copy"></i> COPY';
+      }, 1500);
+    });
+  });
+</script>
+
+<style>
+  .demo-wrap {
+    margin-block: var(--nf-space-6);
+    border: 2px solid var(--nf-color-border);
+  }
+
+  .demo-label {
+    font-family: var(--nf-font-label);
+    font-size: var(--nf-text-sm);
+    letter-spacing: var(--nf-tracking-display);
+    color: var(--nf-color-text-subtle);
+    background-color: var(--nf-color-surface-lowest);
+    padding: var(--nf-space-1) var(--nf-space-4);
+    margin: 0;
+    border-bottom: 1px solid var(--nf-color-border);
+  }
+
+  .demo-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .demo-stacked {
+    grid-template-columns: 1fr;
+  }
+
+  .demo-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--nf-space-4);
+    padding: var(--nf-space-8);
+    border-right: 1px solid var(--nf-color-border);
+    min-height: 8rem;
+  }
+
+  .demo-stacked .demo-preview {
+    border-right: none;
+    border-bottom: 1px solid var(--nf-color-border);
+  }
+
+  .demo-code-wrap {
+    position: relative;
+    background-color: var(--nf-color-surface-lowest);
+    overflow: auto;
+  }
+
+  .demo-copy {
+    position: absolute;
+    top: var(--nf-space-3);
+    right: var(--nf-space-3);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--nf-space-1);
+    padding: var(--nf-space-1) var(--nf-space-2);
+    font-family: var(--nf-font-label);
+    font-size: var(--nf-text-sm);
+    letter-spacing: var(--nf-tracking-display);
+    color: var(--nf-color-text-muted);
+    background: none;
+    border: 1px solid var(--nf-color-border);
+    cursor: crosshair;
+    transition: color var(--nf-duration-fast) var(--nf-ease-sharp),
+                border-color var(--nf-duration-fast) var(--nf-ease-sharp);
+
+    &:hover {
+      color: var(--nf-color-primary);
+      border-color: var(--nf-color-primary);
+    }
+  }
+
+  .demo-code {
+    margin: 0;
+    padding: var(--nf-space-5);
+    font-family: var(--nf-font-mono);
+    font-size: var(--nf-text-sm);
+    color: var(--nf-color-text-muted);
+    overflow-x: auto;
+    white-space: pre;
+    background: none;
+    border: none;
+  }
+</style>

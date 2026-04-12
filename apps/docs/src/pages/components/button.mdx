@@ -1,0 +1,75 @@
+---
+layout: '../../layouts/DocsLayout.astro'
+title: 'Button'
+description: 'Trigger actions and navigate. Four variants, three sizes.'
+---
+
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
+# Button
+
+Buttons trigger actions. All variants share `.nf-button` as the base class.
+
+## Variants
+
+<ComponentDemo title="Primary" code={`<button class="nf-button nf-button-primary">INITIALIZE</button>`}>
+  <button class="nf-button nf-button-primary">INITIALIZE</button>
+</ComponentDemo>
+
+<ComponentDemo title="Secondary" code={`<button class="nf-button nf-button-secondary">DISCARD</button>`}>
+  <button class="nf-button nf-button-secondary">DISCARD</button>
+</ComponentDemo>
+
+<ComponentDemo title="Ghost" code={`<button class="nf-button nf-button-ghost">QUERY</button>`}>
+  <button class="nf-button nf-button-ghost">QUERY</button>
+</ComponentDemo>
+
+<ComponentDemo title="Danger" code={`<button class="nf-button nf-button-danger">ABORT</button>`}>
+  <button class="nf-button nf-button-danger">ABORT</button>
+</ComponentDemo>
+
+<ComponentDemo title="Outline" code={`<button class="nf-button nf-button-outline">SYSTEM</button>`}>
+  <button class="nf-button nf-button-outline">SYSTEM</button>
+</ComponentDemo>
+
+## Sizes
+
+<ComponentDemo title="Small / Default / Large" code={`<button class="nf-button nf-button-primary nf-button-sm">SMALL</button>
+<button class="nf-button nf-button-primary">DEFAULT</button>
+<button class="nf-button nf-button-primary nf-button-lg">LARGE</button>`}>
+  <button class="nf-button nf-button-primary nf-button-sm">SMALL</button>
+  <button class="nf-button nf-button-primary">DEFAULT</button>
+  <button class="nf-button nf-button-primary nf-button-lg">LARGE</button>
+</ComponentDemo>
+
+## Disabled
+
+<ComponentDemo title="Disabled state" code={`<button class="nf-button nf-button-primary" disabled>OFFLINE</button>
+<button class="nf-button nf-button-ghost" disabled>OFFLINE</button>`}>
+  <button class="nf-button nf-button-primary" disabled>OFFLINE</button>
+  <button class="nf-button nf-button-ghost" disabled>OFFLINE</button>
+</ComponentDemo>
+
+## As anchor
+
+Any element works — use `role="button"` on non-button elements:
+
+```html
+<a href="/dashboard" class="nf-button nf-button-primary">
+  ENTER SYSTEM
+</a>
+```
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-button` | Base — required on all buttons |
+| `nf-button-primary` | Terminal Green fill |
+| `nf-button-secondary` | Cyber Magenta fill |
+| `nf-button-ghost` | Transparent, green border |
+| `nf-button-danger` | Error color fill |
+| `nf-button-outline` | Transparent, muted border |
+| `nf-button-sm` | Small size |
+| `nf-button-lg` | Large size |
+| `nf-button-icon` | Square icon-only button |

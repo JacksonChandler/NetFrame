@@ -1,0 +1,83 @@
+---
+layout: '../../layouts/DocsLayout.astro'
+title: 'Input'
+description: 'Text inputs, selects, checkboxes, radios, and range sliders.'
+---
+
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
+# Input
+
+Form controls. Wrap each control in `.nf-field` for consistent label + helper text spacing.
+
+## Text input
+
+<ComponentDemo stacked title="Default" code={`<div class="nf-field">
+  <label class="nf-label">User_ID</label>
+  <input class="nf-input" type="text" placeholder="GUEST_####" />
+  <span class="nf-helper">UNIQUE_SYSTEM_ID_REQUIRED</span>
+</div>`}>
+  <div class="nf-field" style="width: 100%; max-width: 20rem;">
+    <label class="nf-label">User_ID</label>
+    <input class="nf-input" type="text" placeholder="GUEST_####" />
+    <span class="nf-helper">UNIQUE_SYSTEM_ID_REQUIRED</span>
+  </div>
+</ComponentDemo>
+
+## Error state
+
+<ComponentDemo stacked title="Error" code={`<div class="nf-field">
+  <label class="nf-label">Encryption_Key</label>
+  <input class="nf-input nf-input-error" type="text" value="CORRUPT_DATA" />
+  <span class="nf-helper nf-helper-error">ERR: INVALID_FORMAT</span>
+</div>`}>
+  <div class="nf-field" style="width: 100%; max-width: 20rem;">
+    <label class="nf-label">Encryption_Key</label>
+    <input class="nf-input nf-input-error" type="text" value="CORRUPT_DATA" />
+    <span class="nf-helper nf-helper-error">ERR: INVALID_FORMAT</span>
+  </div>
+</ComponentDemo>
+
+## Select
+
+<ComponentDemo stacked title="Select" code={`<div class="nf-field">
+  <label class="nf-label">Access_Level</label>
+  <select class="nf-select">
+    <option>LEVEL_LOW</option>
+    <option>LEVEL_MID</option>
+    <option>LEVEL_ROOT</option>
+  </select>
+</div>`}>
+  <div class="nf-field" style="width: 100%; max-width: 20rem;">
+    <label class="nf-label">Access_Level</label>
+    <select class="nf-select">
+      <option>LEVEL_LOW</option>
+      <option>LEVEL_MID</option>
+      <option>LEVEL_ROOT</option>
+    </select>
+  </div>
+</ComponentDemo>
+
+## Checkbox & Radio
+
+<ComponentDemo title="Checkbox" code={`<label class="nf-checkbox">
+  <input type="checkbox" checked />
+  <span>NODE_01</span>
+</label>`}>
+  <label class="nf-checkbox">
+    <input type="checkbox" checked />
+    <span>NODE_01</span>
+  </label>
+</ComponentDemo>
+
+## Textarea
+
+<ComponentDemo stacked title="Textarea" code={`<div class="nf-field">
+  <label class="nf-label">System_Log</label>
+  <textarea class="nf-textarea" placeholder="ENTER LOG DATA..."></textarea>
+</div>`}>
+  <div class="nf-field" style="width: 100%; max-width: 20rem;">
+    <label class="nf-label">System_Log</label>
+    <textarea class="nf-textarea" placeholder="ENTER LOG DATA..."></textarea>
+  </div>
+</ComponentDemo>

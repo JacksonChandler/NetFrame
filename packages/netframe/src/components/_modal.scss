@@ -1,0 +1,122 @@
+// NetFrame — Modal
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+@use '../mixins/focus-ring' as *;
+
+// ---------------------------------------------------------------------------
+// Overlay backdrop
+// ---------------------------------------------------------------------------
+
+.nf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nf-z-modal);
+  background-color: color-mix(in srgb, var(--nf-color-bg) 80%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--nf-space-4);
+
+  &[aria-hidden='true'],
+  &.nf-hidden {
+    display: none;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Dialog
+// ---------------------------------------------------------------------------
+
+.nf-modal {
+  position: relative;
+  width: 100%;
+  max-width: 32rem;
+  max-height: calc(100svh - var(--nf-space-8));
+  overflow-y: auto;
+
+  background-color: var(--nf-color-surface-low);
+  border: var(--nf-border-medium) solid var(--nf-color-primary);
+  box-shadow: 6px 6px 0px 0px var(--nf-color-on-primary);
+
+  display: flex;
+  flex-direction: column;
+
+  @include nf-focus-ring;
+}
+
+// Size variants
+.nf-modal-sm { max-width: 20rem; }
+.nf-modal-lg { max-width: 48rem; }
+.nf-modal-xl { max-width: 64rem; }
+.nf-modal-full {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100svh;
+}
+
+// ---------------------------------------------------------------------------
+// Sections
+// ---------------------------------------------------------------------------
+
+.nf-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nf-space-4);
+  padding: var(--nf-space-4) var(--nf-space-6);
+  border-bottom: var(--nf-border-medium) solid var(--nf-color-primary);
+  flex-shrink: 0;
+
+  .nf-modal-title {
+    font-family: var(--nf-font-display);
+    font-size: var(--nf-text-xl);
+    font-weight: var(--nf-font-weight-bold);
+    letter-spacing: var(--nf-tracking-display);
+    text-transform: uppercase;
+    color: var(--nf-color-text);
+    margin: 0;
+  }
+}
+
+.nf-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  background: none;
+  border: var(--nf-border-thin) solid transparent;
+  color: var(--nf-color-text-muted);
+  cursor: crosshair;
+  font-size: var(--nf-text-xl);
+  line-height: 1;
+
+  @include nf-focus-ring;
+
+  &:hover {
+    color: var(--nf-color-primary);
+    border-color: var(--nf-color-primary);
+  }
+}
+
+.nf-modal-body {
+  padding: var(--nf-space-6);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.nf-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--nf-space-3);
+  padding: var(--nf-space-4) var(--nf-space-6);
+  border-top: var(--nf-border-medium) solid var(--nf-color-border);
+  flex-shrink: 0;
+}

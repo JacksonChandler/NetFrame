@@ -1,0 +1,57 @@
+// NetFrame — Glow Utilities
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Utility classes that apply pixel-offset shadows and ambient glows
+// directly to elements without needing @include.
+//
+// Offset shadows (.nf-shadow-*) — for interactive / structural elements.
+// Ambient glows (.nf-glow-*) — for floating / elevated elements.
+// Text glows (.nf-text-glow-*) — for display headings and accent text.
+
+@use '../mixins/neon-glow' as *;
+
+// ---------------------------------------------------------------------------
+// Pixel-offset shadows
+// ---------------------------------------------------------------------------
+
+.nf-shadow-primary   { @include nf-offset-shadow(var(--nf-color-primary)); }
+.nf-shadow-secondary { @include nf-offset-shadow(var(--nf-color-secondary)); }
+.nf-shadow-tertiary  { @include nf-offset-shadow(var(--nf-color-tertiary)); }
+.nf-shadow-error     { @include nf-offset-shadow(var(--nf-color-error)); }
+
+// Larger offset variant
+.nf-shadow-primary-lg   { @include nf-offset-shadow(var(--nf-color-primary),   6px, 6px); }
+.nf-shadow-secondary-lg { @include nf-offset-shadow(var(--nf-color-secondary), 6px, 6px); }
+.nf-shadow-tertiary-lg  { @include nf-offset-shadow(var(--nf-color-tertiary),  6px, 6px); }
+
+// Remove all shadow (reset)
+.nf-shadow-none { box-shadow: none; }
+
+// ---------------------------------------------------------------------------
+// Ambient glows
+// ---------------------------------------------------------------------------
+
+.nf-glow-primary   { @include nf-ambient-glow(var(--nf-color-primary)); }
+.nf-glow-secondary { @include nf-ambient-glow(var(--nf-color-secondary)); }
+.nf-glow-tertiary  { @include nf-ambient-glow(var(--nf-color-tertiary)); }
+
+.nf-glow-primary-subtle   { @include nf-ambient-glow(var(--nf-color-primary),   'subtle'); }
+.nf-glow-secondary-subtle { @include nf-ambient-glow(var(--nf-color-secondary), 'subtle'); }
+.nf-glow-tertiary-subtle  { @include nf-ambient-glow(var(--nf-color-tertiary),  'subtle'); }
+
+// ---------------------------------------------------------------------------
+// Text glows
+// ---------------------------------------------------------------------------
+
+.nf-text-glow-primary   { @include nf-text-glow(var(--nf-color-primary)); }
+.nf-text-glow-secondary { @include nf-text-glow(var(--nf-color-secondary)); }
+.nf-text-glow-tertiary  { @include nf-text-glow(var(--nf-color-tertiary)); }
+
+// ---------------------------------------------------------------------------
+// Border glow
+// ---------------------------------------------------------------------------
+
+.nf-border-glow-primary   { @include nf-border-glow(var(--nf-color-primary)); }
+.nf-border-glow-secondary { @include nf-border-glow(var(--nf-color-secondary)); }
+.nf-border-glow-tertiary  { @include nf-border-glow(var(--nf-color-tertiary)); }

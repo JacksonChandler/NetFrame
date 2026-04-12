@@ -1,0 +1,90 @@
+// NetFrame — Pagination
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+@use '../mixins/focus-ring' as *;
+
+.nf-pagination {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Page item (li wrapper)
+// ---------------------------------------------------------------------------
+
+.nf-page-item {
+  display: inline-flex;
+
+  &:not(:last-child) .nf-page-link {
+    border-right: none;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Page link / button
+// ---------------------------------------------------------------------------
+
+.nf-page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 var(--nf-space-3);
+
+  font-family: var(--nf-font-label);
+  font-size: var(--nf-text-base);
+  letter-spacing: var(--nf-tracking-display);
+  text-decoration: none;
+  color: var(--nf-color-text-muted);
+
+  background-color: var(--nf-color-surface-lowest);
+  border: var(--nf-border-medium) solid var(--nf-color-border);
+
+  cursor: crosshair;
+  transition: background-color var(--nf-duration-fast) var(--nf-ease-sharp),
+              color             var(--nf-duration-fast) var(--nf-ease-sharp),
+              border-color      var(--nf-duration-fast) var(--nf-ease-sharp);
+
+  @include nf-focus-ring(var(--nf-color-primary), 0px);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--nf-color-primary) 8%, transparent);
+    color: var(--nf-color-primary);
+    border-color: var(--nf-color-primary);
+  }
+}
+
+// Active page
+.nf-page-item-active .nf-page-link {
+  background-color: var(--nf-color-primary);
+  color: var(--nf-color-on-primary);
+  border-color: var(--nf-color-primary);
+  font-weight: var(--nf-font-weight-bold);
+  pointer-events: none;
+}
+
+// Disabled
+.nf-page-item-disabled .nf-page-link {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// Prev / Next labels
+.nf-page-prev,
+.nf-page-next {
+  font-family: var(--nf-font-body);
+  font-size: var(--nf-text-sm);
+}
+
+// Ellipsis item
+.nf-page-ellipsis .nf-page-link {
+  pointer-events: none;
+  color: var(--nf-color-text-subtle);
+}

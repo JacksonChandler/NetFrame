@@ -1,0 +1,67 @@
+// NetFrame — Layout Utilities
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Minimal set of layout helpers that are genuinely needed across components.
+// Not a full utility framework — use these for the patterns that repeat.
+
+@use '../mixins/truncate' as *;
+
+// ---------------------------------------------------------------------------
+// Display
+// ---------------------------------------------------------------------------
+
+.nf-hidden          { display: none !important; }
+.nf-sr-only         { @include nf-visually-hidden; }
+
+// ---------------------------------------------------------------------------
+// Flex helpers
+// ---------------------------------------------------------------------------
+
+.nf-flex            { display: flex; }
+.nf-flex-col        { display: flex; flex-direction: column; }
+.nf-flex-center     { @include nf-flex-center; }
+.nf-flex-between    { display: flex; align-items: center; justify-content: space-between; }
+.nf-flex-wrap       { flex-wrap: wrap; }
+.nf-flex-1          { flex: 1; }
+.nf-flex-shrink-0   { flex-shrink: 0; }
+
+// ---------------------------------------------------------------------------
+// Text helpers
+// ---------------------------------------------------------------------------
+
+.nf-truncate        { @include nf-truncate; }
+.nf-line-clamp-2    { @include nf-line-clamp(2); }
+.nf-line-clamp-3    { @include nf-line-clamp(3); }
+
+.nf-uppercase       { text-transform: uppercase; }
+.nf-font-display    { font-family: var(--nf-font-display); }
+.nf-font-body       { font-family: var(--nf-font-body); }
+.nf-font-label      { font-family: var(--nf-font-label); }
+.nf-tracking-display { letter-spacing: var(--nf-tracking-display); }
+
+// ---------------------------------------------------------------------------
+// Color utilities
+// ---------------------------------------------------------------------------
+
+.nf-text-primary    { color: var(--nf-color-primary); }
+.nf-text-secondary  { color: var(--nf-color-secondary); }
+.nf-text-tertiary   { color: var(--nf-color-tertiary); }
+.nf-text-muted      { color: var(--nf-color-text-muted); }
+.nf-text-error      { color: var(--nf-color-error); }
+
+.nf-bg-surface      { background-color: var(--nf-color-surface); }
+.nf-bg-surface-low  { background-color: var(--nf-color-surface-low); }
+.nf-bg-surface-high { background-color: var(--nf-color-surface-high); }
+
+// ---------------------------------------------------------------------------
+// Border utilities
+// ---------------------------------------------------------------------------
+
+.nf-border              { border: var(--nf-border-medium) solid var(--nf-color-border); }
+.nf-border-primary      { border: var(--nf-border-medium) solid var(--nf-color-primary); }
+.nf-border-secondary    { border: var(--nf-border-medium) solid var(--nf-color-secondary); }
+.nf-border-tertiary     { border: var(--nf-border-medium) solid var(--nf-color-tertiary); }
+.nf-border-l-primary    { border-left: 4px solid var(--nf-color-primary); }
+.nf-border-l-secondary  { border-left: 4px solid var(--nf-color-secondary); }
+.nf-border-t-primary    { border-top: 4px solid var(--nf-color-primary); }

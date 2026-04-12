@@ -1,0 +1,108 @@
+// NetFrame — Scanline Utilities
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// The CRT overlay is a core identity element of the design system.
+// Two patterns per the design spec:
+//
+//   .nf-crt       — full RGB phosphor + scanline simulation (global body use)
+//   .nf-scanlines — simple horizontal scanline repeat (scoped to any element)
+//   .nf-pixel-grid — dot grid background on content surfaces
+
+@use '../mixins/scanlines' as *;
+
+// ---------------------------------------------------------------------------
+// .nf-crt
+//
+// Full CRT simulation: combines scanline horizontal banding with a subtle
+// RGB phosphor colour bleed across the horizontal axis.
+// Apply to <body> or a full-screen wrapper.
+// ---------------------------------------------------------------------------
+
+.nf-crt {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+
+    // Horizontal scanlines + RGB bleed — matches the Stitch spec exactly:
+    // 3px scan frequency, RGB channels at 3/1/3% opacity
+    background:
+      linear-gradient(
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.10) 50%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.03),
+        rgba(0, 255, 0, 0.01),
+        rgba(0, 0, 255, 0.03)
+      );
+    background-size: 100% 3px, 3px 100%;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// .nf-scanlines
+//
+// Simpler scanline overlay scoped to a single element (card, hero, etc.).
+// Uses ::before so the element keeps ::after free for other effects.
+// Requires the element to have overflow: hidden (or add .nf-scanlines-clip).
+// ---------------------------------------------------------------------------
+
+.nf-scanlines {
+  @include nf-scanlines;
+}
+
+.nf-scanlines-clip {
+  overflow: hidden;
+}
+
+// Heavier variant for hero sections
+.nf-scanlines-heavy {
+  @include nf-scanlines(0.08, 3px);
+}
+
+// Animated scan sweep — moving bright line drifts down
+.nf-scanlines-animated {
+  @include nf-scanlines-animated(var(--nf-color-primary), 3s);
+}
+
+.nf-scanlines-animated-secondary {
+  @include nf-scanlines-animated(var(--nf-color-secondary), 4s);
+}
+
+// ---------------------------------------------------------------------------
+// .nf-pixel-grid
+//
+// Radial dot grid background — used on main content surfaces and hero areas.
+// Two variants matching the Stitch files (light dot on dark, dark dot on surface).
+// ---------------------------------------------------------------------------
+
+.nf-pixel-grid {
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--nf-color-primary) 10%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+}
+
+.nf-pixel-grid-subtle {
+  background-image: radial-gradient(
+    var(--nf-color-surface-highest) 1px,
+    transparent 1px
+  );
+  background-size: 4px 4px;
+}
+
+.nf-pixel-grid-dense {
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--nf-color-primary) 8%, transparent) 0.5px,
+    transparent 0.5px
+  );
+  background-size: 10px 10px;
+}

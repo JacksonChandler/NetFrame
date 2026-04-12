@@ -1,0 +1,74 @@
+---
+layout: '../../layouts/DocsLayout.astro'
+title: 'Layout'
+description: 'Flex, text, color, and border layout helper utilities.'
+---
+
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
+# Layout
+
+Low-level utility classes for flex layout, text formatting, color assignment, and borders.
+
+## Flex utilities
+
+<ComponentDemo title="Flex center" code={`<div class="nf-flex-center" style="height:4rem;background:var(--nf-color-surface-low);">
+  CENTERED
+</div>`}>
+  <div class="nf-flex-center" style="height:4rem;background:var(--nf-color-surface-low);">
+    CENTERED
+  </div>
+</ComponentDemo>
+
+## Text utilities
+
+<ComponentDemo title="Text helpers" code={`<p class="nf-uppercase nf-tracking-display">DISPLAY TRACKING</p>
+<p class="nf-truncate" style="width:12rem;">THIS TEXT IS TOO LONG TO FIT IN THE CONTAINER</p>`}>
+  <p class="nf-uppercase nf-tracking-display">DISPLAY TRACKING</p>
+  <p class="nf-truncate" style="width:12rem;">THIS TEXT IS TOO LONG TO FIT IN THE CONTAINER</p>
+</ComponentDemo>
+
+## Color utilities
+
+<ComponentDemo title="Text color" code={`<p class="nf-text-primary">PRIMARY — Terminal Green</p>
+<p class="nf-text-secondary">SECONDARY — Cyber Magenta</p>
+<p class="nf-text-tertiary">TERTIARY — Electric Cyan</p>
+<p class="nf-text-muted">MUTED — Secondary text</p>
+<p class="nf-text-subtle">SUBTLE — Placeholder text</p>`}>
+  <p class="nf-text-primary">PRIMARY — Terminal Green</p>
+  <p class="nf-text-secondary">SECONDARY — Cyber Magenta</p>
+  <p class="nf-text-tertiary">TERTIARY — Electric Cyan</p>
+  <p class="nf-text-muted">MUTED — Secondary text</p>
+  <p class="nf-text-subtle">SUBTLE — Placeholder text</p>
+</ComponentDemo>
+
+## Font utilities
+
+<ComponentDemo title="Font families" code={`<p class="nf-font-display">DISPLAY — SPACE GROTESK</p>
+<p class="nf-font-body">Body — JetBrains Mono</p>
+<p class="nf-font-label">LABEL — VT323</p>`}>
+  <p class="nf-font-display">DISPLAY — SPACE GROTESK</p>
+  <p class="nf-font-body">Body — JetBrains Mono</p>
+  <p class="nf-font-label">LABEL — VT323</p>
+</ComponentDemo>
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-flex-center` | `display: flex; align-items: center; justify-content: center` |
+| `nf-truncate` | Single-line truncation with ellipsis |
+| `nf-uppercase` | `text-transform: uppercase` |
+| `nf-tracking-display` | `letter-spacing: 0.05em` |
+| `nf-text-primary` | Color: `--nf-color-primary` |
+| `nf-text-secondary` | Color: `--nf-color-secondary` |
+| `nf-text-tertiary` | Color: `--nf-color-tertiary` |
+| `nf-text-muted` | Color: `--nf-color-text-muted` |
+| `nf-text-subtle` | Color: `--nf-color-text-subtle` |
+| `nf-font-display` | Font: Space Grotesk |
+| `nf-font-body` | Font: JetBrains Mono |
+| `nf-font-label` | Font: VT323 |
+| `nf-visually-hidden` | Accessible hide (screen reader only) |
+| `nf-border-primary` | Border: `--nf-color-primary` |
+| `nf-border-secondary` | Border: `--nf-color-secondary` |
+| `nf-border-tertiary` | Border: `--nf-color-tertiary` |

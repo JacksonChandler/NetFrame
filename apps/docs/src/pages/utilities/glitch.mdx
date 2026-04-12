@@ -1,0 +1,53 @@
+---
+layout: '../../layouts/DocsLayout.astro'
+title: 'Glitch'
+description: 'RGB-split glitch animation utilities.'
+---
+
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
+# Glitch
+
+RGB-split glitch animations using `steps(4, end)` easing for authentic digital corruption aesthetics.
+
+## Static glitch
+
+Applies a continuous glitch animation:
+
+<ComponentDemo title="Glitch animation" code={`<h2 class="nf-glitch">SYSTEM_ERROR</h2>`}>
+  <h2 class="nf-glitch">SYSTEM_ERROR</h2>
+</ComponentDemo>
+
+## Hover glitch
+
+Glitch only triggers on hover — use for interactive elements:
+
+<ComponentDemo title="Hover glitch" code={`<button class="nf-button nf-button-ghost nf-glitch-hover">HOVER ME</button>`}>
+  <button class="nf-button nf-button-ghost nf-glitch-hover">HOVER ME</button>
+</ComponentDemo>
+
+## Color variants
+
+<ComponentDemo title="Glitch color variants" code={`<span class="nf-glitch nf-glitch-primary">PRIMARY</span>
+<span class="nf-glitch nf-glitch-secondary">SECONDARY</span>
+<span class="nf-glitch nf-glitch-tertiary">TERTIARY</span>`}>
+  <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+    <span class="nf-glitch nf-glitch-primary">PRIMARY</span>
+    <span class="nf-glitch nf-glitch-secondary">SECONDARY</span>
+    <span class="nf-glitch nf-glitch-tertiary">TERTIARY</span>
+  </div>
+</ComponentDemo>
+
+## Accessibility
+
+Glitch animations are automatically paused for users with `prefers-reduced-motion: reduce`. The element still renders — only the animation is disabled.
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-glitch` | Continuous RGB-split glitch animation |
+| `nf-glitch-hover` | Glitch animation on hover only |
+| `nf-glitch-primary` | Glitch color: Terminal Green channels |
+| `nf-glitch-secondary` | Glitch color: Cyber Magenta channels |
+| `nf-glitch-tertiary` | Glitch color: Electric Cyan channels |

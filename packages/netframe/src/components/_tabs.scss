@@ -1,0 +1,98 @@
+// NetFrame — Tabs
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+@use '../mixins/focus-ring' as *;
+
+// ---------------------------------------------------------------------------
+// Tab bar
+// ---------------------------------------------------------------------------
+
+.nf-tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.nf-tab-list {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  border-bottom: var(--nf-border-medium) solid var(--nf-color-border);
+  overflow-x: auto;
+
+  // Hide scrollbar but keep functionality
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+// ---------------------------------------------------------------------------
+// Tab trigger
+// ---------------------------------------------------------------------------
+
+.nf-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nf-space-2);
+  flex-shrink: 0;
+
+  padding: var(--nf-space-3) var(--nf-space-5);
+  font-family: var(--nf-font-body);
+  font-size: var(--nf-text-md);
+  font-weight: var(--nf-font-weight-medium);
+  letter-spacing: var(--nf-tracking-display);
+  text-transform: uppercase;
+
+  color: var(--nf-color-text-muted);
+  background: none;
+  border: none;
+  border-bottom: var(--nf-border-medium) solid transparent;
+  margin-bottom: -2px;
+  cursor: crosshair;
+
+  transition: color            var(--nf-duration-base) var(--nf-ease-sharp),
+              border-color     var(--nf-duration-base) var(--nf-ease-sharp),
+              background-color var(--nf-duration-base) var(--nf-ease-sharp);
+
+  @include nf-focus-ring;
+
+  &:hover {
+    color: var(--nf-color-text);
+    background-color: color-mix(in srgb, var(--nf-color-primary) 5%, transparent);
+  }
+
+  &[aria-selected='true'],
+  &.nf-tab-active {
+    color: var(--nf-color-primary);
+    border-bottom-color: var(--nf-color-primary);
+    background-color: color-mix(in srgb, var(--nf-color-primary) 5%, transparent);
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// Secondary color variant tabs
+.nf-tabs-secondary .nf-tab {
+  &[aria-selected='true'],
+  &.nf-tab-active {
+    color: var(--nf-color-secondary);
+    border-bottom-color: var(--nf-color-secondary);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Tab panel
+// ---------------------------------------------------------------------------
+
+.nf-tab-panel {
+  padding: var(--nf-space-6) 0;
+
+  &[hidden],
+  &[aria-hidden='true'] {
+    display: none;
+  }
+}

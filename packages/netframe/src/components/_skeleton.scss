@@ -1,0 +1,77 @@
+// NetFrame — Skeleton
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Shimmer uses the primary green at very low opacity to stay on-theme
+// rather than the typical grey shimmer.
+
+// ---------------------------------------------------------------------------
+// Base
+// ---------------------------------------------------------------------------
+
+.nf-skeleton {
+  display: block;
+  background-color: var(--nf-color-surface-highest);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--nf-color-primary) 6%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: nf-shimmer 1.5s var(--nf-ease-default) infinite;
+}
+
+// ---------------------------------------------------------------------------
+// Shape presets
+// ---------------------------------------------------------------------------
+
+.nf-skeleton-text {
+  height: 0.875rem;
+  width: 100%;
+
+  & + & {
+    margin-top: var(--nf-space-2);
+  }
+}
+
+// Shorter last line (mimics real paragraph endings)
+.nf-skeleton-text-short {
+  width: 60%;
+}
+
+.nf-skeleton-heading {
+  height: 1.5rem;
+  width: 40%;
+}
+
+.nf-skeleton-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+}
+
+.nf-skeleton-button {
+  height: 2.5rem;
+  width: 8rem;
+}
+
+.nf-skeleton-card {
+  height: 10rem;
+  width: 100%;
+}
+
+.nf-skeleton-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+// ---------------------------------------------------------------------------
+// Keyframe
+// ---------------------------------------------------------------------------
+
+@keyframes nf-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

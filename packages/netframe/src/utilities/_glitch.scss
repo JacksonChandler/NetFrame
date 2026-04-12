@@ -1,0 +1,37 @@
+// NetFrame — Glitch Utilities
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Utility classes for the glitch effect.
+// All variants require data-text="…" on the element mirroring its text content
+// so the pseudo-elements can render the aberration layers:
+//
+//   <h1 class="nf-glitch" data-text="SYSTEM ONLINE">SYSTEM ONLINE</h1>
+
+@use '../mixins/glitch' as *;
+
+// ---------------------------------------------------------------------------
+// Always-on glitch
+// ---------------------------------------------------------------------------
+
+.nf-glitch         { @include nf-glitch('base'); }
+.nf-glitch-subtle  { @include nf-glitch('subtle'); }
+.nf-glitch-strong  { @include nf-glitch('strong'); }
+
+// Secondary/tertiary colour aberration variants
+.nf-glitch-secondary {
+  @include nf-glitch('base', var(--nf-color-secondary), var(--nf-color-tertiary));
+}
+
+.nf-glitch-tertiary {
+  @include nf-glitch('base', var(--nf-color-tertiary), var(--nf-color-primary));
+}
+
+// ---------------------------------------------------------------------------
+// Hover-triggered glitch (better for interactive elements)
+// ---------------------------------------------------------------------------
+
+.nf-glitch-hover           { @include nf-glitch-hover; }
+.nf-glitch-hover-secondary {
+  @include nf-glitch-hover(var(--nf-color-secondary), var(--nf-color-tertiary));
+}

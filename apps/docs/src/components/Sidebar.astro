@@ -1,0 +1,177 @@
+---
+// NetFrame — Sidebar navigation
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const nav = [
+  {
+    label: 'Getting Started',
+    items: [
+      { label: 'Introduction',     href: '/getting-started' },
+      { label: 'Theming',          href: '/theming' },
+    ],
+  },
+  {
+    label: 'Components',
+    items: [
+      { label: 'Button',           href: '/components/button' },
+      { label: 'Input',            href: '/components/input' },
+      { label: 'Card',             href: '/components/card' },
+      { label: 'Dropdown',         href: '/components/dropdown' },
+      { label: 'Table',            href: '/components/table' },
+      { label: 'Avatar',           href: '/components/avatar' },
+      { label: 'Badge',            href: '/components/badge' },
+      { label: 'Tag',              href: '/components/tag' },
+      { label: 'Tooltip',          href: '/components/tooltip' },
+      { label: 'Modal',            href: '/components/modal' },
+      { label: 'Drawer',           href: '/components/drawer' },
+      { label: 'Toast',            href: '/components/toast' },
+      { label: 'Progress',         href: '/components/progress' },
+      { label: 'Spinner',          href: '/components/spinner' },
+      { label: 'Tabs',             href: '/components/tabs' },
+      { label: 'Accordion',        href: '/components/accordion' },
+      { label: 'Breadcrumb',       href: '/components/breadcrumb' },
+      { label: 'Pagination',       href: '/components/pagination' },
+      { label: 'Divider',          href: '/components/divider' },
+      { label: 'Skeleton',         href: '/components/skeleton' },
+    ],
+  },
+  {
+    label: 'Utilities',
+    items: [
+      { label: 'Shadows & Glows',  href: '/utilities/glow' },
+      { label: 'Scanlines',        href: '/utilities/scanlines' },
+      { label: 'Glitch',           href: '/utilities/glitch' },
+      { label: 'Layout',           href: '/utilities/layout' },
+    ],
+  },
+];
+---
+
+<nav class="sidebar">
+  <!-- Logo -->
+  <a href="/" class="sidebar-logo">
+    <span class="sidebar-logo-text">NET<span>FRAME</span></span>
+    <span class="sidebar-logo-sub">BY CYBEAR</span>
+  </a>
+
+  <!-- Nav sections -->
+  {nav.map((section) => (
+    <div class="sidebar-section">
+      <p class="sidebar-section-label">{section.label}</p>
+      <ul class="sidebar-list">
+        {section.items.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[
+                'sidebar-link',
+                { 'sidebar-link-active': currentPath === item.href || currentPath === item.href + '/' }
+              ]}
+            >
+              {item.label.toUpperCase()}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</nav>
+
+<style>
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 16rem;
+    z-index: var(--nf-z-sticky);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color: var(--nf-color-bg);
+    border-right: 2px solid var(--nf-color-primary);
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--nf-color-border) transparent;
+  }
+
+  .sidebar-logo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nf-space-1);
+    padding: var(--nf-space-6);
+    border-bottom: 2px solid var(--nf-color-primary);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .sidebar-logo-text {
+    font-family: var(--nf-font-display);
+    font-size: var(--nf-text-2xl);
+    font-weight: var(--nf-font-weight-bold);
+    letter-spacing: var(--nf-tracking-display);
+    color: var(--nf-color-text);
+    line-height: 1;
+
+    span { color: var(--nf-color-primary); }
+  }
+
+  .sidebar-logo-sub {
+    font-family: var(--nf-font-label);
+    font-size: var(--nf-text-base);
+    letter-spacing: var(--nf-tracking-display);
+    color: var(--nf-color-secondary);
+  }
+
+  .sidebar-section {
+    padding: var(--nf-space-4) 0;
+    border-bottom: 1px solid var(--nf-color-border);
+  }
+
+  .sidebar-section-label {
+    font-family: var(--nf-font-label);
+    font-size: var(--nf-text-sm);
+    letter-spacing: var(--nf-tracking-display);
+    text-transform: uppercase;
+    color: var(--nf-color-text-subtle);
+    padding: 0 var(--nf-space-6) var(--nf-space-2);
+    margin: 0;
+  }
+
+  .sidebar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sidebar-link {
+    display: block;
+    padding: var(--nf-space-2) var(--nf-space-6);
+    font-family: var(--nf-font-body);
+    font-size: var(--nf-text-sm);
+    letter-spacing: var(--nf-tracking-wide);
+    color: var(--nf-color-text);
+    text-decoration: none;
+    transition: color var(--nf-duration-fast) var(--nf-ease-sharp),
+                background-color var(--nf-duration-fast) var(--nf-ease-sharp);
+
+    &:hover {
+      color: var(--nf-color-primary);
+      background-color: color-mix(in srgb, var(--nf-color-primary) 5%, transparent);
+    }
+  }
+
+  .sidebar-link-active {
+    color: var(--nf-color-primary);
+    border-left: 2px solid var(--nf-color-primary);
+    padding-left: calc(var(--nf-space-6) - 2px);
+    background-color: color-mix(in srgb, var(--nf-color-primary) 5%, transparent);
+  }
+</style>

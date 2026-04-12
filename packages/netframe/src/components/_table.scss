@@ -1,0 +1,114 @@
+// NetFrame — Table
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+// ---------------------------------------------------------------------------
+// Wrapper — handles overflow on small screens
+// ---------------------------------------------------------------------------
+
+.nf-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: var(--nf-border-medium) solid var(--nf-color-border);
+}
+
+// ---------------------------------------------------------------------------
+// Table
+// ---------------------------------------------------------------------------
+
+.nf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--nf-font-body);
+  font-size: var(--nf-text-md);
+  color: var(--nf-color-text);
+  background-color: var(--nf-color-bg);
+}
+
+// ---------------------------------------------------------------------------
+// Head
+// ---------------------------------------------------------------------------
+
+.nf-table thead {
+  background-color: var(--nf-color-surface-low);
+  border-bottom: var(--nf-border-medium) solid var(--nf-color-primary);
+}
+
+.nf-table th {
+  padding: var(--nf-space-3) var(--nf-space-4);
+  text-align: left;
+  font-family: var(--nf-font-display);
+  font-size: var(--nf-text-xs);
+  font-weight: var(--nf-font-weight-bold);
+  letter-spacing: var(--nf-tracking-display);
+  text-transform: uppercase;
+  color: var(--nf-color-primary);
+  white-space: nowrap;
+}
+
+// ---------------------------------------------------------------------------
+// Body
+// ---------------------------------------------------------------------------
+
+.nf-table td {
+  padding: var(--nf-space-3) var(--nf-space-4);
+  border-bottom: 1px solid var(--nf-color-surface-highest);
+  vertical-align: middle;
+}
+
+// ---------------------------------------------------------------------------
+// Row states
+// ---------------------------------------------------------------------------
+
+.nf-table tbody tr {
+  transition: background-color var(--nf-duration-fast) var(--nf-ease-sharp);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--nf-color-primary) 5%, transparent);
+  }
+
+  &:last-child td {
+    border-bottom: none;
+  }
+}
+
+// Striped rows
+.nf-table-striped tbody tr:nth-child(even) {
+  background-color: var(--nf-color-surface-lowest);
+}
+
+// Active / selected row
+.nf-table-row-active {
+  background-color: color-mix(in srgb, var(--nf-color-primary) 8%, transparent) !important;
+  border-left: 4px solid var(--nf-color-primary);
+
+  td:first-child {
+    padding-left: calc(var(--nf-space-4) - 4px);
+  }
+}
+
+// Danger row
+.nf-table-row-danger {
+  background-color: color-mix(in srgb, var(--nf-color-error) 8%, transparent) !important;
+  border-left: 4px solid var(--nf-color-error);
+
+  td:first-child {
+    padding-left: calc(var(--nf-space-4) - 4px);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Footer
+// ---------------------------------------------------------------------------
+
+.nf-table tfoot {
+  background-color: var(--nf-color-surface-low);
+  border-top: var(--nf-border-medium) solid var(--nf-color-border);
+
+  td {
+    padding: var(--nf-space-3) var(--nf-space-4);
+    font-size: var(--nf-text-sm);
+    color: var(--nf-color-text-muted);
+    border-bottom: none;
+  }
+}

@@ -1,0 +1,109 @@
+---
+// NetFrame — Docs Layout
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+import BaseLayout from './BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="docs-shell">
+    <!-- Sidebar nav -->
+    <Sidebar currentPath={currentPath} />
+
+    <!-- Main content -->
+    <div class="docs-main">
+      <!-- Top bar -->
+      <header class="docs-topbar">
+        <span class="docs-topbar-path nf-font-label nf-tracking-display nf-uppercase nf-text-muted">
+          NETFRAME_DOCS // {title?.toUpperCase() ?? ''}
+        </span>
+        <a
+          class="docs-topbar-link nf-font-label nf-tracking-display nf-uppercase nf-text-muted"
+          href="https://github.com/CybearTechnologies/NetFrame"
+          target="_blank"
+          rel="noopener"
+        >
+          <i class="ph-thin ph-github-logo"></i>
+          GITHUB
+        </a>
+      </header>
+
+      <!-- Page content -->
+      <main class="docs-content">
+        <slot />
+      </main>
+
+      <!-- Status footer -->
+      <footer class="docs-footer nf-font-label nf-tracking-display nf-uppercase">
+        <span class="nf-text-muted">NETFRAME v0.1.0 // CYBEAR_TECHNOLOGIES</span>
+        <span class="nf-text-subtle">GPL-3.0</span>
+      </footer>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .docs-shell {
+    display: flex;
+    min-height: 100svh;
+  }
+
+  .docs-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    margin-left: 16rem;
+  }
+
+  .docs-topbar {
+    position: sticky;
+    top: 0;
+    z-index: var(--nf-z-sticky);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--nf-space-8);
+    height: 4rem;
+    background-color: color-mix(in srgb, var(--nf-color-bg) 80%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--nf-color-primary);
+    font-size: var(--nf-text-xs);
+  }
+
+  .docs-topbar-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--nf-space-2);
+    text-decoration: none;
+    transition: color var(--nf-duration-base) var(--nf-ease-sharp);
+
+    &:hover { color: var(--nf-color-primary); }
+  }
+
+  .docs-content {
+    flex: 1;
+    padding: var(--nf-space-10) var(--nf-space-12);
+    max-width: 56rem;
+  }
+
+  .docs-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--nf-space-4) var(--nf-space-8);
+    border-top: 1px solid var(--nf-color-border);
+    font-size: var(--nf-text-xs);
+  }
+</style>

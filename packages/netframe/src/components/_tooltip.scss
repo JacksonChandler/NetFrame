@@ -1,0 +1,96 @@
+// NetFrame — Tooltip
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Usage:
+//   <span class="nf-tooltip-wrap">
+//     Hover me
+//     <span class="nf-tooltip">Tooltip text</span>
+//   </span>
+//
+// Positioning: add nf-tooltip-top (default), nf-tooltip-bottom,
+// nf-tooltip-left, nf-tooltip-right to .nf-tooltip.
+
+// ---------------------------------------------------------------------------
+// Wrapper
+// ---------------------------------------------------------------------------
+
+.nf-tooltip-wrap {
+  position: relative;
+  display: inline-flex;
+
+  &:hover .nf-tooltip,
+  &:focus-visible .nf-tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Tooltip bubble
+// ---------------------------------------------------------------------------
+
+.nf-tooltip {
+  position: absolute;
+  bottom: calc(100% + var(--nf-space-2));
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--nf-space-1));
+  z-index: var(--nf-z-tooltip);
+  pointer-events: none;
+
+  padding: var(--nf-space-2) var(--nf-space-3);
+  background-color: var(--nf-color-surface-highest);
+  border: var(--nf-border-thin) solid var(--nf-color-primary);
+  color: var(--nf-color-text);
+
+  font-family: var(--nf-font-label);
+  font-size: var(--nf-text-base);
+  letter-spacing: var(--nf-tracking-wide);
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  opacity: 0;
+  transition: opacity    var(--nf-duration-base) var(--nf-ease-default),
+              transform  var(--nf-duration-base) var(--nf-ease-default);
+}
+
+// ---------------------------------------------------------------------------
+// Positions
+// ---------------------------------------------------------------------------
+
+.nf-tooltip-bottom {
+  bottom: auto;
+  top: calc(100% + var(--nf-space-2));
+  transform: translateX(-50%) translateY(calc(-1 * var(--nf-space-1)));
+
+  .nf-tooltip-wrap:hover &,
+  .nf-tooltip-wrap:focus-visible & {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.nf-tooltip-left {
+  bottom: auto;
+  left: auto;
+  right: calc(100% + var(--nf-space-2));
+  top: 50%;
+  transform: translateX(var(--nf-space-1)) translateY(-50%);
+
+  .nf-tooltip-wrap:hover &,
+  .nf-tooltip-wrap:focus-visible & {
+    transform: translateX(0) translateY(-50%);
+  }
+}
+
+.nf-tooltip-right {
+  bottom: auto;
+  left: calc(100% + var(--nf-space-2));
+  top: 50%;
+  transform: translateX(calc(-1 * var(--nf-space-1))) translateY(-50%);
+
+  .nf-tooltip-wrap:hover &,
+  .nf-tooltip-wrap:focus-visible & {
+    transform: translateX(0) translateY(-50%);
+  }
+}

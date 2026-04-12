@@ -1,0 +1,116 @@
+// NetFrame — Progress
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+
+// ---------------------------------------------------------------------------
+// Progress bar
+// ---------------------------------------------------------------------------
+
+.nf-progress {
+  width: 100%;
+  height: 4px;
+  background-color: var(--nf-color-surface-highest);
+  overflow: hidden;
+}
+
+.nf-progress-bar {
+  height: 100%;
+  background-color: var(--nf-color-primary);
+  transition: width var(--nf-duration-slow) var(--nf-ease-default);
+}
+
+// Size variants
+.nf-progress-sm .nf-progress-bar { height: 2px; }
+.nf-progress-lg { height: 8px; }
+
+// Color variants
+.nf-progress-secondary .nf-progress-bar { background-color: var(--nf-color-secondary); }
+.nf-progress-tertiary  .nf-progress-bar { background-color: var(--nf-color-tertiary); }
+.nf-progress-error     .nf-progress-bar { background-color: var(--nf-color-error); }
+
+// Indeterminate
+.nf-progress-indeterminate .nf-progress-bar {
+  width: 40% !important;
+  animation: nf-progress-slide var(--nf-duration-crawl) var(--nf-ease-default) infinite;
+}
+
+@keyframes nf-progress-slide {
+  0%   { transform: translateX(-200%); }
+  100% { transform: translateX(300%); }
+}
+
+// Labeled progress — bar with percentage text
+.nf-progress-labeled {
+  display: flex;
+  align-items: center;
+  gap: var(--nf-space-3);
+
+  .nf-progress {
+    flex: 1;
+  }
+
+  .nf-progress-value {
+    font-family: var(--nf-font-label);
+    font-size: var(--nf-text-base);
+    letter-spacing: var(--nf-tracking-display);
+    color: var(--nf-color-primary);
+    min-width: 3ch;
+    text-align: right;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Progress ring (SVG-based)
+// Usage: set --nf-ring-progress CSS var to a value 0–100
+// ---------------------------------------------------------------------------
+
+.nf-progress-ring {
+  --nf-ring-size: 3rem;
+  --nf-ring-stroke: 3px;
+  --nf-ring-progress: 0;
+  --nf-ring-circumference: 94.25; // 2π × 15 (r=15 in a 32×32 viewBox)
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--nf-ring-size);
+  height: var(--nf-ring-size);
+
+  svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  // Track
+  .nf-ring-track {
+    fill: none;
+    stroke: var(--nf-color-surface-highest);
+    stroke-width: var(--nf-ring-stroke);
+  }
+
+  // Fill
+  .nf-ring-fill {
+    fill: none;
+    stroke: var(--nf-color-primary);
+    stroke-width: var(--nf-ring-stroke);
+    stroke-linecap: square;
+    stroke-dasharray: var(--nf-ring-circumference);
+    stroke-dashoffset: calc(
+      var(--nf-ring-circumference) -
+      (var(--nf-ring-circumference) * var(--nf-ring-progress) / 100)
+    );
+    transition: stroke-dashoffset var(--nf-duration-slow) var(--nf-ease-default);
+  }
+
+  .nf-ring-label {
+    position: relative;
+    font-family: var(--nf-font-label);
+    font-size: var(--nf-text-sm);
+    color: var(--nf-color-primary);
+    letter-spacing: var(--nf-tracking-wide);
+  }
+}

@@ -1,0 +1,101 @@
+---
+layout: '../layouts/DocsLayout.astro'
+title: 'Theming'
+description: 'Override the default NetFrame palette with your own colors.'
+---
+
+import TokenTable from '../components/TokenTable.astro';
+
+# Theming
+
+NetFrame emits every design value as a CSS custom property on `:root`. Override any token to retheme without touching a Sass file or rebuilding anything.
+
+## Override the palette
+
+```css
+/* your-theme.css */
+:root {
+  --nf-color-primary:   #bd00ff;  /* swap green for purple */
+  --nf-color-secondary: #ff6b00;  /* orange instead of magenta */
+}
+```
+
+Scope overrides to a class to support multiple themes on one page:
+
+```css
+.theme-purple {
+  --nf-color-primary: #bd00ff;
+}
+```
+
+---
+
+## Color tokens
+
+<TokenTable
+  showSwatch={true}
+  tokens={[
+    { name: '--nf-color-bg',               value: '#000000',  description: 'Page background. True black.' },
+    { name: '--nf-color-surface',           value: '#131313',  description: 'Primary surface.' },
+    { name: '--nf-color-surface-lowest',    value: '#0e0e0e',  description: 'Deepest inset surface.' },
+    { name: '--nf-color-surface-low',       value: '#1b1b1b',  description: 'Cards, panels.' },
+    { name: '--nf-color-surface-container', value: '#1f1f1f',  description: 'Container backgrounds.' },
+    { name: '--nf-color-surface-high',      value: '#2a2a2a',  description: 'Elevated surfaces.' },
+    { name: '--nf-color-surface-highest',   value: '#353535',  description: 'Top surface layer.' },
+    { name: '--nf-color-primary',           value: '#00ff00',  description: 'Terminal Green. Primary actions.' },
+    { name: '--nf-color-on-primary',        value: '#013a00',  description: 'Text on primary.' },
+    { name: '--nf-color-secondary',         value: '#fe00fe',  description: 'Cyber Magenta. Secondary actions.' },
+    { name: '--nf-color-tertiary',          value: '#00f4f4',  description: 'Electric Cyan. Info / focus.' },
+    { name: '--nf-color-error',             value: '#ffb4ab',  description: 'Error state.' },
+    { name: '--nf-color-text',              value: '#e2e2e2',  description: 'Primary text.' },
+    { name: '--nf-color-text-muted',        value: '#c8d6c0',  description: 'Secondary text.' },
+    { name: '--nf-color-text-subtle',       value: '#a0b098',  description: 'Placeholder, labels.' },
+    { name: '--nf-color-border',            value: '#3b4b35',  description: 'Default border.' },
+    { name: '--nf-color-border-strong',     value: '#84967c',  description: 'Emphasis border.' },
+  ]}
+/>
+
+---
+
+## Typography tokens
+
+<TokenTable
+  tokens={[
+    { name: '--nf-font-display', value: "'Space Grotesk', system-ui, sans-serif", description: 'Headers — always UPPERCASE' },
+    { name: '--nf-font-body',    value: "'JetBrains Mono', monospace",            description: 'Body text, inputs, UI' },
+    { name: '--nf-font-label',   value: "'VT323', monospace",                     description: 'Status strips, badges, lo-fi labels' },
+  ]}
+/>
+
+---
+
+## Spacing tokens
+
+<TokenTable
+  tokens={[
+    { name: '--nf-space-1',  value: '0.25rem (4px)' },
+    { name: '--nf-space-2',  value: '0.5rem (8px)' },
+    { name: '--nf-space-3',  value: '0.75rem (12px)' },
+    { name: '--nf-space-4',  value: '1rem (16px)' },
+    { name: '--nf-space-6',  value: '1.5rem (24px)' },
+    { name: '--nf-space-8',  value: '2rem (32px)' },
+    { name: '--nf-space-10', value: '2.5rem (40px)' },
+    { name: '--nf-space-12', value: '3rem (48px)' },
+  ]}
+/>
+
+---
+
+## Motion tokens
+
+<TokenTable
+  tokens={[
+    { name: '--nf-duration-fast',    value: '80ms',  description: 'Micro-interactions' },
+    { name: '--nf-duration-base',    value: '150ms', description: 'Standard transitions' },
+    { name: '--nf-duration-slow',    value: '250ms', description: 'Enter/exit animations' },
+    { name: '--nf-duration-crawl',   value: '600ms', description: 'Spinners, sweeps' },
+    { name: '--nf-ease-sharp',       value: 'cubic-bezier(0.4, 0, 0.6, 1)', description: 'Default UI transitions' },
+    { name: '--nf-ease-out',         value: 'cubic-bezier(0, 0, 0.2, 1)',   description: 'Exit animations' },
+    { name: '--nf-ease-glitch',      value: 'steps(4, end)',                description: 'Glitch keyframes' },
+  ]}
+/>
