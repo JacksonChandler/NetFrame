@@ -9,6 +9,9 @@
 $nf-font-display: 'Space Grotesk', system-ui, sans-serif !default;
 $nf-font-body:    'JetBrains Mono', 'Courier New', monospace !default;
 $nf-font-mono:    'JetBrains Mono', 'Courier New', monospace !default;
+// VT323 — optional label / terminal readout font.
+// Use for status strips, badges, system labels, and lo-fi UI text.
+$nf-font-label:   'VT323', 'Courier New', monospace !default;
 
 // ---------------------------------------------------------------------------
 // Type scale  (major-third: × 1.25)
@@ -64,12 +67,13 @@ $nf-line-heights: (
 // ---------------------------------------------------------------------------
 
 $nf-letter-spacing: (
-  'tight':   -0.025em,
-  'normal':   0em,
-  'wide':     0.025em,
-  'wider':    0.05em,
-  'widest':   0.1em,
-  'tracking': 0.15em,   // used for uppercase labels / caps
+  'tight':    -0.025em,
+  'normal':    0em,
+  'wide':      0.025em,
+  // 'display' is the canonical value for uppercase headers per design spec
+  'display':   0.05em,
+  'wider':     0.1em,
+  'widest':    0.15em,
 ) !default;
 
 // ---------------------------------------------------------------------------
@@ -80,6 +84,7 @@ $nf-letter-spacing: (
   --nf-font-display:  #{$nf-font-display};
   --nf-font-body:     #{$nf-font-body};
   --nf-font-mono:     #{$nf-font-mono};
+  --nf-font-label:    #{$nf-font-label};
 
   @each $name, $value in $nf-type-scale {
     --nf-text-#{$name}: #{$value};

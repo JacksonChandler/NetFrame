@@ -1,100 +1,85 @@
-// NetFrame — Neon Glow Mixin
+// NetFrame — Shadow & Glow Mixins
 // Copyright (C) 2026 Cybear Technologies
 // SPDX-License-Identifier: GPL-3.0-only
+//
+// Two shadow types per design spec:
+//
+//   1. nf-offset-shadow — hard pixel-offset solid color block.
+//      Primary shadow style for interactive elements (buttons, cards, FABs).
+//      Looks like the element is physically offset on a flat surface.
+//
+//   2. nf-ambient-glow — diffused low-opacity blur.
+//      For floating/elevated elements (modals, active inputs, tooltips).
+//      Max blur 20px, accent color at ~10% opacity.
 
 // ---------------------------------------------------------------------------
-// @mixin nf-glow
-//
-// Applies a layered box-shadow neon glow effect.
+// @mixin nf-offset-shadow
 //
 // Parameters:
-//   $color      — glow color (default: var(--nf-color-primary))
-//   $intensity  — 'subtle' | 'base' | 'strong' | 'pulse'
+//   $color    — shadow color (default: primary green)
+//   $x        — horizontal offset (default: 4px)
+//   $y        — vertical offset (default: 4px)
 //
 // Usage:
-//   .nf-button--primary { @include nf-glow; }
-//   .nf-card-alert       { @include nf-glow(var(--nf-color-danger), 'strong'); }
+//   .nf-button--primary { @include nf-offset-shadow; }
+//   .nf-card            { @include nf-offset-shadow(var(--nf-color-secondary), 6px, 6px); }
 // ---------------------------------------------------------------------------
 
-@mixin nf-glow($color: var(--nf-color-primary), $intensity: 'base') {
-  @if $intensity == 'subtle' {
-    box-shadow:
-      0 0 4px  #{$color},
-      0 0 8px  color-mix(in srgb, #{$color} 40%, transparent);
-  } @else if $intensity == 'base' {
-    box-shadow:
-      0 0 6px  #{$color},
-      0 0 14px color-mix(in srgb, #{$color} 60%, transparent),
-      0 0 28px color-mix(in srgb, #{$color} 20%, transparent);
-  } @else if $intensity == 'strong' {
-    box-shadow:
-      0 0 8px  #{$color},
-      0 0 20px color-mix(in srgb, #{$color} 80%, transparent),
-      0 0 40px color-mix(in srgb, #{$color} 40%, transparent),
-      0 0 80px color-mix(in srgb, #{$color} 10%, transparent);
-  } @else if $intensity == 'pulse' {
-    box-shadow:
-      0 0 6px  #{$color},
-      0 0 14px color-mix(in srgb, #{$color} 60%, transparent),
-      0 0 28px color-mix(in srgb, #{$color} 20%, transparent);
-    animation: nf-pulse-glow var(--nf-duration-crawl) var(--nf-ease-default) infinite alternate;
-  }
+@mixin nf-offset-shadow(
+  $color: var(--nf-color-primary),
+  $x: 4px,
+  $y: 4px
+) {
+  box-shadow: #{$x} #{$y} 0px 0px #{$color};
 }
 
-// Paired animation for 'pulse' intensity
-@keyframes nf-pulse-glow {
-  from {
-    opacity: 0.8;
-  }
-  to {
-    opacity: 1;
-    filter: brightness(1.15);
+// Removes offset shadow on press — pair with active state
+@mixin nf-offset-shadow-press {
+  box-shadow: none;
+  transform: translate(4px, 4px);
+}
+
+// ---------------------------------------------------------------------------
+// @mixin nf-ambient-glow
+//
+// Soft diffused glow for elevated/floating elements.
+// Intentionally subtle — max blur 20px, low opacity.
+//
+// Parameters:
+//   $color      — glow color (default: primary green)
+//   $intensity  — 'subtle' | 'base'
+// ---------------------------------------------------------------------------
+
+@mixin nf-ambient-glow($color: var(--nf-color-primary), $intensity: 'base') {
+  @if $intensity == 'subtle' {
+    box-shadow: 0 0 10px color-mix(in srgb, #{$color} 10%, transparent);
+  } @else if $intensity == 'base' {
+    box-shadow: 0 0 20px color-mix(in srgb, #{$color} 10%, transparent);
   }
 }
 
 // ---------------------------------------------------------------------------
 // @mixin nf-text-glow
 //
-// Applies a neon text-shadow to text elements.
+// Neon text-shadow for display headings and accent text.
 // ---------------------------------------------------------------------------
 
-@mixin nf-text-glow($color: var(--nf-color-primary), $intensity: 'base') {
-  @if $intensity == 'subtle' {
-    text-shadow:
-      0 0 4px  #{$color};
-  } @else if $intensity == 'base' {
-    text-shadow:
-      0 0 6px  #{$color},
-      0 0 12px color-mix(in srgb, #{$color} 50%, transparent);
-  } @else if $intensity == 'strong' {
-    text-shadow:
-      0 0 4px  #{$color},
-      0 0 10px #{$color},
-      0 0 20px color-mix(in srgb, #{$color} 70%, transparent),
-      0 0 40px color-mix(in srgb, #{$color} 30%, transparent);
-  }
+@mixin nf-text-glow($color: var(--nf-color-primary)) {
+  text-shadow:
+    0 0 6px  #{$color},
+    0 0 12px color-mix(in srgb, #{$color} 50%, transparent);
 }
 
 // ---------------------------------------------------------------------------
 // @mixin nf-border-glow
 //
-// Applies a neon glow specifically styled for bordered elements.
+// Sets border color and adds a soft ambient inset + outset for bordered
+// elements like focused inputs or active cards.
 // ---------------------------------------------------------------------------
 
-@mixin nf-border-glow($color: var(--nf-color-primary), $intensity: 'base') {
+@mixin nf-border-glow($color: var(--nf-color-primary)) {
   border-color: #{$color};
-
-  @if $intensity == 'subtle' {
-    box-shadow: 0 0 4px color-mix(in srgb, #{$color} 50%, transparent),
-                inset 0 0 4px color-mix(in srgb, #{$color} 10%, transparent);
-  } @else if $intensity == 'base' {
-    box-shadow: 0 0 8px color-mix(in srgb, #{$color} 70%, transparent),
-                0 0 16px color-mix(in srgb, #{$color} 30%, transparent),
-                inset 0 0 8px color-mix(in srgb, #{$color} 8%, transparent);
-  } @else if $intensity == 'strong' {
-    box-shadow: 0 0 10px #{$color},
-                0 0 24px color-mix(in srgb, #{$color} 60%, transparent),
-                0 0 48px color-mix(in srgb, #{$color} 20%, transparent),
-                inset 0 0 12px color-mix(in srgb, #{$color} 10%, transparent);
-  }
+  box-shadow:
+    0 0 8px  color-mix(in srgb, #{$color} 20%, transparent),
+    inset 0 0 8px color-mix(in srgb, #{$color} 8%, transparent);
 }
