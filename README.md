@@ -9,16 +9,16 @@
 ╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝
 ```
 
-> **CYBERPUNK CSS COMPONENT LIBRARY** — Terminal green. Hard edges. CRT scanlines. Zero border-radius. No apologies.
+> **CYBERPUNK CSS COMPONENT LIBRARY** 
 
-[![CI](https://github.com/KumaCommunity/NetFrame/actions/workflows/ci.yml/badge.svg)](https://github.com/KumaCommunity/NetFrame/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/netframe)](https://www.npmjs.com/package/netframe)
+#[![npm](https://img.shields.io/npm/v/netframe)](https://www.npmjs.com/package/netframe)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-green.svg)](LICENSE)
 
 ---
 
 ## `// INITIALIZE`
 
+### COMING SOON
 ```sh
 npm install netframe
 pnpm add netframe
