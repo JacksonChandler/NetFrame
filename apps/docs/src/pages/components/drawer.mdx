@@ -4,8 +4,107 @@ title: 'Drawer'
 description: 'Slide-in panels from the left or right edge.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Drawer
 
-Slide-in panels from the left or right edge.
+Fixed slide-in panels. Toggle with the `.nf-open` class and a backdrop overlay.
 
-See [\_drawer.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_drawer.scss) for the full class reference.
+## Structure
+
+The drawer is composed of an overlay and a panel. The panel contains a header, body, and footer:
+
+<ComponentDemo stacked title="Drawer panel structure" code={`<!-- Overlay -->
+<div class="nf-drawer-overlay" id="drawer-overlay"></div>
+
+<!-- Left drawer -->
+<div class="nf-drawer nf-drawer-left nf-open" id="my-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+  <div class="nf-drawer-header">
+    <h2 class="nf-drawer-title" id="drawer-title">SYSTEM_NAV</h2>
+    <button class="nf-button nf-button-ghost nf-button-icon" aria-label="Close drawer">✕</button>
+  </div>
+  <div class="nf-drawer-body">
+    <p>Drawer content goes here.</p>
+  </div>
+  <div class="nf-drawer-footer">
+    <button class="nf-button nf-button-ghost nf-button-sm">CLOSE</button>
+  </div>
+</div>`}>
+  <div style="position: relative; width: 100%; max-width: 20rem; border: var(--nf-border-medium) solid var(--nf-color-primary); display: flex; flex-direction: column; min-height: 16rem;">
+    <div class="nf-drawer-header">
+      <h2 class="nf-drawer-title" style="margin: 0;">SYSTEM_NAV</h2>
+      <button class="nf-button nf-button-ghost nf-button-icon" aria-label="Close drawer">✕</button>
+    </div>
+    <div class="nf-drawer-body" style="flex: 1;">
+      <p style="margin: 0; color: var(--nf-color-text-muted); font-size: var(--nf-text-sm);">Drawer content goes here.</p>
+    </div>
+    <div class="nf-drawer-footer">
+      <button class="nf-button nf-button-ghost nf-button-sm">CLOSE</button>
+    </div>
+  </div>
+</ComponentDemo>
+
+## Sides
+
+Add `.nf-drawer-left` or `.nf-drawer-right` to control which edge the panel slides in from.
+
+| Class | Edge | Open transform |
+|---|---|---|
+| `nf-drawer-left` | Left | `translateX(-100%)` → `translateX(0)` |
+| `nf-drawer-right` | Right | `translateX(100%)` → `translateX(0)` |
+
+## Sizes
+
+<ComponentDemo stacked title="Width variants" code={`<div class="nf-drawer nf-drawer-left nf-drawer-sm">...</div>
+<div class="nf-drawer nf-drawer-left">...</div>         <!-- default 20rem -->
+<div class="nf-drawer nf-drawer-left nf-drawer-lg">...</div>
+<div class="nf-drawer nf-drawer-left nf-drawer-xl">...</div>`}>
+  <div style="display: flex; flex-direction: column; gap: var(--nf-space-2); width: 100%; font-size: var(--nf-text-sm); color: var(--nf-color-text-muted);">
+    <div style="display: flex; align-items: center; gap: var(--nf-space-3);"><span class="nf-badge nf-badge-ghost">nf-drawer-sm</span> 14rem</div>
+    <div style="display: flex; align-items: center; gap: var(--nf-space-3);"><span class="nf-badge nf-badge-ghost">default</span> 20rem</div>
+    <div style="display: flex; align-items: center; gap: var(--nf-space-3);"><span class="nf-badge nf-badge-ghost">nf-drawer-lg</span> 28rem</div>
+    <div style="display: flex; align-items: center; gap: var(--nf-space-3);"><span class="nf-badge nf-badge-ghost">nf-drawer-xl</span> 36rem</div>
+  </div>
+</ComponentDemo>
+
+## JavaScript
+
+```js
+const overlay = document.getElementById('drawer-overlay');
+const drawer  = document.getElementById('my-drawer');
+const trigger = document.getElementById('open-drawer');
+const close   = drawer.querySelector('[aria-label="Close drawer"]');
+
+function openDrawer() {
+  drawer.classList.add('nf-open');
+  overlay.classList.remove('nf-hidden');
+  drawer.removeAttribute('aria-hidden');
+}
+
+function closeDrawer() {
+  drawer.classList.remove('nf-open');
+  overlay.classList.add('nf-hidden');
+  drawer.setAttribute('aria-hidden', 'true');
+}
+
+trigger.addEventListener('click', openDrawer);
+close.addEventListener('click', closeDrawer);
+overlay.addEventListener('click', closeDrawer);
+```
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-drawer-overlay` | Fixed backdrop — hide with `nf-hidden` or `aria-hidden="true"` |
+| `nf-drawer` | Fixed panel — slides in when `.nf-open` is added |
+| `nf-drawer-left` | Left edge, primary right border |
+| `nf-drawer-right` | Right edge, primary left border |
+| `nf-open` | Reveals the drawer — `transform: translateX(0)` |
+| `nf-drawer-sm` | 14rem width |
+| `nf-drawer-lg` | 28rem width |
+| `nf-drawer-xl` | 36rem width |
+| `nf-drawer-header` | Top section with title and close button |
+| `nf-drawer-title` | Title text inside the header |
+| `nf-drawer-body` | Scrollable content area |
+| `nf-drawer-footer` | Bottom action area |

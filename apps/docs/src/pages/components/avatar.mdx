@@ -4,8 +4,125 @@ title: 'Avatar'
 description: 'User profile images with status indicators.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Avatar
 
-User profile images with status indicators.
+Image or initials container with status dot and group stacking support.
 
-See [\_avatar.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_avatar.scss) for the full class reference.
+## Base
+
+<ComponentDemo title="Base with initials" code={`<div class="nf-avatar">
+  <span class="nf-avatar-initials">JX</span>
+</div>`}>
+  <div class="nf-avatar">
+    <span class="nf-avatar-initials">JX</span>
+  </div>
+</ComponentDemo>
+
+## Sizes
+
+<ComponentDemo title="XS / SM / Default / LG / XL" code={`<div class="nf-avatar nf-avatar-xs"><span class="nf-avatar-initials">XS</span></div>
+<div class="nf-avatar nf-avatar-sm"><span class="nf-avatar-initials">SM</span></div>
+<div class="nf-avatar"><span class="nf-avatar-initials">MD</span></div>
+<div class="nf-avatar nf-avatar-lg"><span class="nf-avatar-initials">LG</span></div>
+<div class="nf-avatar nf-avatar-xl"><span class="nf-avatar-initials">XL</span></div>`}>
+  <div class="nf-avatar nf-avatar-xs"><span class="nf-avatar-initials">XS</span></div>
+  <div class="nf-avatar nf-avatar-sm"><span class="nf-avatar-initials">SM</span></div>
+  <div class="nf-avatar"><span class="nf-avatar-initials">MD</span></div>
+  <div class="nf-avatar nf-avatar-lg"><span class="nf-avatar-initials">LG</span></div>
+  <div class="nf-avatar nf-avatar-xl"><span class="nf-avatar-initials">XL</span></div>
+</ComponentDemo>
+
+## Color variants
+
+<ComponentDemo title="Primary / Secondary / Tertiary" code={`<div class="nf-avatar"><span class="nf-avatar-initials">P1</span></div>
+<div class="nf-avatar nf-avatar-secondary"><span class="nf-avatar-initials">P2</span></div>
+<div class="nf-avatar nf-avatar-tertiary"><span class="nf-avatar-initials">P3</span></div>`}>
+  <div class="nf-avatar"><span class="nf-avatar-initials">P1</span></div>
+  <div class="nf-avatar nf-avatar-secondary"><span class="nf-avatar-initials">P2</span></div>
+  <div class="nf-avatar nf-avatar-tertiary"><span class="nf-avatar-initials">P3</span></div>
+</ComponentDemo>
+
+## Status indicators
+
+<ComponentDemo title="Online / Away / Busy / Offline" code={`<div class="nf-avatar">
+  <span class="nf-avatar-initials">ON</span>
+  <span class="nf-avatar-status nf-avatar-status-online"></span>
+</div>
+<div class="nf-avatar">
+  <span class="nf-avatar-initials">AW</span>
+  <span class="nf-avatar-status nf-avatar-status-away"></span>
+</div>
+<div class="nf-avatar">
+  <span class="nf-avatar-initials">BS</span>
+  <span class="nf-avatar-status nf-avatar-status-busy"></span>
+</div>
+<div class="nf-avatar">
+  <span class="nf-avatar-initials">OF</span>
+  <span class="nf-avatar-status nf-avatar-status-offline"></span>
+</div>`}>
+  <div class="nf-avatar">
+    <span class="nf-avatar-initials">ON</span>
+    <span class="nf-avatar-status nf-avatar-status-online"></span>
+  </div>
+  <div class="nf-avatar">
+    <span class="nf-avatar-initials">AW</span>
+    <span class="nf-avatar-status nf-avatar-status-away"></span>
+  </div>
+  <div class="nf-avatar">
+    <span class="nf-avatar-initials">BS</span>
+    <span class="nf-avatar-status nf-avatar-status-busy"></span>
+  </div>
+  <div class="nf-avatar">
+    <span class="nf-avatar-initials">OF</span>
+    <span class="nf-avatar-status nf-avatar-status-offline"></span>
+  </div>
+</ComponentDemo>
+
+## Avatar group
+
+Overlapping stack — wrap avatars in `.nf-avatar-group`:
+
+<ComponentDemo title="Group" code={`<div class="nf-avatar-group">
+  <div class="nf-avatar"><span class="nf-avatar-initials">A1</span></div>
+  <div class="nf-avatar nf-avatar-secondary"><span class="nf-avatar-initials">A2</span></div>
+  <div class="nf-avatar nf-avatar-tertiary"><span class="nf-avatar-initials">A3</span></div>
+  <div class="nf-avatar"><span class="nf-avatar-initials">+4</span></div>
+</div>`}>
+  <div class="nf-avatar-group">
+    <div class="nf-avatar"><span class="nf-avatar-initials">A1</span></div>
+    <div class="nf-avatar nf-avatar-secondary"><span class="nf-avatar-initials">A2</span></div>
+    <div class="nf-avatar nf-avatar-tertiary"><span class="nf-avatar-initials">A3</span></div>
+    <div class="nf-avatar"><span class="nf-avatar-initials">+4</span></div>
+  </div>
+</ComponentDemo>
+
+## With image
+
+<ComponentDemo title="Image avatar" code={`<div class="nf-avatar nf-avatar-lg">
+  <img src="https://i.pravatar.cc/80" alt="User avatar" />
+</div>`}>
+  <div class="nf-avatar nf-avatar-lg">
+    <img src="https://i.pravatar.cc/80" alt="User avatar" />
+  </div>
+</ComponentDemo>
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-avatar` | Base container — default 2.5rem, primary border |
+| `nf-avatar-initials` | Text fallback inside the avatar |
+| `nf-avatar-xs` | 1.5rem |
+| `nf-avatar-sm` | 2rem |
+| `nf-avatar-lg` | 3.5rem |
+| `nf-avatar-xl` | 5rem |
+| `nf-avatar-secondary` | Secondary border + initials color |
+| `nf-avatar-tertiary` | Tertiary border + initials color |
+| `nf-avatar-status` | Status dot — position absolute, bottom-right |
+| `nf-avatar-status-online` | Primary green dot |
+| `nf-avatar-status-away` | Warning yellow dot |
+| `nf-avatar-status-busy` | Error red dot |
+| `nf-avatar-status-offline` | Subtle grey dot |
+| `nf-avatar-group` | Flex wrapper that overlaps children |

@@ -4,8 +4,105 @@ title: 'Dropdown'
 description: 'Contextual menus anchored to a trigger element.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Dropdown
 
-Contextual menus anchored to a trigger element.
+Absolutely-positioned menus anchored to a trigger. Toggle visibility with `aria-hidden` or `.nf-hidden` on the menu.
 
-See [\_dropdown.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_dropdown.scss) for the full class reference.
+## Basic
+
+<ComponentDemo title="Open dropdown" code={`<div class="nf-dropdown">
+  <button class="nf-button nf-button-ghost nf-dropdown-trigger" aria-expanded="true" aria-haspopup="menu">
+    OPTIONS
+  </button>
+  <ul class="nf-dropdown-menu" role="menu">
+    <li role="none"><button class="nf-dropdown-item" role="menuitem">SCAN_NODE</button></li>
+    <li role="none"><button class="nf-dropdown-item" role="menuitem">PURGE_CACHE</button></li>
+    <li role="none"><button class="nf-dropdown-item" role="menuitem" aria-disabled="true">SYNC_DATA</button></li>
+  </ul>
+</div>`}>
+  <div class="nf-dropdown" style="margin-bottom: 8rem;">
+    <button class="nf-button nf-button-ghost nf-dropdown-trigger" aria-expanded="true" aria-haspopup="menu">
+      OPTIONS
+    </button>
+    <ul class="nf-dropdown-menu" role="menu">
+      <li role="none"><button class="nf-dropdown-item" role="menuitem">SCAN_NODE</button></li>
+      <li role="none"><button class="nf-dropdown-item" role="menuitem">PURGE_CACHE</button></li>
+      <li role="none"><button class="nf-dropdown-item" role="menuitem" aria-disabled="true">SYNC_DATA</button></li>
+    </ul>
+  </div>
+</ComponentDemo>
+
+## With dividers and labels
+
+<ComponentDemo title="Grouped menu" code={`<div class="nf-dropdown">
+  <button class="nf-button nf-button-primary nf-dropdown-trigger" aria-expanded="true">
+    NODE_ACTIONS
+  </button>
+  <ul class="nf-dropdown-menu" role="menu">
+    <li class="nf-dropdown-label" role="none">DIAGNOSTICS</li>
+    <li role="none"><button class="nf-dropdown-item" role="menuitem">RUN_SCAN</button></li>
+    <li role="none"><button class="nf-dropdown-item" role="menuitem">VIEW_LOGS</button></li>
+    <li class="nf-dropdown-divider" role="separator"></li>
+    <li role="none"><button class="nf-dropdown-item nf-dropdown-item-danger" role="menuitem">TERMINATE</button></li>
+  </ul>
+</div>`}>
+  <div class="nf-dropdown" style="margin-bottom: 10rem;">
+    <button class="nf-button nf-button-primary nf-dropdown-trigger" aria-expanded="true">
+      NODE_ACTIONS
+    </button>
+    <ul class="nf-dropdown-menu" role="menu">
+      <li class="nf-dropdown-label" role="none">DIAGNOSTICS</li>
+      <li role="none"><button class="nf-dropdown-item" role="menuitem">RUN_SCAN</button></li>
+      <li role="none"><button class="nf-dropdown-item" role="menuitem">VIEW_LOGS</button></li>
+      <li class="nf-dropdown-divider" role="separator"></li>
+      <li role="none"><button class="nf-dropdown-item nf-dropdown-item-danger" role="menuitem">TERMINATE</button></li>
+    </ul>
+  </div>
+</ComponentDemo>
+
+## Right-aligned
+
+Add `.nf-dropdown-menu-right` to align the menu to the right edge of the trigger:
+
+```html
+<ul class="nf-dropdown-menu nf-dropdown-menu-right" role="menu">
+  ...
+</ul>
+```
+
+## JavaScript
+
+```js
+document.querySelectorAll('.nf-dropdown').forEach((dropdown) => {
+  const trigger = dropdown.querySelector('.nf-dropdown-trigger');
+  const menu    = dropdown.querySelector('.nf-dropdown-menu');
+
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = trigger.getAttribute('aria-expanded') === 'true';
+    trigger.setAttribute('aria-expanded', String(!open));
+    menu.toggleAttribute('aria-hidden', open ? null : true);
+  });
+
+  // Close on outside click
+  document.addEventListener('click', () => {
+    trigger.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+  });
+});
+```
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-dropdown` | `position: relative` wrapper |
+| `nf-dropdown-trigger` | Button with caret indicator |
+| `nf-dropdown-menu` | Absolute menu panel — hide with `aria-hidden="true"` or `nf-hidden` |
+| `nf-dropdown-menu-right` | Right-aligns the menu |
+| `nf-dropdown-item` | Menu row — button or anchor |
+| `nf-dropdown-item-danger` | Error color variant |
+| `nf-dropdown-divider` | `<li>` separator between item groups |
+| `nf-dropdown-label` | `<li>` group header — non-interactive |

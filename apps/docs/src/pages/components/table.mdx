@@ -4,8 +4,162 @@ title: 'Table'
 description: 'Data tables with sortable headers and row states.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Table
 
-Data tables with sortable headers and row states.
+Data tables. Wrap in `.nf-table-wrap` to handle horizontal overflow on small screens.
 
-See [\_table.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_table.scss) for the full class reference.
+## Basic
+
+<ComponentDemo stacked title="Default table" code={`<div class="nf-table-wrap">
+  <table class="nf-table">
+    <thead>
+      <tr>
+        <th>NODE_ID</th>
+        <th>STATUS</th>
+        <th>LATENCY</th>
+        <th>UPTIME</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>NODE_001</td>
+        <td><span class="nf-badge nf-badge-primary">ONLINE</span></td>
+        <td>12ms</td>
+        <td>99.9%</td>
+      </tr>
+      <tr>
+        <td>NODE_002</td>
+        <td><span class="nf-badge nf-badge-ghost">IDLE</span></td>
+        <td>8ms</td>
+        <td>100%</td>
+      </tr>
+      <tr>
+        <td>NODE_003</td>
+        <td><span class="nf-badge nf-badge-error">OFFLINE</span></td>
+        <td>—</td>
+        <td>0%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>`}>
+  <div class="nf-table-wrap" style="width: 100%;">
+    <table class="nf-table">
+      <thead>
+        <tr>
+          <th>NODE_ID</th>
+          <th>STATUS</th>
+          <th>LATENCY</th>
+          <th>UPTIME</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>NODE_001</td>
+          <td><span class="nf-badge nf-badge-primary">ONLINE</span></td>
+          <td>12ms</td>
+          <td>99.9%</td>
+        </tr>
+        <tr>
+          <td>NODE_002</td>
+          <td><span class="nf-badge nf-badge-ghost">IDLE</span></td>
+          <td>8ms</td>
+          <td>100%</td>
+        </tr>
+        <tr>
+          <td>NODE_003</td>
+          <td><span class="nf-badge nf-badge-error">OFFLINE</span></td>
+          <td>—</td>
+          <td>0%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ComponentDemo>
+
+## Striped rows
+
+<ComponentDemo stacked title="Striped" code={`<div class="nf-table-wrap">
+  <table class="nf-table nf-table-striped">
+    <thead>
+      <tr>
+        <th>PROCESS</th>
+        <th>PID</th>
+        <th>CPU</th>
+        <th>MEM</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>NETD</td><td>1042</td><td>0.1%</td><td>12MB</td></tr>
+      <tr><td>ICE_CORE</td><td>1078</td><td>2.3%</td><td>84MB</td></tr>
+      <tr><td>UPLINK</td><td>1091</td><td>0.8%</td><td>32MB</td></tr>
+      <tr><td>SCAN_SVC</td><td>1104</td><td>4.1%</td><td>128MB</td></tr>
+    </tbody>
+  </table>
+</div>`}>
+  <div class="nf-table-wrap" style="width: 100%;">
+    <table class="nf-table nf-table-striped">
+      <thead>
+        <tr>
+          <th>PROCESS</th>
+          <th>PID</th>
+          <th>CPU</th>
+          <th>MEM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>NETD</td><td>1042</td><td>0.1%</td><td>12MB</td></tr>
+        <tr><td>ICE_CORE</td><td>1078</td><td>2.3%</td><td>84MB</td></tr>
+        <tr><td>UPLINK</td><td>1091</td><td>0.8%</td><td>32MB</td></tr>
+        <tr><td>SCAN_SVC</td><td>1104</td><td>4.1%</td><td>128MB</td></tr>
+      </tbody>
+    </table>
+  </div>
+</ComponentDemo>
+
+## Row states
+
+<ComponentDemo stacked title="Active and danger rows" code={`<div class="nf-table-wrap">
+  <table class="nf-table">
+    <thead>
+      <tr>
+        <th>NODE_ID</th>
+        <th>STATUS</th>
+        <th>ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>NODE_001</td><td>NOMINAL</td><td>—</td></tr>
+      <tr class="nf-table-row-active"><td>NODE_002</td><td>SELECTED</td><td>PROCESSING</td></tr>
+      <tr class="nf-table-row-danger"><td>NODE_003</td><td>CRITICAL</td><td>QUARANTINE</td></tr>
+    </tbody>
+  </table>
+</div>`}>
+  <div class="nf-table-wrap" style="width: 100%;">
+    <table class="nf-table">
+      <thead>
+        <tr>
+          <th>NODE_ID</th>
+          <th>STATUS</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>NODE_001</td><td>NOMINAL</td><td>—</td></tr>
+        <tr class="nf-table-row-active"><td>NODE_002</td><td>SELECTED</td><td>PROCESSING</td></tr>
+        <tr class="nf-table-row-danger"><td>NODE_003</td><td>CRITICAL</td><td>QUARANTINE</td></tr>
+      </tbody>
+    </table>
+  </div>
+</ComponentDemo>
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-table-wrap` | Overflow wrapper — apply to a `<div>` around the table |
+| `nf-table` | Table element — full width, collapsed borders |
+| `nf-table-striped` | Alternates even row background |
+| `nf-table-row-active` | Green left border accent — selected row |
+| `nf-table-row-danger` | Error left border accent — critical row |

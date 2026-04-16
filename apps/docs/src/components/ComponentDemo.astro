@@ -23,10 +23,12 @@ const escaped = code.replace(/`/g, '\\`');
 
     <!-- Code block -->
     <div class="demo-code-wrap">
-      <button class="demo-copy" data-code={code} aria-label="Copy code">
-        <i class="ph-thin ph-copy"></i>
-        COPY
-      </button>
+      <div class="demo-code-bar">
+        <button class="demo-copy" data-code={code} aria-label="Copy code">
+          <i class="ph-thin ph-copy"></i>
+          COPY
+        </button>
+      </div>
       <pre class="demo-code"><code>{code}</code></pre>
     </div>
   </div>
@@ -98,15 +100,21 @@ const escaped = code.replace(/`/g, '\\`');
   }
 
   .demo-code-wrap {
-    position: relative;
     background-color: var(--nf-color-surface-lowest);
     overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .demo-code-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--nf-space-2) var(--nf-space-3);
+    border-bottom: 1px solid var(--nf-color-border);
+    flex-shrink: 0;
   }
 
   .demo-copy {
-    position: absolute;
-    top: var(--nf-space-3);
-    right: var(--nf-space-3);
     display: inline-flex;
     align-items: center;
     gap: var(--nf-space-1);

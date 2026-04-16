@@ -4,8 +4,99 @@ title: 'Accordion'
 description: 'Expand and collapse content sections.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Accordion
 
-Expand and collapse content sections.
+Expandable sections driven by `aria-expanded` on the trigger. Height animation requires JS to set explicit pixel heights on each panel.
 
-See [\_accordion.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_accordion.scss) for the full class reference.
+## Basic
+
+<ComponentDemo stacked title="Accordion" code={`<div class="nf-accordion">
+  <div class="nf-accordion-item">
+    <button class="nf-accordion-trigger" aria-expanded="true" aria-controls="panel-1">
+      SYSTEM_STATUS
+      <span class="nf-accordion-icon"></span>
+    </button>
+    <div class="nf-accordion-content" id="panel-1">
+      <div class="nf-accordion-body">All subsystems nominal. Uplink active.</div>
+    </div>
+  </div>
+  <div class="nf-accordion-item">
+    <button class="nf-accordion-trigger" aria-expanded="false" aria-controls="panel-2">
+      NETWORK_LOGS
+      <span class="nf-accordion-icon"></span>
+    </button>
+    <div class="nf-accordion-content" id="panel-2" style="height: 0;">
+      <div class="nf-accordion-body">No anomalies detected in the last 24h.</div>
+    </div>
+  </div>
+  <div class="nf-accordion-item">
+    <button class="nf-accordion-trigger" aria-expanded="false" aria-controls="panel-3">
+      THREAT_ANALYSIS
+      <span class="nf-accordion-icon"></span>
+    </button>
+    <div class="nf-accordion-content" id="panel-3" style="height: 0;">
+      <div class="nf-accordion-body">0 active threats. ICE integrity at 100%.</div>
+    </div>
+  </div>
+</div>`}>
+  <div class="nf-accordion" style="width: 100%; max-width: 28rem;">
+    <div class="nf-accordion-item">
+      <button class="nf-accordion-trigger" aria-expanded="true">
+        SYSTEM_STATUS
+        <span class="nf-accordion-icon"></span>
+      </button>
+      <div class="nf-accordion-content">
+        <div class="nf-accordion-body">All subsystems nominal. Uplink active.</div>
+      </div>
+    </div>
+    <div class="nf-accordion-item">
+      <button class="nf-accordion-trigger" aria-expanded="false">
+        NETWORK_LOGS
+        <span class="nf-accordion-icon"></span>
+      </button>
+      <div class="nf-accordion-content" style="height: 0;">
+        <div class="nf-accordion-body">No anomalies detected in the last 24h.</div>
+      </div>
+    </div>
+    <div class="nf-accordion-item">
+      <button class="nf-accordion-trigger" aria-expanded="false">
+        THREAT_ANALYSIS
+        <span class="nf-accordion-icon"></span>
+      </button>
+      <div class="nf-accordion-content" style="height: 0;">
+        <div class="nf-accordion-body">0 active threats. ICE integrity at 100%.</div>
+      </div>
+    </div>
+  </div>
+</ComponentDemo>
+
+## JavaScript
+
+Toggle `aria-expanded` and animate the content height:
+
+```js
+document.querySelectorAll('.nf-accordion-trigger').forEach((trigger) => {
+  const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+  if (trigger.getAttribute('aria-expanded') === 'false') {
+    panel.style.height = '0';
+  }
+  trigger.addEventListener('click', () => {
+    const expanded = trigger.getAttribute('aria-expanded') === 'true';
+    trigger.setAttribute('aria-expanded', String(!expanded));
+    panel.style.height = expanded ? '0' : panel.scrollHeight + 'px';
+  });
+});
+```
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-accordion` | Outer wrapper |
+| `nf-accordion-item` | Individual collapsible section |
+| `nf-accordion-trigger` | Clickable header button — set `aria-expanded` |
+| `nf-accordion-icon` | CSS caret — flips when trigger has `aria-expanded="true"` |
+| `nf-accordion-content` | Animated height wrapper — set `height` via JS |
+| `nf-accordion-body` | Inner content with padding |

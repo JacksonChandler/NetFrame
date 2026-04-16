@@ -4,8 +4,89 @@ title: 'Pagination'
 description: 'Page navigation for large datasets.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Pagination
 
-Page navigation for large datasets.
+Page navigation rendered as a `<nav>` + `<ol>`. All items share `.nf-page-item` and `.nf-page-link`.
 
-See [\_pagination.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_pagination.scss) for the full class reference.
+## Basic
+
+<ComponentDemo title="Basic pagination" code={`<nav aria-label="Pagination">
+  <ol class="nf-pagination">
+    <li class="nf-page-item nf-page-item-disabled">
+      <a class="nf-page-link nf-page-prev" href="#" aria-disabled="true">PREV</a>
+    </li>
+    <li class="nf-page-item nf-page-item-active">
+      <a class="nf-page-link" href="#" aria-current="page">1</a>
+    </li>
+    <li class="nf-page-item"><a class="nf-page-link" href="#">2</a></li>
+    <li class="nf-page-item"><a class="nf-page-link" href="#">3</a></li>
+    <li class="nf-page-item"><a class="nf-page-link" href="#">4</a></li>
+    <li class="nf-page-item"><a class="nf-page-link" href="#">5</a></li>
+    <li class="nf-page-item">
+      <a class="nf-page-link nf-page-next" href="#">NEXT</a>
+    </li>
+  </ol>
+</nav>`}>
+  <nav aria-label="Pagination">
+    <ol class="nf-pagination">
+      <li class="nf-page-item nf-page-item-disabled">
+        <a class="nf-page-link nf-page-prev" href="#" aria-disabled="true">PREV</a>
+      </li>
+      <li class="nf-page-item nf-page-item-active">
+        <a class="nf-page-link" href="#" aria-current="page">1</a>
+      </li>
+      <li class="nf-page-item"><a class="nf-page-link" href="#">2</a></li>
+      <li class="nf-page-item"><a class="nf-page-link" href="#">3</a></li>
+      <li class="nf-page-item"><a class="nf-page-link" href="#">4</a></li>
+      <li class="nf-page-item"><a class="nf-page-link" href="#">5</a></li>
+      <li class="nf-page-item">
+        <a class="nf-page-link nf-page-next" href="#">NEXT</a>
+      </li>
+    </ol>
+  </nav>
+</ComponentDemo>
+
+## With ellipsis
+
+<ComponentDemo title="Truncated range" code={`<nav aria-label="Pagination">
+  <ol class="nf-pagination">
+    <li class="nf-page-item"><a class="nf-page-link nf-page-prev" href="#">PREV</a></li>
+    <li class="nf-page-item"><a class="nf-page-link" href="#">1</a></li>
+    <li class="nf-page-item nf-page-ellipsis"><span class="nf-page-link">…</span></li>
+    <li class="nf-page-item"><a class="nf-page-link" href="#">7</a></li>
+    <li class="nf-page-item nf-page-item-active"><a class="nf-page-link" href="#" aria-current="page">8</a></li>
+    <li class="nf-page-item"><a class="nf-page-link" href="#">9</a></li>
+    <li class="nf-page-item nf-page-ellipsis"><span class="nf-page-link">…</span></li>
+    <li class="nf-page-item"><a class="nf-page-link" href="#">24</a></li>
+    <li class="nf-page-item"><a class="nf-page-link nf-page-next" href="#">NEXT</a></li>
+  </ol>
+</nav>`}>
+  <nav aria-label="Pagination">
+    <ol class="nf-pagination">
+      <li class="nf-page-item"><a class="nf-page-link nf-page-prev" href="#">PREV</a></li>
+      <li class="nf-page-item"><a class="nf-page-link" href="#">1</a></li>
+      <li class="nf-page-item nf-page-ellipsis"><span class="nf-page-link">…</span></li>
+      <li class="nf-page-item"><a class="nf-page-link" href="#">7</a></li>
+      <li class="nf-page-item nf-page-item-active"><a class="nf-page-link" href="#" aria-current="page">8</a></li>
+      <li class="nf-page-item"><a class="nf-page-link" href="#">9</a></li>
+      <li class="nf-page-item nf-page-ellipsis"><span class="nf-page-link">…</span></li>
+      <li class="nf-page-item"><a class="nf-page-link" href="#">24</a></li>
+      <li class="nf-page-item"><a class="nf-page-link nf-page-next" href="#">NEXT</a></li>
+    </ol>
+  </nav>
+</ComponentDemo>
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-pagination` | `<ol>` wrapper — flex row, no gap |
+| `nf-page-item` | `<li>` wrapper — collapses adjacent right borders |
+| `nf-page-item-active` | Fills the page link with primary color |
+| `nf-page-item-disabled` | Dims and disables pointer events |
+| `nf-page-ellipsis` | Non-interactive spacer item |
+| `nf-page-link` | The anchor or span inside each item |
+| `nf-page-prev` | Prev label styling |
+| `nf-page-next` | Next label styling |

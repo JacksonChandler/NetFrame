@@ -4,8 +4,72 @@ title: 'Divider'
 description: 'Structural horizontal and vertical separators.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Divider
 
-Structural horizontal and vertical separators.
+Explicit structural separators. Use sparingly — prefer tonal surface shifts for subtle grouping.
 
-See [\_divider.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_divider.scss) for the full class reference.
+## Horizontal
+
+<ComponentDemo stacked title="Default" code={`<hr class="nf-divider" />`}>
+  <div style="width: 100%; padding: var(--nf-space-4) 0;">
+    <hr class="nf-divider" />
+  </div>
+</ComponentDemo>
+
+## Color variants
+
+<ComponentDemo stacked title="Primary / Secondary / Tertiary" code={`<hr class="nf-divider nf-divider-primary" />
+<hr class="nf-divider nf-divider-secondary" />
+<hr class="nf-divider nf-divider-tertiary" />`}>
+  <div style="width: 100%; display: flex; flex-direction: column; gap: var(--nf-space-4); padding: var(--nf-space-2) 0;">
+    <hr class="nf-divider nf-divider-primary" />
+    <hr class="nf-divider nf-divider-secondary" />
+    <hr class="nf-divider nf-divider-tertiary" />
+  </div>
+</ComponentDemo>
+
+## Vertical
+
+Use inline in flex rows:
+
+<ComponentDemo title="Vertical" code={`<div style="display: flex; align-items: center; gap: var(--nf-space-3);">
+  <span>NODE_A</span>
+  <span class="nf-divider-vertical"></span>
+  <span>NODE_B</span>
+  <span class="nf-divider-vertical"></span>
+  <span>NODE_C</span>
+</div>`}>
+  <div style="display: flex; align-items: center; gap: var(--nf-space-3);">
+    <span>NODE_A</span>
+    <span class="nf-divider-vertical"></span>
+    <span>NODE_B</span>
+    <span class="nf-divider-vertical"></span>
+    <span>NODE_C</span>
+  </div>
+</ComponentDemo>
+
+## Labeled divider
+
+<ComponentDemo stacked title="With label" code={`<div class="nf-divider-labeled">
+  <span class="nf-divider-label">SECTOR_BOUNDARY</span>
+</div>`}>
+  <div style="width: 100%; padding: var(--nf-space-2) 0;">
+    <div class="nf-divider-labeled">
+      <span class="nf-divider-label">SECTOR_BOUNDARY</span>
+    </div>
+  </div>
+</ComponentDemo>
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-divider` | Horizontal rule — 2px border-top |
+| `nf-divider-primary` | Primary green accent |
+| `nf-divider-secondary` | Secondary magenta accent |
+| `nf-divider-tertiary` | Tertiary purple accent |
+| `nf-divider-vertical` | Inline vertical rule — 1em tall |
+| `nf-divider-labeled` | Flex row with line on each side of a label |
+| `nf-divider-label` | Label text inside `.nf-divider-labeled` |

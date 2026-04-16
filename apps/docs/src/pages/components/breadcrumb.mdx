@@ -4,8 +4,83 @@ title: 'Breadcrumb'
 description: 'Hierarchical path navigation.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Breadcrumb
 
-Hierarchical path navigation.
+Hierarchical path navigation. Rendered as a `<nav>` + `<ol>` for correct landmark and list semantics.
 
-See [\_breadcrumb.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_breadcrumb.scss) for the full class reference.
+## Basic
+
+<ComponentDemo stacked title="Breadcrumb" code={`<nav aria-label="Breadcrumb">
+  <ol class="nf-breadcrumb">
+    <li class="nf-breadcrumb-item">
+      <a class="nf-breadcrumb-link" href="/">ROOT</a>
+    </li>
+    <li class="nf-breadcrumb-item">
+      <a class="nf-breadcrumb-link" href="/components">COMPONENTS</a>
+    </li>
+    <li class="nf-breadcrumb-item" aria-current="page">
+      <span class="nf-breadcrumb-link nf-breadcrumb-current">BREADCRUMB</span>
+    </li>
+  </ol>
+</nav>`}>
+  <nav aria-label="Breadcrumb">
+    <ol class="nf-breadcrumb">
+      <li class="nf-breadcrumb-item">
+        <a class="nf-breadcrumb-link" href="/">ROOT</a>
+      </li>
+      <li class="nf-breadcrumb-item">
+        <a class="nf-breadcrumb-link" href="/components">COMPONENTS</a>
+      </li>
+      <li class="nf-breadcrumb-item" aria-current="page">
+        <span class="nf-breadcrumb-link nf-breadcrumb-current">BREADCRUMB</span>
+      </li>
+    </ol>
+  </nav>
+</ComponentDemo>
+
+## Deeper path
+
+<ComponentDemo stacked title="Four levels" code={`<nav aria-label="Breadcrumb">
+  <ol class="nf-breadcrumb">
+    <li class="nf-breadcrumb-item">
+      <a class="nf-breadcrumb-link" href="/">NETFRAME</a>
+    </li>
+    <li class="nf-breadcrumb-item">
+      <a class="nf-breadcrumb-link" href="/system">SYSTEM</a>
+    </li>
+    <li class="nf-breadcrumb-item">
+      <a class="nf-breadcrumb-link" href="/system/network">NETWORK</a>
+    </li>
+    <li class="nf-breadcrumb-item" aria-current="page">
+      <span class="nf-breadcrumb-link nf-breadcrumb-current">NODE_047</span>
+    </li>
+  </ol>
+</nav>`}>
+  <nav aria-label="Breadcrumb">
+    <ol class="nf-breadcrumb">
+      <li class="nf-breadcrumb-item">
+        <a class="nf-breadcrumb-link" href="/">NETFRAME</a>
+      </li>
+      <li class="nf-breadcrumb-item">
+        <a class="nf-breadcrumb-link" href="/system">SYSTEM</a>
+      </li>
+      <li class="nf-breadcrumb-item">
+        <a class="nf-breadcrumb-link" href="/system/network">NETWORK</a>
+      </li>
+      <li class="nf-breadcrumb-item" aria-current="page">
+        <span class="nf-breadcrumb-link nf-breadcrumb-current">NODE_047</span>
+      </li>
+    </ol>
+  </nav>
+</ComponentDemo>
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-breadcrumb` | `<ol>` wrapper — flex row with `/` separators |
+| `nf-breadcrumb-item` | `<li>` — adds `/` separator via `::after` (except last) |
+| `nf-breadcrumb-link` | Anchor or span inside each item |
+| `nf-breadcrumb-current` | Highlights the current page — disables pointer events |

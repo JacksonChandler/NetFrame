@@ -4,8 +4,49 @@ title: 'Badge'
 description: 'Compact status labels and notification indicators.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Badge
 
-Compact status labels and notification indicators.
+Compact status labels rendered in the label font. All variants share `.nf-badge` as the base.
 
-See [\_badge.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_badge.scss) for the full class reference.
+## Variants
+
+<ComponentDemo title="All variants" code={`<span class="nf-badge nf-badge-primary">ONLINE</span>
+<span class="nf-badge nf-badge-secondary">CRITICAL</span>
+<span class="nf-badge nf-badge-tertiary">INFO</span>
+<span class="nf-badge nf-badge-error">ERROR</span>
+<span class="nf-badge nf-badge-outline">OUTLINE</span>
+<span class="nf-badge nf-badge-ghost">GHOST</span>`}>
+  <span class="nf-badge nf-badge-primary">ONLINE</span>
+  <span class="nf-badge nf-badge-secondary">CRITICAL</span>
+  <span class="nf-badge nf-badge-tertiary">INFO</span>
+  <span class="nf-badge nf-badge-error">ERROR</span>
+  <span class="nf-badge nf-badge-outline">OUTLINE</span>
+  <span class="nf-badge nf-badge-ghost">GHOST</span>
+</ComponentDemo>
+
+## Dot badge
+
+Add `.nf-badge-dot` to any element to attach a notification indicator dot in the top-right corner:
+
+<ComponentDemo title="Dot badge on a button" code={`<button class="nf-button nf-button-ghost nf-badge-dot">
+  ALERTS
+</button>`}>
+  <button class="nf-button nf-button-ghost nf-badge-dot">
+    ALERTS
+  </button>
+</ComponentDemo>
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-badge` | Base — required on all badges |
+| `nf-badge-primary` | Terminal Green fill |
+| `nf-badge-secondary` | Cyber Magenta fill |
+| `nf-badge-tertiary` | Tertiary fill |
+| `nf-badge-error` | Error red fill |
+| `nf-badge-outline` | Transparent with primary border |
+| `nf-badge-ghost` | Low-opacity primary tint, no border |
+| `nf-badge-dot` | Adds a red notification dot — applies to the parent element |

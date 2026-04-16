@@ -4,8 +4,106 @@ title: 'Modal'
 description: 'Focused dialogs that block the page.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Modal
 
-Focused dialogs that block the page.
+Fixed dialog with backdrop overlay. Focus should be trapped inside while open.
 
-See [\_modal.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_modal.scss) for the full class reference.
+## Structure
+
+<ComponentDemo stacked title="Modal panel" code={`<!-- Overlay -->
+<div class="nf-modal-overlay" id="modal-overlay" role="presentation">
+
+  <!-- Dialog -->
+  <div class="nf-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+    <div class="nf-modal-header">
+      <h2 class="nf-modal-title" id="modal-title">CONFIRM_ACTION</h2>
+      <button class="nf-modal-close" aria-label="Close">✕</button>
+    </div>
+    <div class="nf-modal-body">
+      <p>This action will purge all cached node data. Proceed?</p>
+    </div>
+    <div class="nf-modal-footer">
+      <button class="nf-button nf-button-ghost">CANCEL</button>
+      <button class="nf-button nf-button-danger">PURGE</button>
+    </div>
+  </div>
+
+</div>`}>
+  <div class="nf-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-demo" style="position: relative; max-width: 28rem; width: 100%;">
+    <div class="nf-modal-header">
+      <h2 class="nf-modal-title" id="modal-title-demo">CONFIRM_ACTION</h2>
+      <button class="nf-modal-close" aria-label="Close">✕</button>
+    </div>
+    <div class="nf-modal-body">
+      <p style="margin: 0; color: var(--nf-color-text-muted);">This action will purge all cached node data. Proceed?</p>
+    </div>
+    <div class="nf-modal-footer">
+      <button class="nf-button nf-button-ghost">CANCEL</button>
+      <button class="nf-button nf-button-danger">PURGE</button>
+    </div>
+  </div>
+</ComponentDemo>
+
+## Sizes
+
+<ComponentDemo stacked title="Size variants" code={`<div class="nf-modal nf-modal-sm">...</div>  <!-- 20rem -->
+<div class="nf-modal">...</div>              <!-- default 32rem -->
+<div class="nf-modal nf-modal-lg">...</div>  <!-- 48rem -->
+<div class="nf-modal nf-modal-xl">...</div>  <!-- 64rem -->
+<div class="nf-modal nf-modal-full">...</div> <!-- 100vw × 100svh -->`}>
+  <div style="display: flex; flex-direction: column; gap: var(--nf-space-2); font-size: var(--nf-text-sm); color: var(--nf-color-text-muted);">
+    <div style="display: flex; align-items: center; gap: var(--nf-space-3);"><span class="nf-badge nf-badge-ghost">nf-modal-sm</span> 20rem</div>
+    <div style="display: flex; align-items: center; gap: var(--nf-space-3);"><span class="nf-badge nf-badge-ghost">default</span> 32rem</div>
+    <div style="display: flex; align-items: center; gap: var(--nf-space-3);"><span class="nf-badge nf-badge-ghost">nf-modal-lg</span> 48rem</div>
+    <div style="display: flex; align-items: center; gap: var(--nf-space-3);"><span class="nf-badge nf-badge-ghost">nf-modal-xl</span> 64rem</div>
+    <div style="display: flex; align-items: center; gap: var(--nf-space-3);"><span class="nf-badge nf-badge-ghost">nf-modal-full</span> 100vw × 100svh</div>
+  </div>
+</ComponentDemo>
+
+## JavaScript
+
+```js
+const overlay = document.getElementById('modal-overlay');
+const modal   = overlay.querySelector('.nf-modal');
+const trigger = document.getElementById('open-modal');
+const close   = modal.querySelector('.nf-modal-close');
+
+function openModal() {
+  overlay.classList.remove('nf-hidden');
+  overlay.removeAttribute('aria-hidden');
+  modal.focus();
+}
+
+function closeModal() {
+  overlay.classList.add('nf-hidden');
+  overlay.setAttribute('aria-hidden', 'true');
+  trigger.focus();
+}
+
+trigger.addEventListener('click', openModal);
+close.addEventListener('click', closeModal);
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+```
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-modal-overlay` | Fixed full-screen backdrop — hide with `nf-hidden` or `aria-hidden="true"` |
+| `nf-modal` | Dialog panel — default max-width 32rem |
+| `nf-modal-sm` | 20rem |
+| `nf-modal-lg` | 48rem |
+| `nf-modal-xl` | 64rem |
+| `nf-modal-full` | Full viewport |
+| `nf-modal-header` | Top section with title and close button |
+| `nf-modal-title` | Title text |
+| `nf-modal-close` | Close `×` button |
+| `nf-modal-body` | Scrollable content area |
+| `nf-modal-footer` | Bottom action row |

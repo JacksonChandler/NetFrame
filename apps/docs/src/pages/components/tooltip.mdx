@@ -4,8 +4,73 @@ title: 'Tooltip'
 description: 'Short contextual text on hover or focus.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Tooltip
 
-Short contextual text on hover or focus.
+CSS-only tooltips triggered on hover or `:focus-visible`. Wrap the target in `.nf-tooltip-wrap` and place `.nf-tooltip` as a sibling inside it.
 
-See [\_tooltip.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_tooltip.scss) for the full class reference.
+## Default (top)
+
+<ComponentDemo title="Top tooltip" code={`<span class="nf-tooltip-wrap">
+  <button class="nf-button nf-button-ghost">HOVER_ME</button>
+  <span class="nf-tooltip">NODE_DETAILS</span>
+</span>`}>
+  <span class="nf-tooltip-wrap">
+    <button class="nf-button nf-button-ghost">HOVER_ME</button>
+    <span class="nf-tooltip">NODE_DETAILS</span>
+  </span>
+</ComponentDemo>
+
+## Positions
+
+<ComponentDemo title="Bottom" code={`<span class="nf-tooltip-wrap">
+  <button class="nf-button nf-button-ghost">HOVER_ME</button>
+  <span class="nf-tooltip nf-tooltip-bottom">BELOW</span>
+</span>`}>
+  <span class="nf-tooltip-wrap" style="margin-top: var(--nf-space-8);">
+    <button class="nf-button nf-button-ghost">HOVER_ME</button>
+    <span class="nf-tooltip nf-tooltip-bottom">BELOW</span>
+  </span>
+</ComponentDemo>
+
+<ComponentDemo title="Left" code={`<span class="nf-tooltip-wrap">
+  <button class="nf-button nf-button-ghost">HOVER_ME</button>
+  <span class="nf-tooltip nf-tooltip-left">LEFT</span>
+</span>`}>
+  <span class="nf-tooltip-wrap" style="margin-left: 6rem;">
+    <button class="nf-button nf-button-ghost">HOVER_ME</button>
+    <span class="nf-tooltip nf-tooltip-left">LEFT</span>
+  </span>
+</ComponentDemo>
+
+<ComponentDemo title="Right" code={`<span class="nf-tooltip-wrap">
+  <button class="nf-button nf-button-ghost">HOVER_ME</button>
+  <span class="nf-tooltip nf-tooltip-right">RIGHT</span>
+</span>`}>
+  <span class="nf-tooltip-wrap">
+    <button class="nf-button nf-button-ghost">HOVER_ME</button>
+    <span class="nf-tooltip nf-tooltip-right">RIGHT</span>
+  </span>
+</ComponentDemo>
+
+## On any element
+
+The wrapper is `display: inline-flex` so it works on any inline element — buttons, icons, links, badges:
+
+```html
+<span class="nf-tooltip-wrap">
+  <span class="nf-badge nf-badge-error">ERR</span>
+  <span class="nf-tooltip">AUTHENTICATION_FAILED</span>
+</span>
+```
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-tooltip-wrap` | `inline-flex` wrapper — triggers tooltip on hover / focus |
+| `nf-tooltip` | Tooltip bubble — appears above by default |
+| `nf-tooltip-bottom` | Positions below the target |
+| `nf-tooltip-left` | Positions left of the target |
+| `nf-tooltip-right` | Positions right of the target |

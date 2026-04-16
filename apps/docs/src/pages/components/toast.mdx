@@ -4,8 +4,131 @@ title: 'Toast'
 description: 'Non-blocking notification messages.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Toast
 
-Non-blocking notification messages.
+Non-blocking notifications stacked in a fixed region. The left border accent communicates message type.
 
-See [\_toast.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_toast.scss) for the full class reference.
+## Variants
+
+<ComponentDemo stacked title="Success / Error / Warning / Info" code={`<div class="nf-toast nf-toast-success">
+  <div class="nf-toast-content">
+    <div class="nf-toast-title">UPLINK_RESTORED</div>
+    <div class="nf-toast-message">Connection re-established. Latency: 12ms.</div>
+  </div>
+  <button class="nf-toast-close" aria-label="Dismiss">✕</button>
+</div>
+
+<div class="nf-toast nf-toast-error">
+  <div class="nf-toast-content">
+    <div class="nf-toast-title">CONNECTION_LOST</div>
+    <div class="nf-toast-message">Node 047 unreachable. Retrying in 5s.</div>
+  </div>
+  <button class="nf-toast-close" aria-label="Dismiss">✕</button>
+</div>
+
+<div class="nf-toast nf-toast-warning">
+  <div class="nf-toast-content">
+    <div class="nf-toast-title">HIGH_LATENCY</div>
+    <div class="nf-toast-message">Uplink degraded. Current latency: 420ms.</div>
+  </div>
+  <button class="nf-toast-close" aria-label="Dismiss">✕</button>
+</div>
+
+<div class="nf-toast nf-toast-info">
+  <div class="nf-toast-content">
+    <div class="nf-toast-title">SYNC_COMPLETE</div>
+    <div class="nf-toast-message">48 records synchronized with remote node.</div>
+  </div>
+  <button class="nf-toast-close" aria-label="Dismiss">✕</button>
+</div>`}>
+  <div style="display: flex; flex-direction: column; gap: var(--nf-space-3); width: 100%; max-width: 24rem;">
+    <div class="nf-toast nf-toast-success" style="position: static; min-width: 0; max-width: none; animation: none;">
+      <div class="nf-toast-content">
+        <div class="nf-toast-title">UPLINK_RESTORED</div>
+        <div class="nf-toast-message">Connection re-established. Latency: 12ms.</div>
+      </div>
+      <button class="nf-toast-close" aria-label="Dismiss">✕</button>
+    </div>
+    <div class="nf-toast nf-toast-error" style="position: static; min-width: 0; max-width: none; animation: none;">
+      <div class="nf-toast-content">
+        <div class="nf-toast-title">CONNECTION_LOST</div>
+        <div class="nf-toast-message">Node 047 unreachable. Retrying in 5s.</div>
+      </div>
+      <button class="nf-toast-close" aria-label="Dismiss">✕</button>
+    </div>
+    <div class="nf-toast nf-toast-warning" style="position: static; min-width: 0; max-width: none; animation: none;">
+      <div class="nf-toast-content">
+        <div class="nf-toast-title">HIGH_LATENCY</div>
+        <div class="nf-toast-message">Uplink degraded. Current latency: 420ms.</div>
+      </div>
+      <button class="nf-toast-close" aria-label="Dismiss">✕</button>
+    </div>
+    <div class="nf-toast nf-toast-info" style="position: static; min-width: 0; max-width: none; animation: none;">
+      <div class="nf-toast-content">
+        <div class="nf-toast-title">SYNC_COMPLETE</div>
+        <div class="nf-toast-message">48 records synchronized with remote node.</div>
+      </div>
+      <button class="nf-toast-close" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+</ComponentDemo>
+
+## Usage
+
+Append toasts into a fixed `.nf-toast-region` container, then remove them after a timeout:
+
+```html
+<div class="nf-toast-region nf-toast-top-right" id="toast-region" aria-live="polite"></div>
+```
+
+```js
+function showToast({ title, message, type = 'info', duration = 4000 }) {
+  const region = document.getElementById('toast-region');
+  const toast = document.createElement('div');
+  toast.className = `nf-toast nf-toast-${type}`;
+  toast.innerHTML = `
+    <div class="nf-toast-content">
+      <div class="nf-toast-title">${title}</div>
+      <div class="nf-toast-message">${message}</div>
+    </div>
+    <button class="nf-toast-close" aria-label="Dismiss">✕</button>
+  `;
+
+  const close = toast.querySelector('.nf-toast-close');
+  const dismiss = () => {
+    toast.classList.add('nf-toast-dismissing');
+    toast.addEventListener('animationend', () => toast.remove(), { once: true });
+  };
+
+  close.addEventListener('click', dismiss);
+  region.appendChild(toast);
+  setTimeout(dismiss, duration);
+}
+```
+
+## Region positions
+
+| Class | Position |
+|---|---|
+| `nf-toast-top-right` | Top-right (default) |
+| `nf-toast-top-left` | Top-left |
+| `nf-toast-bottom-right` | Bottom-right |
+| `nf-toast-bottom-left` | Bottom-left |
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-toast-region` | Fixed container — stacks toasts vertically |
+| `nf-toast` | Individual notification |
+| `nf-toast-success` | Primary green left border |
+| `nf-toast-error` | Error red left border |
+| `nf-toast-warning` | Secondary magenta left border |
+| `nf-toast-info` | Tertiary purple left border |
+| `nf-toast-dismissing` | Triggers the slide-out exit animation |
+| `nf-toast-content` | Flex column wrapper for title + message |
+| `nf-toast-title` | Label-font heading |
+| `nf-toast-message` | Body text |
+| `nf-toast-close` | Dismiss button |

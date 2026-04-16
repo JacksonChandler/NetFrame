@@ -4,8 +4,80 @@ title: 'Tag'
 description: 'Closable chip / tag elements.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Tag
 
-Closable chip / tag elements.
+Inline chip elements for categorization and filtering. Optionally closable.
 
-See [\_tag.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_tag.scss) for the full class reference.
+## Default
+
+<ComponentDemo title="Default" code={`<span class="nf-tag">CYBERPUNK</span>`}>
+  <span class="nf-tag">CYBERPUNK</span>
+</ComponentDemo>
+
+## Color variants
+
+<ComponentDemo title="Primary / Secondary / Tertiary" code={`<span class="nf-tag nf-tag-primary">NETFRAME</span>
+<span class="nf-tag nf-tag-secondary">CRITICAL</span>
+<span class="nf-tag nf-tag-tertiary">SYSTEM</span>`}>
+  <span class="nf-tag nf-tag-primary">NETFRAME</span>
+  <span class="nf-tag nf-tag-secondary">CRITICAL</span>
+  <span class="nf-tag nf-tag-tertiary">SYSTEM</span>
+</ComponentDemo>
+
+## With close button
+
+<ComponentDemo title="Closable tags" code={`<span class="nf-tag nf-tag-primary">
+  UPLINK
+  <button class="nf-tag-close" aria-label="Remove UPLINK tag"></button>
+</span>
+<span class="nf-tag nf-tag-secondary">
+  ICE_CORE
+  <button class="nf-tag-close" aria-label="Remove ICE_CORE tag"></button>
+</span>
+<span class="nf-tag">
+  NODE_047
+  <button class="nf-tag-close" aria-label="Remove NODE_047 tag"></button>
+</span>`}>
+  <span class="nf-tag nf-tag-primary">
+    UPLINK
+    <button class="nf-tag-close" aria-label="Remove UPLINK tag"></button>
+  </span>
+  <span class="nf-tag nf-tag-secondary">
+    ICE_CORE
+    <button class="nf-tag-close" aria-label="Remove ICE_CORE tag"></button>
+  </span>
+  <span class="nf-tag">
+    NODE_047
+    <button class="nf-tag-close" aria-label="Remove NODE_047 tag"></button>
+  </span>
+</ComponentDemo>
+
+## Tag list
+
+<ComponentDemo stacked title="Tag group" code={`<div style="display: flex; flex-wrap: wrap; gap: var(--nf-space-2);">
+  <span class="nf-tag nf-tag-primary">CSS</span>
+  <span class="nf-tag nf-tag-primary">CYBERPUNK</span>
+  <span class="nf-tag">DESIGN_SYSTEM</span>
+  <span class="nf-tag">UI</span>
+  <span class="nf-tag nf-tag-tertiary">OPEN_SOURCE</span>
+</div>`}>
+  <div style="display: flex; flex-wrap: wrap; gap: var(--nf-space-2);">
+    <span class="nf-tag nf-tag-primary">CSS</span>
+    <span class="nf-tag nf-tag-primary">CYBERPUNK</span>
+    <span class="nf-tag">DESIGN_SYSTEM</span>
+    <span class="nf-tag">UI</span>
+    <span class="nf-tag nf-tag-tertiary">OPEN_SOURCE</span>
+  </div>
+</ComponentDemo>
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-tag` | Base chip — neutral border and background |
+| `nf-tag-primary` | Primary green tint + border |
+| `nf-tag-secondary` | Secondary magenta tint + border |
+| `nf-tag-tertiary` | Tertiary purple tint + border |
+| `nf-tag-close` | `×` button inside the tag — renders via `::before` |

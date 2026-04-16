@@ -4,8 +4,94 @@ title: 'Tabs'
 description: 'Horizontal tab navigation.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Tabs
 
-Horizontal tab navigation.
+Horizontal tab navigation with associated content panels. Manage active state via `aria-selected` and `hidden`.
 
-See [\_tabs.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_tabs.scss) for the full class reference.
+## Basic
+
+<ComponentDemo stacked title="Tabs" code={`<div class="nf-tabs">
+  <div class="nf-tab-list" role="tablist" aria-label="System modules">
+    <button class="nf-tab" role="tab" aria-selected="true" aria-controls="tab-panel-1" id="tab-1">OVERVIEW</button>
+    <button class="nf-tab" role="tab" aria-selected="false" aria-controls="tab-panel-2" id="tab-2">NETWORK</button>
+    <button class="nf-tab" role="tab" aria-selected="false" aria-controls="tab-panel-3" id="tab-3">SECURITY</button>
+    <button class="nf-tab" role="tab" aria-selected="false" aria-controls="tab-panel-4" id="tab-4" aria-disabled="true">ARCHIVE</button>
+  </div>
+  <div class="nf-tab-panel" role="tabpanel" id="tab-panel-1" aria-labelledby="tab-1">
+    System overview data goes here.
+  </div>
+  <div class="nf-tab-panel" role="tabpanel" id="tab-panel-2" aria-labelledby="tab-2" hidden>
+    Network topology data goes here.
+  </div>
+  <div class="nf-tab-panel" role="tabpanel" id="tab-panel-3" aria-labelledby="tab-3" hidden>
+    Security logs go here.
+  </div>
+  <div class="nf-tab-panel" role="tabpanel" id="tab-panel-4" aria-labelledby="tab-4" hidden>
+    Archive data goes here.
+  </div>
+</div>`}>
+  <div class="nf-tabs" style="width: 100%;">
+    <div class="nf-tab-list" role="tablist">
+      <button class="nf-tab" role="tab" aria-selected="true">OVERVIEW</button>
+      <button class="nf-tab" role="tab" aria-selected="false">NETWORK</button>
+      <button class="nf-tab" role="tab" aria-selected="false">SECURITY</button>
+      <button class="nf-tab" role="tab" aria-selected="false" aria-disabled="true">ARCHIVE</button>
+    </div>
+    <div class="nf-tab-panel" role="tabpanel">
+      System overview data goes here.
+    </div>
+  </div>
+</ComponentDemo>
+
+## Secondary color
+
+<ComponentDemo stacked title="Secondary variant" code={`<div class="nf-tabs nf-tabs-secondary">
+  <div class="nf-tab-list" role="tablist">
+    <button class="nf-tab" role="tab" aria-selected="true">UPLINK</button>
+    <button class="nf-tab" role="tab" aria-selected="false">DOWNLINK</button>
+    <button class="nf-tab" role="tab" aria-selected="false">BYPASS</button>
+  </div>
+</div>`}>
+  <div class="nf-tabs nf-tabs-secondary" style="width: 100%;">
+    <div class="nf-tab-list" role="tablist">
+      <button class="nf-tab" role="tab" aria-selected="true">UPLINK</button>
+      <button class="nf-tab" role="tab" aria-selected="false">DOWNLINK</button>
+      <button class="nf-tab" role="tab" aria-selected="false">BYPASS</button>
+    </div>
+  </div>
+</ComponentDemo>
+
+## JavaScript
+
+```js
+const tabLists = document.querySelectorAll('.nf-tab-list');
+
+tabLists.forEach((list) => {
+  const tabs   = list.querySelectorAll('.nf-tab');
+  const panels = [...tabs].map((t) =>
+    document.getElementById(t.getAttribute('aria-controls'))
+  );
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t, j) => {
+        t.setAttribute('aria-selected', String(i === j));
+        panels[j]?.toggleAttribute('hidden', i !== j);
+      });
+    });
+  });
+});
+```
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-tabs` | Outer wrapper |
+| `nf-tab-list` | Horizontal row of tab buttons |
+| `nf-tab` | Individual tab button — set `aria-selected="true"` for active |
+| `nf-tab-active` | Class alternative to `aria-selected` for active state |
+| `nf-tabs-secondary` | Secondary magenta active underline |
+| `nf-tab-panel` | Content panel — hide inactive panels with `hidden` |

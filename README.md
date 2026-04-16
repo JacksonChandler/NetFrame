@@ -11,7 +11,7 @@
 
 > **CYBERPUNK CSS COMPONENT LIBRARY** 
 
-#[![npm](https://img.shields.io/npm/v/netframe)](https://www.npmjs.com/package/netframe)
+[![npm](https://img.shields.io/npm/v/netframe)](https://www.npmjs.com/package/netframe)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-green.svg)](LICENSE)
 
 ---

@@ -4,8 +4,66 @@ title: 'Spinner'
 description: 'Animated loading indicators.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Spinner
 
-Animated loading indicators.
+CSS border-based spinning indicators for loading states.
 
-See [\_spinner.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_spinner.scss) for the full class reference.
+## Default
+
+<ComponentDemo title="Default" code={`<span class="nf-spinner" role="status" aria-label="Loading"></span>`}>
+  <span class="nf-spinner" role="status" aria-label="Loading"></span>
+</ComponentDemo>
+
+## Sizes
+
+<ComponentDemo title="SM / Default / LG / XL" code={`<span class="nf-spinner nf-spinner-sm" role="status" aria-label="Loading"></span>
+<span class="nf-spinner" role="status" aria-label="Loading"></span>
+<span class="nf-spinner nf-spinner-lg" role="status" aria-label="Loading"></span>
+<span class="nf-spinner nf-spinner-xl" role="status" aria-label="Loading"></span>`}>
+  <span class="nf-spinner nf-spinner-sm" role="status" aria-label="Loading"></span>
+  <span class="nf-spinner" role="status" aria-label="Loading"></span>
+  <span class="nf-spinner nf-spinner-lg" role="status" aria-label="Loading"></span>
+  <span class="nf-spinner nf-spinner-xl" role="status" aria-label="Loading"></span>
+</ComponentDemo>
+
+## Color variants
+
+<ComponentDemo title="Primary / Secondary / Tertiary / Error" code={`<span class="nf-spinner nf-spinner-lg" role="status" aria-label="Loading"></span>
+<span class="nf-spinner nf-spinner-lg nf-spinner-secondary" role="status" aria-label="Loading"></span>
+<span class="nf-spinner nf-spinner-lg nf-spinner-tertiary" role="status" aria-label="Loading"></span>
+<span class="nf-spinner nf-spinner-lg nf-spinner-error" role="status" aria-label="Loading"></span>`}>
+  <span class="nf-spinner nf-spinner-lg" role="status" aria-label="Loading"></span>
+  <span class="nf-spinner nf-spinner-lg nf-spinner-secondary" role="status" aria-label="Loading"></span>
+  <span class="nf-spinner nf-spinner-lg nf-spinner-tertiary" role="status" aria-label="Loading"></span>
+  <span class="nf-spinner nf-spinner-lg nf-spinner-error" role="status" aria-label="Loading"></span>
+</ComponentDemo>
+
+## Block spinner
+
+Centered in its container with an optional blinking label:
+
+<ComponentDemo stacked title="Block" code={`<div class="nf-spinner-block">
+  <span class="nf-spinner nf-spinner-lg" role="status" aria-label="Loading"></span>
+  <span class="nf-spinner-label">INITIALIZING...</span>
+</div>`}>
+  <div class="nf-spinner-block">
+    <span class="nf-spinner nf-spinner-lg" role="status" aria-label="Loading"></span>
+    <span class="nf-spinner-label">INITIALIZING...</span>
+  </div>
+</ComponentDemo>
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-spinner` | Base — 1.5rem, primary top border, spinning |
+| `nf-spinner-sm` | 1rem |
+| `nf-spinner-lg` | 2.5rem |
+| `nf-spinner-xl` | 4rem |
+| `nf-spinner-secondary` | Magenta top border |
+| `nf-spinner-tertiary` | Tertiary top border |
+| `nf-spinner-error` | Error red top border |
+| `nf-spinner-block` | Centered flex column wrapper |
+| `nf-spinner-label` | Blinking text label inside `.nf-spinner-block` |

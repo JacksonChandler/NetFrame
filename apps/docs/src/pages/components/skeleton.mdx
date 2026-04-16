@@ -4,8 +4,93 @@ title: 'Skeleton'
 description: 'Loading placeholder shimmer blocks.'
 ---
 
+import ComponentDemo from '../../components/ComponentDemo.astro';
+
 # Skeleton
 
-Loading placeholder shimmer blocks.
+Shimmer placeholders for content that is loading. Uses the primary color at low opacity for an on-theme shimmer effect.
 
-See [\_skeleton.scss](https://github.com/CybearTechnologies/NetFrame/blob/main/packages/netframe/src/components/_skeleton.scss) for the full class reference.
+## Text
+
+<ComponentDemo stacked title="Text lines" code={`<span class="nf-skeleton nf-skeleton-text"></span>
+<span class="nf-skeleton nf-skeleton-text"></span>
+<span class="nf-skeleton nf-skeleton-text nf-skeleton-text-short"></span>`}>
+  <div style="width: 100%; max-width: 28rem; display: flex; flex-direction: column; gap: var(--nf-space-2);">
+    <span class="nf-skeleton nf-skeleton-text"></span>
+    <span class="nf-skeleton nf-skeleton-text"></span>
+    <span class="nf-skeleton nf-skeleton-text nf-skeleton-text-short"></span>
+  </div>
+</ComponentDemo>
+
+## Heading
+
+<ComponentDemo stacked title="Heading" code={`<span class="nf-skeleton nf-skeleton-heading"></span>`}>
+  <div style="width: 100%; max-width: 28rem;">
+    <span class="nf-skeleton nf-skeleton-heading"></span>
+  </div>
+</ComponentDemo>
+
+## Avatar
+
+<ComponentDemo title="Avatar" code={`<span class="nf-skeleton nf-skeleton-avatar"></span>`}>
+  <span class="nf-skeleton nf-skeleton-avatar"></span>
+</ComponentDemo>
+
+## Button
+
+<ComponentDemo title="Button" code={`<span class="nf-skeleton nf-skeleton-button"></span>`}>
+  <span class="nf-skeleton nf-skeleton-button"></span>
+</ComponentDemo>
+
+## Card
+
+<ComponentDemo stacked title="Card" code={`<span class="nf-skeleton nf-skeleton-card"></span>`}>
+  <div style="width: 100%; max-width: 28rem;">
+    <span class="nf-skeleton nf-skeleton-card"></span>
+  </div>
+</ComponentDemo>
+
+## Image
+
+<ComponentDemo stacked title="16:9 image" code={`<span class="nf-skeleton nf-skeleton-image"></span>`}>
+  <div style="width: 100%; max-width: 28rem;">
+    <span class="nf-skeleton nf-skeleton-image"></span>
+  </div>
+</ComponentDemo>
+
+## Composed example
+
+<ComponentDemo stacked title="Card skeleton" code={`<div class="nf-card" style="max-width: 20rem;">
+  <div class="nf-card-body" style="display: flex; gap: var(--nf-space-4); align-items: flex-start;">
+    <span class="nf-skeleton nf-skeleton-avatar"></span>
+    <div style="flex: 1;">
+      <span class="nf-skeleton nf-skeleton-heading" style="width: 60%; margin-bottom: var(--nf-space-3);"></span>
+      <span class="nf-skeleton nf-skeleton-text"></span>
+      <span class="nf-skeleton nf-skeleton-text nf-skeleton-text-short"></span>
+    </div>
+  </div>
+</div>`}>
+  <div class="nf-card" style="max-width: 20rem; width: 100%;">
+    <div class="nf-card-body" style="display: flex; gap: var(--nf-space-4); align-items: flex-start;">
+      <span class="nf-skeleton nf-skeleton-avatar"></span>
+      <div style="flex: 1;">
+        <span class="nf-skeleton nf-skeleton-heading" style="width: 60%; margin-bottom: var(--nf-space-3);"></span>
+        <span class="nf-skeleton nf-skeleton-text"></span>
+        <span class="nf-skeleton nf-skeleton-text nf-skeleton-text-short"></span>
+      </div>
+    </div>
+  </div>
+</ComponentDemo>
+
+## Class reference
+
+| Class | Description |
+|---|---|
+| `nf-skeleton` | Base — shimmer animation, must be combined with a shape |
+| `nf-skeleton-text` | Full-width text line, 0.875rem tall |
+| `nf-skeleton-text-short` | Shortens `.nf-skeleton-text` to 60% width |
+| `nf-skeleton-heading` | 1.5rem tall heading placeholder |
+| `nf-skeleton-avatar` | 2.5rem square avatar placeholder |
+| `nf-skeleton-button` | 2.5rem × 8rem button placeholder |
+| `nf-skeleton-card` | Full-width, 10rem tall card placeholder |
+| `nf-skeleton-image` | Full-width 16:9 image placeholder |
