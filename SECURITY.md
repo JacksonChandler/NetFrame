@@ -3,7 +3,7 @@
 ```text
 ╔══════════════════════════════════════════════════════╗
 ║  SECURITY PROTOCOL — CYBEAR TECHNOLOGIES / NETFRAME  ║
-║  Coordinated disclosure. No surprises. No exceptions.║
+║  Coordinated disclosure.                             ║
 ╚══════════════════════════════════════════════════════╝
 ```
 
@@ -32,7 +32,7 @@ Use one of these private channels:
    On the repository page: `Security → Report a vulnerability`.
    GitHub routes this to maintainers privately, outside the public issue tracker.
 
-2. **Email** — [snackpack94@gmail.com](mailto:snackpack94@gmail.com)
+2. **Email** — [alerts@cybeartech.com](mailto:alerts@cybeartech.com)
    Subject line: `[SECURITY] NetFrame — <brief description>`
 
 You will receive acknowledgment within **48 hours**.
