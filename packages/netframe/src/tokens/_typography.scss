@@ -16,10 +16,10 @@ $nf-font-label:   'VT323', 'Courier New', monospace !default;
 // ---------------------------------------------------------------------------
 // Type scale  (major-third: × 1.25)
 // ---------------------------------------------------------------------------
-// xs   10px   0.625rem
-// sm   12px   0.75rem
-// md   14px   0.875rem   ← base / body default
-// base 16px   1rem
+// xs   12px   0.75rem
+// sm   14px   0.875rem
+// md   16px   1rem       ← base / body default
+// base 18px   1.125rem
 // lg   20px   1.25rem
 // xl   24px   1.5rem
 // 2xl  30px   1.875rem
@@ -28,10 +28,10 @@ $nf-font-label:   'VT323', 'Courier New', monospace !default;
 // 5xl  64px   4rem
 
 $nf-type-scale: (
-  'xs':   0.625rem,
-  'sm':   0.75rem,
-  'md':   0.875rem,
-  'base': 1rem,
+  'xs':   0.75rem,
+  'sm':   0.875rem,
+  'md':   1rem,
+  'base': 1.125rem,
   'lg':   1.25rem,
   'xl':   1.5rem,
   '2xl':  1.875rem,

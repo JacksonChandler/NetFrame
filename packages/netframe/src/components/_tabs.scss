@@ -57,14 +57,14 @@
 
   &:hover {
     color: var(--nf-color-text);
-    background-color: color-mix(in srgb, var(--nf-color-primary) 5%, transparent);
+    background-color: color-mix(in srgb, var(--nf-color-primary) 3%, transparent);
   }
 
   &[aria-selected='true'],
   &.nf-tab-active {
     color: var(--nf-color-primary);
     border-bottom-color: var(--nf-color-primary);
-    background-color: color-mix(in srgb, var(--nf-color-primary) 5%, transparent);
+    background-color: color-mix(in srgb, var(--nf-color-primary) 8%, transparent);
   }
 
   &:disabled,

@@ -40,25 +40,20 @@ function copyDirSync(src: string, dest: string): void {
   }
 }
 
-async function build(): Promise<void> {
-  const start = Date.now();
-  console.log('▶ NetFrame build starting…');
+async function buildEntry(
+  entry: string,
+  outName: string,
+): Promise<void> {
+  const cssOutPath = path.join(DIST, `${outName}.css`);
+  const minOutPath = path.join(DIST, `${outName}.min.css`);
 
-  ensureDir(DIST);
-
-  // 1. Sass compile
-  const sassEntry = path.join(SRC, 'netframe.scss');
-  const sassResult = compile(sassEntry, {
+  const sassResult = compile(entry, {
     style: 'expanded',
     sourceMap: true,
     loadPaths: [SRC],
   });
 
-  const cssOutPath = path.join(DIST, 'netframe.css');
-  fs.writeFileSync(cssOutPath, sassResult.css, 'utf8');
-  console.log(`  ✓ Sass → ${path.relative(ROOT, cssOutPath)}`);
-
-  // 2. PostCSS: autoprefixer pass → netframe.css (in-place update)
+  // Autoprefixer pass
   const prefixed = await postcss([autoprefixer]).process(sassResult.css, {
     from: cssOutPath,
     to: cssOutPath,
@@ -68,24 +63,42 @@ async function build(): Promise<void> {
   if (prefixed.map) {
     fs.writeFileSync(`${cssOutPath}.map`, prefixed.map.toString(), 'utf8');
   }
-  console.log(`  ✓ Autoprefixer → ${path.relative(ROOT, cssOutPath)}`);
+  console.log(`  ✓ Sass + Autoprefixer → ${path.relative(ROOT, cssOutPath)}`);
 
-  // 3. cssnano → netframe.min.css
+  // cssnano minify
   const minified = await postcss([
     autoprefixer,
     cssnano({ preset: 'default' }),
   ]).process(sassResult.css, {
     from: cssOutPath,
-    to: path.join(DIST, 'netframe.min.css'),
+    to: minOutPath,
   });
-  const minOutPath = path.join(DIST, 'netframe.min.css');
   fs.writeFileSync(minOutPath, minified.css, 'utf8');
-  console.log(`  ✓ cssnano   → ${path.relative(ROOT, minOutPath)}`);
+  console.log(`  ✓ cssnano → ${path.relative(ROOT, minOutPath)}`);
+}
 
-  // 4. Copy src/ → dist/scss/
+async function build(): Promise<void> {
+  const start = Date.now();
+  console.log('▶ NetFrame build starting…');
+
+  ensureDir(DIST);
+
+  // 1. Main library: netframe.scss → netframe.css / netframe.min.css
+  await buildEntry(path.join(SRC, 'netframe.scss'), 'netframe');
+
+  // 2. Themes: themes/themes.scss → themes.css / themes.min.css
+  await buildEntry(path.join(SRC, 'themes', 'themes.scss'), 'themes');
+
+  // 3. Copy src/ → dist/scss/
   const scssDestDir = path.join(DIST, 'scss');
   copyDirSync(SRC, scssDestDir);
   console.log(`  ✓ Copied src/ → ${path.relative(ROOT, scssDestDir)}/`);
+
+  // 4. Copy fonts → dist/fonts/  (so consumers can serve alongside the CSS)
+  const fontsSrc  = path.join(SRC, 'fonts');
+  const fontsDest = path.join(DIST, 'fonts');
+  copyDirSync(fontsSrc, fontsDest);
+  console.log(`  ✓ Copied fonts/ → ${path.relative(ROOT, fontsDest)}/`);
 
   const elapsed = Date.now() - start;
   console.log(`✔ Build complete in ${elapsed}ms`);

@@ -9,6 +9,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Home">
   <div class="landing">
 
+    <!-- Theme switcher -->
+    <div class="landing-theme-bar">
+      <select id="theme-switcher" class="theme-select nf-tracking-display nf-uppercase" aria-label="Select theme">
+        <option value="">DEFAULT</option>
+        <option value="nf-theme-night-city">NIGHT CITY</option>
+        <option value="nf-theme-chiba-city">CHIBA CITY</option>
+        <option value="nf-theme-neon-80s">NEON 80S</option>
+        <option value="nf-theme-renaissance">RENAISSANCE</option>
+        <option value="nf-theme-code-rain">CODE RAIN</option>
+        <option value="nf-theme-iron-signal">IRON SIGNAL</option>
+      </select>
+    </div>
+
     <!-- Sidebar brand strip -->
     <aside class="landing-sidebar">
       <span class="landing-sidebar-label">NETFRAME_v0.1.0</span>
@@ -18,14 +31,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <main class="landing-main nf-pixel-grid">
 
       <section class="hero">
-        <div class="hero-tag nf-font-label nf-tracking-display">
+        <div class="hero-tag nf-tracking-display">
           <span class="nf-text-secondary">CYBEAR_TECHNOLOGIES</span>
           <span class="nf-text-subtle">//</span>
           <span class="nf-text-muted">CSS_LIB_v0.1.0</span>
         </div>
 
         <h1 class="hero-title nf-glitch-hover" data-text="NETFRAME">
-          NET<span class="nf-text-primary">FRAME</span>
+          NETFRAME
         </h1>
 
         <p class="hero-sub nf-font-label">
@@ -44,34 +57,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <!-- Color palette showcase -->
       <section class="palette-section">
-        <p class="section-label nf-font-label nf-tracking-display nf-text-subtle">COLOR_SYSTEM</p>
+        <p class="section-label nf-tracking-display nf-text-subtle">COLOR_SYSTEM</p>
         <div class="palette-grid">
           <div class="swatch swatch-primary">
-            <span class="swatch-hex">#00FF00</span>
-            <span class="swatch-name">PRIMARY_NEON</span>
+            <span class="swatch-hex" data-token="--nf-color-primary">#00FF00</span>
+            <span class="swatch-name">PRIMARY</span>
           </div>
           <div class="swatch swatch-secondary">
-            <span class="swatch-hex">#FE00FE</span>
-            <span class="swatch-name">CYBER_MAGENTA</span>
+            <span class="swatch-hex" data-token="--nf-color-secondary">#FF0066</span>
+            <span class="swatch-name">SECONDARY</span>
           </div>
           <div class="swatch swatch-tertiary">
-            <span class="swatch-hex">#00F4F4</span>
-            <span class="swatch-name">ELECTRIC_CYAN</span>
+            <span class="swatch-hex" data-token="--nf-color-tertiary">#7700FF</span>
+            <span class="swatch-name">TERTIARY</span>
           </div>
           <div class="swatch swatch-bg">
-            <span class="swatch-hex">#000000</span>
-            <span class="swatch-name">VOID_BG</span>
+            <span class="swatch-hex" data-token="--nf-color-bg">#000000</span>
+            <span class="swatch-name">BACKGROUND</span>
           </div>
         </div>
       </section>
 
       <!-- Typography showcase -->
       <section class="type-section">
-        <p class="section-label nf-font-label nf-tracking-display nf-text-subtle">TYPOGRAPHY_SYSTEM</p>
+        <p class="section-label nf-tracking-display nf-text-subtle">TYPOGRAPHY_SYSTEM</p>
         <div class="type-grid">
           <div class="nf-card nf-card-primary">
             <div class="nf-card-header">
-              <span class="nf-card-subtitle">SPACE_GROTESK_BOLD // DISPLAY</span>
+              <span class="nf-card-subtitle" data-font-token="--nf-font-display" data-font-category="DISPLAY">SPACE_GROTESK_BOLD // DISPLAY</span>
             </div>
             <div class="nf-card-body">
               <h2 style="font-size: var(--nf-text-4xl); margin: 0;">THE VOID EMERGES</h2>
@@ -79,7 +92,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
           <div class="nf-card nf-card-secondary">
             <div class="nf-card-header">
-              <span class="nf-card-subtitle">JETBRAINS_MONO // BODY</span>
+              <span class="nf-card-subtitle" data-font-token="--nf-font-body" data-font-category="BODY">JETBRAINS_MONO // BODY</span>
             </div>
             <div class="nf-card-body">
               <p style="margin: 0; font-size: var(--nf-text-base); line-height: var(--nf-leading-relaxed); color: var(--nf-color-text-muted);">
@@ -89,7 +102,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
           <div class="nf-card" style="border-color: var(--nf-color-tertiary);">
             <div class="nf-card-header">
-              <span class="nf-card-subtitle">VT323 // LABELS</span>
+              <span class="nf-card-subtitle" data-font-token="--nf-font-label" data-font-category="LABELS">VT323 // LABELS</span>
             </div>
             <div class="nf-card-body">
               <p style="margin: 0; font-family: var(--nf-font-label); font-size: var(--nf-text-3xl); color: var(--nf-color-tertiary); letter-spacing: var(--nf-tracking-display);">
@@ -102,7 +115,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <!-- Component preview -->
       <section class="component-section">
-        <p class="section-label nf-font-label nf-tracking-display nf-text-subtle">COMPONENT_PREVIEW</p>
+        <p class="section-label nf-tracking-display nf-text-subtle">COMPONENT_PREVIEW</p>
         <div class="component-grid">
 
           <!-- Buttons -->
@@ -133,13 +146,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="nf-card-header"><span class="nf-card-title" style="font-size: var(--nf-text-sm);">PROGRESS</span></div>
             <div class="nf-card-body" style="display: flex; flex-direction: column; gap: var(--nf-space-4);">
               <div>
-                <span class="nf-font-label nf-text-muted" style="font-size: var(--nf-text-sm); letter-spacing: var(--nf-tracking-display);">UPLINK_SYNC</span>
+                <span class="nf-text-muted" style="font-size: var(--nf-text-sm); font-weight: var(--nf-font-weight-medium); letter-spacing: var(--nf-tracking-display);">UPLINK_SYNC</span>
                 <div class="nf-progress" style="margin-top: var(--nf-space-2);">
                   <div class="nf-progress-bar" style="width: 75%;"></div>
                 </div>
               </div>
               <div>
-                <span class="nf-font-label nf-text-muted" style="font-size: var(--nf-text-sm); letter-spacing: var(--nf-tracking-display);">NODE_SCAN</span>
+                <span class="nf-text-muted" style="font-size: var(--nf-text-sm); font-weight: var(--nf-font-weight-medium); letter-spacing: var(--nf-tracking-display);">NODE_SCAN</span>
                 <div class="nf-progress nf-progress-secondary" style="margin-top: var(--nf-space-2);">
                   <div class="nf-progress-bar" style="width: 42%;"></div>
                 </div>
@@ -203,7 +216,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .landing-sidebar-label {
-    font-family: var(--nf-font-label);
+    font-family: var(--nf-font-body);
+    font-weight: var(--nf-font-weight-medium);
     font-size: var(--nf-text-xs);
     letter-spacing: var(--nf-tracking-display);
     color: var(--nf-color-text-subtle);
@@ -243,12 +257,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .hero-title {
     font-family: var(--nf-font-display);
-    font-size: clamp(4rem, 10vw, 8rem);
+    font-size: clamp(2.5rem, 10vw, 8rem);
     font-weight: var(--nf-font-weight-bold);
     letter-spacing: var(--nf-tracking-display);
     line-height: 1;
     margin: 0;
-    color: var(--nf-color-text);
+    color: var(--nf-color-primary);
+    white-space: nowrap;
   }
 
   .hero-sub {
@@ -286,10 +301,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     &:last-child { border-right: none; }
   }
 
-  .swatch-primary   { background-color: #00ff00; }
-  .swatch-secondary { background-color: #fe00fe; }
-  .swatch-tertiary  { background-color: #00f4f4; }
-  .swatch-bg        { background-color: #000; border: 2px solid var(--nf-color-border); }
+  .swatch-primary   { background-color: var(--nf-color-primary); }
+  .swatch-secondary { background-color: var(--nf-color-secondary); }
+  .swatch-tertiary  { background-color: var(--nf-color-tertiary); }
+  .swatch-bg        { background-color: var(--nf-color-bg); border: 2px solid var(--nf-color-border); }
 
   .swatch-hex {
     font-family: var(--nf-font-mono);
@@ -302,7 +317,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .swatch-bg .swatch-name { color: var(--nf-color-text-muted); }
 
   .swatch-name {
-    font-family: var(--nf-font-label);
+    font-family: var(--nf-font-body);
+    font-weight: var(--nf-font-weight-medium);
     font-size: var(--nf-text-sm);
     letter-spacing: var(--nf-tracking-display);
     color: rgba(0,0,0,0.6);
@@ -328,4 +344,88 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   /* Install */
   .install-section { padding-bottom: var(--nf-space-16); }
+
+  /* Theme switcher */
+  .landing-theme-bar {
+    position: fixed;
+    top: var(--nf-space-4);
+    right: var(--nf-space-6);
+    z-index: var(--nf-z-sticky);
+  }
+
+  .theme-select {
+    appearance: none;
+    background-color: var(--nf-color-surface-low);
+    color: var(--nf-color-text);
+    border: 2px solid var(--nf-color-border);
+    padding: var(--nf-space-1) var(--nf-space-3);
+    min-width: 10rem;
+    font-family: var(--nf-font-body);
+    font-weight: var(--nf-font-weight-medium);
+    font-size: var(--nf-text-xs);
+    letter-spacing: var(--nf-tracking-display);
+    cursor: crosshair;
+    outline: none;
+    transition: border-color var(--nf-duration-fast) var(--nf-ease-sharp);
+
+    &:hover { border-color: var(--nf-color-primary); }
+    &:focus { border-color: var(--nf-color-primary); }
+
+    option {
+      background-color: var(--nf-color-surface-low);
+      color: var(--nf-color-text);
+    }
+  }
 </style>
+
+<script>
+  const THEMES = [
+    'nf-theme-night-city',
+    'nf-theme-chiba-city',
+    'nf-theme-neon-80s',
+    'nf-theme-renaissance',
+    'nf-theme-code-rain',
+    'nf-theme-iron-signal',
+  ];
+
+  const select = document.getElementById('theme-switcher') as HTMLSelectElement;
+  const saved = localStorage.getItem('nf-theme') ?? '';
+  select.value = saved;
+
+  function updateSwatchLabels() {
+    const style = getComputedStyle(document.documentElement);
+    document.querySelectorAll<HTMLElement>('[data-token]').forEach((el) => {
+      const token = el.dataset['token']!;
+      const value = style.getPropertyValue(token).trim();
+      if (value) el.textContent = value.toUpperCase();
+    });
+  }
+
+  function updateFontLabels() {
+    const style = getComputedStyle(document.documentElement);
+    document.querySelectorAll<HTMLElement>('[data-font-token]').forEach((el) => {
+      const token = el.dataset['fontToken']!;
+      const category = el.dataset['fontCategory']!;
+      const value = style.getPropertyValue(token).trim();
+      if (value) {
+        // Extract first font family name, strip quotes, normalize to UPPER_SNAKE
+        const firstName = value.split(',')[0].trim().replace(/['"]/g, '');
+        const normalized = firstName.toUpperCase().replace(/\s+/g, '_');
+        el.textContent = `${normalized} // ${category}`;
+      }
+    });
+  }
+
+  select.addEventListener('change', () => {
+    const next = select.value;
+    document.documentElement.classList.remove(...THEMES);
+    if (next) document.documentElement.classList.add(next);
+    localStorage.setItem('nf-theme', next);
+    updateSwatchLabels();
+    updateFontLabels();
+  });
+
+  // Set labels on initial load
+  updateSwatchLabels();
+  updateFontLabels();
+</script>

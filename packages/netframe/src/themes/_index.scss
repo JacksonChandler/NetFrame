@@ -1,0 +1,18 @@
+// NetFrame — Theme barrel
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Each theme is a class applied to <html> or <body>:
+//   <body class="nf-theme-night-city">
+//   <body class="nf-theme-chiba-city">
+//   <body class="nf-theme-neon-80s">
+//   <body class="nf-theme-renaissance">
+//   <body class="nf-theme-code-rain">
+//   <body class="nf-theme-iron-signal">
+
+@forward 'night-city';
+@forward 'chiba-city';
+@forward 'neon-80s';
+@forward 'renaissance';
+@forward 'code-rain';
+@forward 'iron-signal';

@@ -21,7 +21,7 @@
 @mixin nf-glitch(
   $intensity: 'base',
   $color-a: var(--nf-color-primary),
-  $color-b: var(--nf-color-accent)
+  $color-b: var(--nf-color-secondary)
 ) {
   position: relative;
 
@@ -64,7 +64,7 @@
 
 @mixin nf-glitch-hover(
   $color-a: var(--nf-color-primary),
-  $color-b: var(--nf-color-accent)
+  $color-b: var(--nf-color-secondary)
 ) {
   position: relative;
 

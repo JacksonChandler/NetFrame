@@ -17,7 +17,7 @@
 
   font-family: var(--nf-font-body);
   font-size: var(--nf-text-md);
-  font-weight: var(--nf-font-weight-medium);
+  font-weight: var(--nf-font-weight-bold);
   letter-spacing: var(--nf-tracking-display);
   text-transform: uppercase;
   white-space: nowrap;
@@ -50,7 +50,7 @@
   background-color: var(--nf-color-primary);
   color: var(--nf-color-on-primary);
   border-color: var(--nf-color-primary);
-  @include nf-offset-shadow(var(--nf-color-on-primary));
+  @include nf-offset-shadow(var(--nf-color-primary));
 
   &:hover {
     background-color: var(--nf-color-secondary);
@@ -66,7 +66,7 @@
 // Secondary — magenta bg, black text
 .nf-button-secondary {
   background-color: var(--nf-color-secondary);
-  color: var(--nf-color-on-primary);
+  color: var(--nf-color-on-secondary);
   border-color: var(--nf-color-secondary);
   @include nf-offset-shadow(var(--nf-color-secondary));
 

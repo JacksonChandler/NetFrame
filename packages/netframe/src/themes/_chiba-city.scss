@@ -1,0 +1,51 @@
+// NetFrame — Theme: Chiba City
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Gritty, industrial. "The color of television, tuned to a dead channel."
+// Primary: Electronic Teal  #3AFFE5
+// Secondary: Amber/Circuit  #FF8C00
+// Tertiary: Solder Gray     #9a9a9a
+
+.nf-theme-chiba-city {
+  // Surfaces — off-black/charcoal base
+  --nf-color-bg:                #0d0d0d;
+  --nf-color-surface:           #141414;
+  --nf-color-surface-lowest:    #0f0f0f;
+  --nf-color-surface-low:       #1c1c1c;
+  --nf-color-surface-container: #222222;
+  --nf-color-surface-high:      #2a2a2a;
+  --nf-color-surface-highest:   #333333;
+  --nf-color-surface-bright:    #3d3d3d;
+
+  // Primary — Electronic Teal
+  --nf-color-primary:           #3affe5;
+  --nf-color-on-primary:        #000000;
+  --nf-color-primary-dim:       #00e0c8;
+  --nf-color-primary-fixed:     #aafff5;
+
+  // Secondary — Amber / Circuit Gold
+  --nf-color-secondary:         #ff8c00;
+  --nf-color-on-secondary:      #000000;
+  --nf-color-secondary-dim:     #d47200;
+
+  // Tertiary — Industrial Gray
+  --nf-color-tertiary:          #9a9a9a;
+  --nf-color-on-tertiary:       #000000;
+  --nf-color-tertiary-dim:      #787878;
+
+  // Semantic
+  --nf-color-error:             #ff3b30;
+  --nf-color-error-container:   #6e1a14;
+  --nf-color-on-error:          #ffd0cc;
+
+  // Text — slightly cooled neutral
+  --nf-color-text:              #e8e8e8;
+  --nf-color-text-muted:        #b8c4b8;
+  --nf-color-text-subtle:       #7a8a7a;
+  --nf-color-text-inverse:      #000000;
+
+  // Borders — dark, heavy density
+  --nf-color-border:            #282828;
+  --nf-color-border-strong:     #5c5c5c;
+}

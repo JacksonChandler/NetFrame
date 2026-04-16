@@ -8,7 +8,8 @@
   flex-wrap: wrap;
   gap: 0;
 
-  font-family: var(--nf-font-label);
+  font-family: var(--nf-font-body);
+  font-weight: var(--nf-font-weight-medium);
   font-size: var(--nf-text-base);
   letter-spacing: var(--nf-tracking-display);
   text-transform: uppercase;

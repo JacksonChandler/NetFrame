@@ -34,7 +34,8 @@
   }
 
   .nf-card-subtitle {
-    font-family: var(--nf-font-label);
+    font-family: var(--nf-font-body);
+    font-weight: var(--nf-font-weight-medium);
     font-size: var(--nf-text-base);
     color: var(--nf-color-text-muted);
     letter-spacing: var(--nf-tracking-wider);

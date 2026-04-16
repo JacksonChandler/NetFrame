@@ -24,7 +24,15 @@ const { title, description = 'NetFrame — Cyberpunk CSS component library by Cy
 
     <!-- NetFrame CSS -->
     <link rel="stylesheet" href="/netframe.css" />
+    <link rel="stylesheet" href="/themes.css" />
   </head>
+  <!-- Theme class applied before paint to avoid flash -->
+  <script is:inline>
+    (function () {
+      var t = localStorage.getItem('nf-theme');
+      if (t) document.documentElement.classList.add(t);
+    })();
+  </script>
   <body class="nf-crt">
     <slot />
   </body>

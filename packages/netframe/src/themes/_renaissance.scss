@@ -1,0 +1,56 @@
+// NetFrame — Theme: Renaissance
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Cyber-Renaissance. Gold and black. Inky, architectural, opulent.
+// Primary: Augmented Gold   #E5B100
+// Secondary: Aged Gold      #C89800
+// Tertiary: Warm Parchment  #E0D8B8
+// Display font overrides to system serif for the mixed-tech aesthetic.
+
+.nf-theme-renaissance {
+  // Surfaces — inky black with warm brown undertone
+  --nf-color-bg:                #050505;
+  --nf-color-surface:           #0e0e0c;
+  --nf-color-surface-lowest:    #090908;
+  --nf-color-surface-low:       #171610;
+  --nf-color-surface-container: #1e1d14;
+  --nf-color-surface-high:      #282618;
+  --nf-color-surface-highest:   #332f1e;
+  --nf-color-surface-bright:    #3e3928;
+
+  // Primary — Augmented Gold
+  --nf-color-primary:           #e5b100;
+  --nf-color-on-primary:        #000000;
+  --nf-color-primary-dim:       #c89800;
+  --nf-color-primary-fixed:     #ffe082;
+
+  // Secondary — Renaissance Crimson (distinct from gold)
+  --nf-color-secondary:         #992222;
+  --nf-color-on-secondary:      #ffffff;
+  --nf-color-secondary-dim:     #7a1a1a;
+
+  // Tertiary — Warm Parchment White
+  --nf-color-tertiary:          #e0d8b8;
+  --nf-color-on-tertiary:       #000000;
+  --nf-color-tertiary-dim:      #c8c098;
+
+  // Semantic
+  --nf-color-error:             #ff5500;
+  --nf-color-error-container:   #5a1400;
+  --nf-color-on-error:          #000000;
+
+  // Text — warm parchment tones
+  --nf-color-text:              #e8e0cc;
+  --nf-color-text-muted:        #c0b080;
+  --nf-color-text-subtle:       #907040;
+  --nf-color-text-inverse:      #000000;
+
+  // Borders — warm dark gold
+  --nf-color-border:            #2c2618;
+  --nf-color-border-strong:     #5a4820;
+
+  // Typography — serif display font for the Renaissance aesthetic
+  // Falls back through high-quality system serifs
+  --nf-font-display: 'Didot', 'Palatino Linotype', 'Book Antiqua', 'Palatino', Georgia, serif;
+}

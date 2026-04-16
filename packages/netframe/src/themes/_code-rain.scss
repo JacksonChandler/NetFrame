@@ -1,0 +1,58 @@
+// NetFrame — Theme: Code Rain
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Monochromatic data-flow aesthetic. All green, all the time.
+// Primary: Matrix Green     #00FF41
+// Secondary: Dim Green      #00AA2B
+// Tertiary: Mid Green       #00CC33
+// Text rendered in green — full immersion.
+
+.nf-theme-code-rain {
+  // Surfaces — deep moss black, green-tinted dark stack
+  --nf-color-bg:                #000b00;
+  --nf-color-surface:           #001200;
+  --nf-color-surface-lowest:    #000a00;
+  --nf-color-surface-low:       #001a00;
+  --nf-color-surface-container: #002200;
+  --nf-color-surface-high:      #002c00;
+  --nf-color-surface-highest:   #003400;
+  --nf-color-surface-bright:    #003e00;
+
+  // Primary — Matrix Green
+  --nf-color-primary:           #00ff41;
+  --nf-color-on-primary:        #000000;
+  --nf-color-primary-dim:       #00dd38;
+  --nf-color-primary-fixed:     #aaffbb;
+
+  // Secondary — Dim Matrix Green (active/pressed states)
+  --nf-color-secondary:         #00aa2b;
+  --nf-color-on-secondary:      #000000;
+  --nf-color-secondary-dim:     #008820;
+
+  // Tertiary — Mid Matrix Green
+  --nf-color-tertiary:          #00cc33;
+  --nf-color-on-tertiary:       #000000;
+  --nf-color-tertiary-dim:      #00aa28;
+
+  // Semantic — keep red for error accessibility
+  --nf-color-error:             #ff3b30;
+  --nf-color-error-container:   #4a0a00;
+  --nf-color-on-error:          #ffd0cc;
+
+  // Text — rendered in green for full data-terminal immersion
+  --nf-color-text:              #c8ffc8;
+  --nf-color-text-muted:        #80d080;
+  --nf-color-text-subtle:       #508050;
+  --nf-color-text-inverse:      #000000;
+
+  // Borders — dark green
+  --nf-color-border:            #003a00;
+  --nf-color-border-strong:     #006600;
+
+  // CRT — green phosphor only, heavier scan bands
+  --nf-crt-scan:  rgba(0, 0, 0, 0.15);
+  --nf-crt-rgb-r: rgba(0, 255, 65, 0.00);
+  --nf-crt-rgb-g: rgba(0, 255, 65, 0.04);
+  --nf-crt-rgb-b: rgba(0, 255, 65, 0.00);
+}

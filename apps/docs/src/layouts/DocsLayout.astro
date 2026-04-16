@@ -17,6 +17,12 @@ const currentPath = Astro.url.pathname;
 
 <BaseLayout title={title} description={description}>
   <div class="docs-shell">
+    <!-- Mobile sidebar toggle -->
+    <button class="sidebar-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="docs-sidebar">
+      <i class="ph-thin ph-list"></i>
+      NAV
+    </button>
+
     <!-- Sidebar nav -->
     <Sidebar currentPath={currentPath} />
 
@@ -24,18 +30,29 @@ const currentPath = Astro.url.pathname;
     <div class="docs-main">
       <!-- Top bar -->
       <header class="docs-topbar">
-        <span class="docs-topbar-path nf-font-label nf-tracking-display nf-uppercase nf-text-muted">
+        <span class="docs-topbar-path nf-tracking-display nf-uppercase nf-text-muted">
           NETFRAME_DOCS // {title?.toUpperCase() ?? ''}
         </span>
-        <a
-          class="docs-topbar-link nf-font-label nf-tracking-display nf-uppercase nf-text-muted"
-          href="https://github.com/CybearTechnologies/NetFrame"
-          target="_blank"
-          rel="noopener"
-        >
-          <i class="ph-thin ph-github-logo"></i>
-          GITHUB
-        </a>
+        <div class="topbar-right">
+          <select id="theme-switcher" class="theme-select nf-tracking-display nf-uppercase" aria-label="Select theme">
+            <option value="">DEFAULT</option>
+            <option value="nf-theme-night-city">NIGHT CITY</option>
+            <option value="nf-theme-chiba-city">CHIBA CITY</option>
+            <option value="nf-theme-neon-80s">NEON 80S</option>
+            <option value="nf-theme-renaissance">RENAISSANCE</option>
+            <option value="nf-theme-code-rain">CODE RAIN</option>
+            <option value="nf-theme-iron-signal">IRON SIGNAL</option>
+          </select>
+          <a
+            class="docs-topbar-link nf-tracking-display nf-uppercase nf-text-muted"
+            href="https://github.com/CybearTechnologies/NetFrame"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="ph-thin ph-github-logo"></i>
+            GITHUB
+          </a>
+        </div>
       </header>
 
       <!-- Page content -->
@@ -44,7 +61,7 @@ const currentPath = Astro.url.pathname;
       </main>
 
       <!-- Status footer -->
-      <footer class="docs-footer nf-font-label nf-tracking-display nf-uppercase">
+      <footer class="docs-footer nf-tracking-display nf-uppercase">
         <span class="nf-text-muted">NETFRAME v0.1.0 // CYBEAR_TECHNOLOGIES</span>
         <span class="nf-text-subtle">GPL-3.0</span>
       </footer>
@@ -58,12 +75,38 @@ const currentPath = Astro.url.pathname;
     min-height: 100svh;
   }
 
+  .sidebar-toggle {
+    display: none;
+    position: fixed;
+    bottom: var(--nf-space-6);
+    right: var(--nf-space-6);
+    z-index: calc(var(--nf-z-sticky) + 1);
+    align-items: center;
+    gap: var(--nf-space-2);
+    padding: var(--nf-space-3) var(--nf-space-4);
+    background-color: var(--nf-color-primary);
+    color: var(--nf-color-on-primary);
+    border: 2px solid var(--nf-color-primary);
+    font-size: var(--nf-text-sm);
+    letter-spacing: var(--nf-tracking-display);
+    cursor: crosshair;
+    box-shadow: 3px 3px 0px 0px var(--nf-color-secondary);
+
+    @media (max-width: 48rem) {
+      display: inline-flex;
+    }
+  }
+
   .docs-main {
     flex: 1;
     display: flex;
     flex-direction: column;
     min-width: 0;
     margin-left: 16rem;
+
+    @media (max-width: 48rem) {
+      margin-left: 0;
+    }
   }
 
   .docs-topbar {
@@ -79,7 +122,38 @@ const currentPath = Astro.url.pathname;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--nf-color-primary);
+    font-family: var(--nf-font-body);
+    font-weight: var(--nf-font-weight-medium);
     font-size: var(--nf-text-xs);
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: var(--nf-space-6);
+  }
+
+  .theme-select {
+    appearance: none;
+    background-color: var(--nf-color-surface-low);
+    color: var(--nf-color-text);
+    border: 2px solid var(--nf-color-border);
+    padding: var(--nf-space-1) var(--nf-space-3);
+    min-width: 10rem;
+    font-family: var(--nf-font-body);
+    font-weight: var(--nf-font-weight-medium);
+    font-size: var(--nf-text-xs);
+    cursor: crosshair;
+    outline: none;
+    transition: border-color var(--nf-duration-fast) var(--nf-ease-sharp);
+
+    &:hover  { border-color: var(--nf-color-primary); }
+    &:focus  { border-color: var(--nf-color-primary); }
+
+    option {
+      background-color: var(--nf-color-surface-low);
+      color: var(--nf-color-text);
+    }
   }
 
   .docs-topbar-link {
@@ -104,6 +178,48 @@ const currentPath = Astro.url.pathname;
     align-items: center;
     padding: var(--nf-space-4) var(--nf-space-8);
     border-top: 1px solid var(--nf-color-border);
+    font-family: var(--nf-font-body);
+    font-weight: var(--nf-font-weight-medium);
     font-size: var(--nf-text-xs);
   }
 </style>
+
+<script>
+  const THEMES = [
+    'nf-theme-night-city',
+    'nf-theme-chiba-city',
+    'nf-theme-neon-80s',
+    'nf-theme-renaissance',
+    'nf-theme-code-rain',
+    'nf-theme-iron-signal',
+  ];
+
+  // Mobile sidebar toggle
+  const toggle = document.querySelector<HTMLButtonElement>('.sidebar-toggle');
+  const sidebar = document.getElementById('docs-sidebar');
+  toggle?.addEventListener('click', () => {
+    const open = sidebar?.classList.toggle('sidebar-open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  // Close sidebar when a nav link is clicked on mobile
+  sidebar?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      sidebar.classList.remove('sidebar-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  const select = document.getElementById('theme-switcher') as HTMLSelectElement;
+
+  // Restore saved theme on load
+  const saved = localStorage.getItem('nf-theme') ?? '';
+  select.value = saved;
+
+  select.addEventListener('change', () => {
+    const next = select.value;
+    // Remove all theme classes, apply the selected one
+    document.documentElement.classList.remove(...THEMES);
+    if (next) document.documentElement.classList.add(next);
+    localStorage.setItem('nf-theme', next);
+  });
+</script>

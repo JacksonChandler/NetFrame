@@ -29,19 +29,15 @@
     z-index: 9999;
     pointer-events: none;
 
-    // Horizontal scanlines + RGB bleed — matches the Stitch spec exactly:
-    // 3px scan frequency, RGB channels at 3/1/3% opacity
+    // CSS vars let themes override scanline intensity independently
+    --nf-crt-scan:  rgba(0, 0, 0, 0.05);
+    --nf-crt-rgb-r: rgba(255, 0, 0, 0.03);
+    --nf-crt-rgb-g: rgba(0, 255, 0, 0.01);
+    --nf-crt-rgb-b: rgba(0, 0, 255, 0.03);
+
     background:
-      linear-gradient(
-        rgba(18, 16, 16, 0) 50%,
-        rgba(0, 0, 0, 0.10) 50%
-      ),
-      linear-gradient(
-        90deg,
-        rgba(255, 0, 0, 0.03),
-        rgba(0, 255, 0, 0.01),
-        rgba(0, 0, 255, 0.03)
-      );
+      linear-gradient(rgba(18, 16, 16, 0) 50%, var(--nf-crt-scan) 50%),
+      linear-gradient(90deg, var(--nf-crt-rgb-r), var(--nf-crt-rgb-g), var(--nf-crt-rgb-b));
     background-size: 100% 3px, 3px 100%;
   }
 }

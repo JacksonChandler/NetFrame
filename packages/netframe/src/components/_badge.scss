@@ -34,7 +34,7 @@
 
 .nf-badge-secondary {
   background-color: var(--nf-color-secondary);
-  color: var(--nf-color-on-primary);
+  color: var(--nf-color-on-secondary);
   border-color: var(--nf-color-secondary);
 }
 
@@ -46,7 +46,7 @@
 
 .nf-badge-error {
   background-color: var(--nf-color-error);
-  color: var(--nf-color-on-primary);
+  color: var(--nf-color-on-error);
   border-color: var(--nf-color-error);
 }
 

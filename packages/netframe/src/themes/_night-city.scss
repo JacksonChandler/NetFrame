@@ -1,0 +1,51 @@
+// NetFrame — Theme: Night City
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// High-visibility hazard palette. Aggressive contrast.
+// Primary: Hazard Yellow  #FCEE09
+// Secondary: Cyan         #00F0FF
+// Tertiary/Danger: Red    #FF003C
+
+.nf-theme-night-city {
+  // Surfaces — pure black base, neutral dark gray stack
+  --nf-color-bg:                #000000;
+  --nf-color-surface:           #0f0f0f;
+  --nf-color-surface-lowest:    #0a0a0a;
+  --nf-color-surface-low:       #161616;
+  --nf-color-surface-container: #1c1c1c;
+  --nf-color-surface-high:      #232323;
+  --nf-color-surface-highest:   #2c2c2c;
+  --nf-color-surface-bright:    #333333;
+
+  // Primary — Hazard Yellow
+  --nf-color-primary:           #fcee09;
+  --nf-color-on-primary:        #000000;
+  --nf-color-primary-dim:       #e0d300;
+  --nf-color-primary-fixed:     #fff176;
+
+  // Secondary — Cyan
+  --nf-color-secondary:         #00f0ff;
+  --nf-color-on-secondary:      #000000;
+  --nf-color-secondary-dim:     #00c8d4;
+
+  // Tertiary — Vibrant Red
+  --nf-color-tertiary:          #ff003c;
+  --nf-color-on-tertiary:       #000000;
+  --nf-color-tertiary-dim:      #cc0030;
+
+  // Semantic
+  --nf-color-error:             #ff003c;
+  --nf-color-error-container:   #7a0018;
+  --nf-color-on-error:          #ffd0da;
+
+  // Text — neutral bright on true black
+  --nf-color-text:              #f0f0f0;
+  --nf-color-text-muted:        #c0c0c0;
+  --nf-color-text-subtle:       #888888;
+  --nf-color-text-inverse:      #000000;
+
+  // Borders
+  --nf-color-border:            #2a2a2a;
+  --nf-color-border-strong:     #4a4a4a;
+}

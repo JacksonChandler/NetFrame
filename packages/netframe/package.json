@@ -20,6 +20,13 @@
     "./min": {
       "style": "./dist/netframe.min.css"
     },
+    "./themes": {
+      "style": "./dist/themes.css",
+      "sass": "./dist/scss/themes/themes.scss"
+    },
+    "./themes/min": {
+      "style": "./dist/themes.min.css"
+    },
     "./scss/*": "./dist/scss/*"
   },
   "main": "./dist/netframe.css",

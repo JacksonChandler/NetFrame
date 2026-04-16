@@ -1,0 +1,59 @@
+// NetFrame — Theme: Neon 80s
+// Copyright (C) 2026 Cybear Technologies
+// SPDX-License-Identifier: GPL-3.0-only
+//
+// Synthwave / retro-futurism. Deep midnight purple base, max saturation.
+// Primary: Hot Pink/Magenta  #FF00FF
+// Secondary: Electric Blue   #00D9FF
+// Tertiary: Ultraviolet      #7000FF
+// CRT scanlines at 3x default opacity.
+
+.nf-theme-neon-80s {
+  // Surfaces — deep midnight purple base
+  --nf-color-bg:                #1a0b2e;
+  --nf-color-surface:           #221340;
+  --nf-color-surface-lowest:    #160930;
+  --nf-color-surface-low:       #2c1a50;
+  --nf-color-surface-container: #332060;
+  --nf-color-surface-high:      #3e2870;
+  --nf-color-surface-highest:   #4a3080;
+  --nf-color-surface-bright:    #563890;
+
+  // Primary — Hot Pink / Magenta
+  --nf-color-primary:           #ff00ff;
+  --nf-color-on-primary:        #000000;
+  --nf-color-primary-dim:       #dd00dd;
+  --nf-color-primary-fixed:     #ffaaff;
+
+  // Secondary — Electric Blue
+  --nf-color-secondary:         #00d9ff;
+  --nf-color-on-secondary:      #000000;
+  --nf-color-secondary-dim:     #00b8d4;
+
+  // Tertiary — Ultraviolet
+  --nf-color-tertiary:          #7000ff;
+  --nf-color-on-tertiary:       #000000;
+  --nf-color-tertiary-dim:      #5500cc;
+
+  // Semantic
+  --nf-color-error:             #ff3b30;
+  --nf-color-error-container:   #6e0a28;
+  --nf-color-on-error:          #ffd0da;
+
+  // Text — purple-tinted white
+  --nf-color-text:              #f5e8ff;
+  --nf-color-text-muted:        #c8a8f0;
+  --nf-color-text-subtle:       #9070c0;
+  --nf-color-text-inverse:      #000000;
+
+  // Borders — purple-shifted
+  --nf-color-border:            #3a2258;
+  --nf-color-border-strong:     #6a3a90;
+
+  // CRT — crank scanlines to 30% for the synthwave vibe
+  // These vars are read by .nf-crt::before
+  --nf-crt-scan:  rgba(0, 0, 0, 0.15);
+  --nf-crt-rgb-r: rgba(255, 0, 255, 0.04);
+  --nf-crt-rgb-g: rgba(0, 220, 255, 0.02);
+  --nf-crt-rgb-b: rgba(112, 0, 255, 0.04);
+}

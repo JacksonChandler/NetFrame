@@ -5,8 +5,8 @@
 // Palette sourced from the Neon-Terminal Directive design spec.
 // Three accent colors form the hierarchy:
 //   primary   → Terminal Green  (#00FF00)
-//   secondary → Cyber Magenta  (#FE00FE)
-//   tertiary  → Electric Cyan  (#00F4F4)
+//   secondary → Hot Pink        (#FF0066)
+//   tertiary  → UV Violet       (#7700FF)
 //
 // Override any --nf-color-* on :root — no rebuild required.
 
@@ -31,19 +31,19 @@ $nf-colors: (
 
   // Brand — Primary (Terminal Green)
   'primary':               #00ff00,
-  'on-primary':            #013a00,
+  'on-primary':            #000000,
   'primary-dim':           #02e600,
   'primary-fixed':         #77ff61,
 
-  // Brand — Secondary (Cyber Magenta)
-  'secondary':             #fe00fe,
-  'on-secondary':          #5b005b,
-  'secondary-dim':         #ffabf3,
+  // Brand — Secondary (Hot Pink)
+  'secondary':             #ff0066,
+  'on-secondary':          #000000,
+  'secondary-dim':         #cc0052,
 
-  // Brand — Tertiary (Electric Cyan)
-  'tertiary':              #00f4f4,
-  'on-tertiary':           #003737,
-  'tertiary-dim':          #00dddd,
+  // Brand — Tertiary (UV Violet)
+  'tertiary':              #7700ff,
+  'on-tertiary':           #ffffff,
+  'tertiary-dim':          #5500cc,
 
   // Semantic
   'error':                 #ffb4ab,
