@@ -1,0 +1,80 @@
+version: 2
+
+updates:
+  # ---------------------------------------------------------------------------
+  # Root workspace — pnpm lockfile
+  # ---------------------------------------------------------------------------
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: America/Chicago
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+    groups:
+      dev-tooling:
+        patterns:
+          - "typescript"
+          - "tsx"
+          - "sass"
+          - "postcss"
+          - "autoprefixer"
+          - "cssnano"
+        update-types:
+          - minor
+          - patch
+
+  # ---------------------------------------------------------------------------
+  # Docs site — apps/docs
+  # ---------------------------------------------------------------------------
+  - package-ecosystem: npm
+    directory: /apps/docs
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: America/Chicago
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docs
+    groups:
+      astro:
+        patterns:
+          - "astro"
+          - "@astrojs/*"
+        update-types:
+          - minor
+          - patch
+
+  # ---------------------------------------------------------------------------
+  # Library — packages/netframe
+  # ---------------------------------------------------------------------------
+  - package-ecosystem: npm
+    directory: /packages/netframe
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: America/Chicago
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - library
+
+  # ---------------------------------------------------------------------------
+  # GitHub Actions
+  # ---------------------------------------------------------------------------
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: America/Chicago
+    labels:
+      - dependencies
+      - ci
